@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "Roam Nepal",
@@ -17,7 +16,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
     <head />
     <body>
-    <Providers>{children}</Providers>
+      {children}
     </body>
   </html>
   );
