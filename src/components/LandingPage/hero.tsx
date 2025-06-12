@@ -15,10 +15,10 @@ const HeroSection = () => {
         {/* Left Content */}
         <div className="flex-1 text-black">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-kanit leading-tight mb-6">
-            Discover Nepals Hidden <br />
+            Discover Nepals Hidden
             Wonders & Sacred Trails
           </h1>
-          <p className=" md:text-lg mb-6 max-w-lg font-exo font-semibold">
+          <p className=" md:text-lg mb-6 max-w-lg font-exo">
             From the towering peaks of the Himalayas to the peaceful temples and
             vibrant villages, Nepal invites you to a journey of discovery, soul,
             and unforgettable moments.
