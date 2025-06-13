@@ -109,7 +109,7 @@ const HeroSection = () => {
         </div>
       </div>
         {/* SVG Wave Divider */}
-      <div className="absolute bottom-[-2rem] left-0 w-full overflow-hidden leading-[0]">
+      <div className="absolute bottom-[-2.5rem] left-0 w-full z-10 overflow-hidden leading-[0]">
         <svg
           viewBox="0 0 500 150"
           preserveAspectRatio="none"
@@ -117,7 +117,7 @@ const HeroSection = () => {
         >
           <path
             d="M0.00,49.98 C150.00,150.00 349.46,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-            className="fill-[#d9f99d]"
+            className="fill-[#f3ffef]"
           ></path>
         </svg>
       </div>
