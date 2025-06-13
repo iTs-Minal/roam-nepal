@@ -10,7 +10,7 @@ const navLinks = [
   { id: 2, text: "Destination", link: "/destination" },
   { id: 5, text: "Places", link: "/places" },
   { id: 3, text: "Contact", link: "/contact" },
-  { id: 4, text: "About", link: "/about" },
+  { id: 4, text: "About", link: "#about" },
 ];
 
 const Navbar = () => {
@@ -47,7 +47,7 @@ const Navbar = () => {
         </ul>
 
         {/* Right Section: Language + Auth + Menu */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {/* Language (hidden on small screens) */}
           <div className="hidden md:flex items-center gap-1 text-sm text-gray-700">
             <span className="p-1 bg-gray-200 rounded-full">
@@ -58,10 +58,9 @@ const Navbar = () => {
 
           {/* Auth Buttons */}
           <div className="flex gap-2 font-kanit">
-            <Button variant="secondary" size="sm" className="hover:translate-y-[-2px]">
-              Login
+            <Button variant="default" size="sm" className="hover:translate-y-[-2px]">
+              Log In
             </Button>
-            <Button size="sm" className="hover:translate-y-[-2px]">Sign Up</Button>
           </div>
 
           {/* Menu Button - only on mobile */}
