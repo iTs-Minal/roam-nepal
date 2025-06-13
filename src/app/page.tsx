@@ -2,6 +2,7 @@ import HeroSection from "@/components/landingpage/hero";
 import Navbar from "@/components/landingpage/navbar";
 import AboutSection from "@/components/landingpage/about";
 import DestinationSection from "@/components/landingpage/destination";
+import InspirationSection from "@/components/landingpage/inspiration";
 
 export default function Home() {
   return (
@@ -22,6 +23,10 @@ export default function Home() {
 
       <section>
         <DestinationSection />
+      </section>
+
+      <section>
+        <InspirationSection />
       </section>
     </main>
   );

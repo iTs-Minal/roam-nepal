@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 const sliderDestinations = [
   {
@@ -26,40 +27,18 @@ const sliderDestinations = [
   },
 ];
 
-// const recommendedDestinations = [
-//   {
-//     id: 1,
-//     location: "UAE",
-//     image: "/chitwan.jpg",
-//     description:
-//       "Experience luxury and innovation in the heart of the Middle East. From towering skyscrapers to golden deserts.",
-//     badgeColor: "bg-red-500",
-//   },
-//   {
-//     id: 2,
-//     location: "Singapore",
-//     image: "/bardia.jpg",
-//     description:
-//       "Discover the perfect blend of tradition and modernity in this vibrant city-state.",
-//     badgeColor: "bg-green-500",
-//   },
-//   {
-//     id: 3,
-//     location: "New York",
-//     image: "/pokhara.jpg",
-//     description:
-//       "The city that never sleeps awaits with iconic landmarks, world-class dining, and endless entertainment.",
-//     badgeColor: "bg-blue-500",
-//   },
-//   {
-//     id: 4,
-//     location: "Toronto",
-//     image: "/lumbini.jpg",
-//     description:
-//       "Canada's multicultural hub offering stunning skylines, diverse neighborhoods, and warm hospitality.",
-//     badgeColor: "bg-orange-500",
-//   },
-// ];
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
 
 const DestinationSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -78,26 +57,50 @@ const DestinationSection = () => {
 
   const currentDestination = sliderDestinations[currentIndex];
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
+
   return (
-    <section className="relative flex flex-col w-full px-4 py-16 text-center bg-gradient-to-br from-[#fdf388] via-[#fcf9dc] to-[#83ceff]">
-      
+    <section
+      ref={ref}
+      className="relative flex flex-col w-full px-4 py-16 text-center bg-gradient-to-br from-[#fdf388] via-[#fdf388] to-[#2aaaff]"
+    >
       <div className="max-w-6xl mx-auto">
+
         {/* Heading */}
-        <p className="text-sm font-medium text-gray-500 uppercase mb-2">
-          Explore Monthly
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-          We Recommend <br className="hidden md:block" />
-          Destinations Every Month
-        </h2>
-        <p className="text-gray-600 max-w-xl mx-auto mb-10 text-sm">
-          Embark on the adventure of a lifetime, where every step you take
-          unveils a new story, and every destination leaves a lasting
-          impression.
-        </p>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
+          custom={1}
+        >
+          <p className="text-sm font-semibold text-gray-500 uppercase mb-2 font-ovo">
+            Explore Monthly
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 font-kanit">
+            We Recommend <br className="hidden md:block" />
+            Destinations Every Month
+          </h2>
+          <p className="text-gray-600 max-w-xl mx-auto mb-10 text-sm font-outfit">
+            Embark on the adventure of a lifetime...
+          </p>
+        </motion.div>
 
         {/* Cards Container */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <motion.div
+        variants={fadeUp}
+          initial="hidden"
+          animate={controls}
+          custom={5}
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+
           {/* Map Card */}
           <div className="relative rounded-2xl overflow-hidden shadow-md h-80 w-60 bg-gray-200">
             <Image
@@ -106,8 +109,8 @@ const DestinationSection = () => {
               fill
               className="object-cover"
             />
-            <div className="absolute bottom-3 left-3 text-white text-sm font-semibold">
-              See true <br /> location
+            <div className="absolute bottom-3 left-3 text-black text-sm font-semibold font-ovo shadow-md">
+              See true location
             </div>
           </div>
 
@@ -119,13 +122,13 @@ const DestinationSection = () => {
               fill
               className="object-cover"
             />
-            <div className="absolute bottom-3 left-3 text-white text-sm font-semibold">
-              32° <br /> Sunny
+            <div className="absolute bottom-3 left-3 text-white text-sm font-semibold font-kanit">
+              32° Sunny
             </div>
           </div>
 
           {/* Review Card */}
-          <div className="relative rounded-2xl overflow-hidden shadow-md h-80 w-60 bg-white flex flex-col justify-center items-center p-4 ml-[-7rem]">
+          <div className="relative rounded-2xl overflow-hidden shadow-md h-80 w-60 bg-gradient-to-b from-[#f5f1b2] to-[#ffa3a7] flex flex-col justify-center items-center p-4 ml-[-7rem]">
             <div className="flex -space-x-2 mb-2">
               <Image
                 src="/avatar1.jpg"
@@ -149,11 +152,11 @@ const DestinationSection = () => {
                 className="rounded-full border-2 border-white"
               />
             </div>
-            <div className="flex items-center justify-center text-yellow-500 text-lg font-semibold">
-              <Star size={18} className="fill-yellow-400" /> 4.8k
+            <div className="flex items-center justify-center text-yellow-600 text-lg font-semibold">
+              <Star size={18} className="fill-yellow-600" /> 4.8k
             </div>
-            <p className="text-sm text-gray-700 mt-2 font-medium text-center">
-              The World’s Most Enchanting Dive Destinations
+            <p className="text-sm text-gray-700 mt-2 font-bold text-center font-exo">
+              The World’s Most Enchanting Travelling Destinations
             </p>
           </div>
 
@@ -167,7 +170,7 @@ const DestinationSection = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
             <div className="absolute bottom-0 left-0 w-full px-4 pb-4 text-white flex flex-col sm:flex-row sm:justify-between items-start sm:items-end gap-2">
-              <p className="text-sm text-left sm:text-base font-medium max-w-[70%] leading-snug">
+              <p className="text-sm text-left sm:text-base font-medium max-w-[70%] leading-snug font-outfit">
                 {currentDestination.title}
               </p>
               <div className="flex gap-2">
@@ -186,13 +189,20 @@ const DestinationSection = () => {
               </div>
             </div>
           </div>
-        </div>
+          
+        </motion.div>
 
         {/* Custom Recommended Destinations Section */}
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-4 gap-6 text-gray-800">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
+          custom={6}
+          className="mt-20 grid grid-cols-1 lg:grid-cols-4 gap-6 text-gray-800"
+        >
           {/* Row 1 - Chitwan */}
           <div className="flex flex-col justify-between">
-            <h3 className="text-2xl text-left font-medium mb-2 leading-snug">
+            <h3 className="text-2xl text-left font-medium mb-2 leading-snug font-kanit">
               <strong>Top -</strong> <br />
               Recommended Destinations
             </h3>
@@ -204,7 +214,7 @@ const DestinationSection = () => {
                 height={200}
                 className="object-cover w-full h-36 rounded-xl"
               />
-              <div className="absolute top-1 left-1 text-black font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2 shadow-md">
+              <div className="absolute top-1 left-1 text-black font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2 shadow-md font-exo">
                 🌳 Forest - Chitwan
               </div>
             </div>
@@ -219,7 +229,7 @@ const DestinationSection = () => {
               height={400}
               className="object-cover w-full h-72 rounded-xl"
             />
-            <div className="absolute top-1 left-1 text-black font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2 shadow-md">
+            <div className="absolute top-1 left-1 text-black font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2 shadow-md font-exo">
               🏞️ Lake - Pokhara
             </div>
           </div>
@@ -233,7 +243,7 @@ const DestinationSection = () => {
               height={400}
               className="object-cover w-full h-72 rounded-xl"
             />
-            <div className="absolute top-1 left-1 text-black font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2 shadow-md">
+            <div className="absolute top-1 left-1 text-black font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2 shadow-md font-exo">
               🐘 Wildlife - Bardia
             </div>
           </div>
@@ -248,23 +258,29 @@ const DestinationSection = () => {
                 height={200}
                 className="object-cover w-full h-36 rounded-xl mb-2"
               />
-              <div className="absolute top-1 left-1 text-white font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2 shadow-md">
+              <div className="absolute top-1 left-1 text-white font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2 shadow-md font-exo">
                 🕊️ Peace - Lumbini
               </div>
             </div>
-            <p className="text-sm text-left leading-relaxed text-gray-600">
+            <p className="text-sm text-left leading-relaxed text-gray-600 font-outfit">
               When it comes to planning a dream vacation, some destinations
               stand out as top recommendations for traveling across Nepal.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Button */}
-        <div className="mt-12 flex justify-center">
-  <button className="bg-gradient-to-r from-[#a7f3d0] to-[#6ee7b7] text-[#065f46] px-8 py-3 rounded-full font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out">
-    Explore More Destinations 
-  </button>
-</div>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
+          custom={7}
+          className="mt-12 flex justify-center"
+        >
+          <button className="bg-gradient-to-r from-[#a7f3d0] to-[#6ee7b7] text-[#065f46] px-8 py-3 rounded-full font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out font-outfit">
+            Explore More Destinations
+          </button>
+        </motion.div>
       </div>
     </section>
   );
