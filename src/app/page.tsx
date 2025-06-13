@@ -1,6 +1,6 @@
 import HeroSection from "@/components/landingpage/hero";
 import Navbar from "@/components/landingpage/navbar";
-import RecommendationSection from "@/components/landingpage/recommend";
+import AboutSection from "@/components/landingpage/about";
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
       </section>
 
       <section>
-        <RecommendationSection />
+        <AboutSection />
       </section>
     </main>
   );
