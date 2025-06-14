@@ -73,7 +73,6 @@ const DestinationSection = () => {
       className="relative flex flex-col w-full px-4 py-16 text-center bg-gradient-to-br from-[#fdf388] via-[#fdf388] to-[#2aaaff]"
     >
       <div className="max-w-6xl mx-auto">
-
         {/* Heading */}
         <motion.div
           variants={fadeUp}
@@ -95,12 +94,12 @@ const DestinationSection = () => {
 
         {/* Cards Container */}
         <motion.div
-        variants={fadeUp}
+          variants={fadeUp}
           initial="hidden"
           animate={controls}
           custom={5}
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
+        >
           {/* Map Card */}
           <div className="relative rounded-2xl overflow-hidden shadow-md h-80 w-60 bg-gray-200">
             <Image
@@ -189,7 +188,6 @@ const DestinationSection = () => {
               </div>
             </div>
           </div>
-          
         </motion.div>
 
         {/* Custom Recommended Destinations Section */}
@@ -281,6 +279,20 @@ const DestinationSection = () => {
             Explore More Destinations
           </button>
         </motion.div>
+      </div>
+      {/* SVG Divider at bottom */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <svg
+          viewBox="0 0 500 100"
+          preserveAspectRatio="none"
+          className="w-full h-[80px] transform rotate-180"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,30 C150,100 350,0 500,70 L500,00 L0,0 Z"
+            className="fill-[#3fb2ff]" // Change if your next section has a different bg
+          />
+        </svg>
       </div>
     </section>
   );

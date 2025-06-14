@@ -15,7 +15,7 @@ const InspirationSection = () => {
 
 
   return (
-    <section ref={ref} className="px-4 py-16 w-full mx-auto space-y-12 bg-gradient-to-r from-[#79d2e9] to-[#ffd2b8]">
+    <section ref={ref} className="px-8 py-16 w-full mx-auto space-y-12 bg-gradient-to-r from-[#2aaaff] to-[#ffd2b8]">
 
       {/* Section 1: Spark Ideas */}
       <motion.div
