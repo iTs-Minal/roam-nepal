@@ -72,7 +72,7 @@ const HeroSection = () => {
               variant="outline"
               className="bg-gradient-to-r from-[#99c7fc] to-[#38b7d6] border-2 border-black text-black px-8 py-6 rounded-full hover:scale-105 hover:bg-indigo-50 text-lg font-semibold w-full sm:w-auto"
             >
-              Discover →
+              Discover More →
             </Button>
           </motion.div>
         </div>

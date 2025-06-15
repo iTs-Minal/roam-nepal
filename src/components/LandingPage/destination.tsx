@@ -98,10 +98,10 @@ const DestinationSection = () => {
           initial="hidden"
           animate={controls}
           custom={5}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 place-items-center"
         >
           {/* Map Card */}
-          <div className="relative rounded-2xl overflow-hidden shadow-md h-80 w-60 bg-gray-200">
+          <div className="relative w-full h-80 rounded-2xl overflow-hidden shadow-md bg-gray-200 max-w-xs">
             <Image
               src="/map.PNG"
               alt="Location"
@@ -114,7 +114,7 @@ const DestinationSection = () => {
           </div>
 
           {/* Weather Card */}
-          <div className="relative bottom-[-3.5rem] ml-[-2rem] rounded-2xl overflow-hidden shadow-md h-66 w-50 bg-gray-200">
+          <div className="relative w-full h-64 -bottom-8 rounded-2xl overflow-hidden shadow-md bg-gray-200 max-w-xs">
             <Image
               src="/weather.jpg"
               alt="Weather"
@@ -127,40 +127,40 @@ const DestinationSection = () => {
           </div>
 
           {/* Review Card */}
-          <div className="relative rounded-2xl overflow-hidden shadow-md h-80 w-60 bg-gradient-to-b from-[#f5f1b2] to-[#ffa3a7] flex flex-col justify-center items-center p-4 ml-[-7rem]">
-            <div className="flex -space-x-2 mb-2">
-              <Image
-                src="/avatar1.jpg"
-                alt="Avatar 1"
-                width={50}
-                height={42}
-                className="rounded-full border-2 border-white"
-              />
-              <Image
-                src="/avatar2.jpg"
-                alt="Avatar 2"
-                width={50}
-                height={42}
-                className="rounded-full border-2 border-white"
-              />
-              <Image
-                src="/avatar3.jpg"
-                alt="Avatar 3"
-                width={50}
-                height={42}
-                className="rounded-full border-2 border-white"
-              />
-            </div>
-            <div className="flex items-center justify-center text-yellow-600 text-lg font-semibold">
-              <Star size={18} className="fill-yellow-600" /> 4.8k
-            </div>
-            <p className="text-sm text-gray-700 mt-2 font-bold text-center font-exo">
-              The World’s Most Enchanting Travelling Destinations
-            </p>
+          <div className="relative w-full h-80 rounded-2xl overflow-hidden shadow-md bg-gradient-to-b from-[#f5f1b2] to-[#ffa3a7] flex flex-col justify-center items-center p-4 max-w-xs">
+              <div className="flex -space-x-2 mb-2">
+                <Image
+                  src="/avatar1.jpg"
+                  alt="Avatar 1"
+                  width={50}
+                  height={42}
+                  className="rounded-full border-2 border-white"
+                />
+                <Image
+                  src="/avatar2.jpg"
+                  alt="Avatar 2"
+                  width={50}
+                  height={42}
+                  className="rounded-full border-2 border-white"
+                />
+                <Image
+                  src="/avatar3.jpg"
+                  alt="Avatar 3"
+                  width={50}
+                  height={42}
+                  className="rounded-full border-2 border-white"
+                />
+              </div>
+              <div className="flex items-center justify-center text-yellow-600 text-lg font-semibold">
+                <Star size={18} className="fill-yellow-600" /> 4.8k
+              </div>
+              <p className="text-sm text-gray-700 mt-2 font-bold text-center font-exo">
+                The World’s Most Enchanting Travelling Destinations
+              </p>
           </div>
 
           {/* Slider Card */}
-          <div className="relative bg-white rounded-2xl overflow-hidden shadow-md h-80 w-105 ml-[-9rem]">
+          <div className="relative w-full h-80 rounded-2xl overflow-hidden shadow-md bg-white max-w-xs">
             <Image
               src={currentDestination.image}
               alt={currentDestination.title}
@@ -196,7 +196,7 @@ const DestinationSection = () => {
           initial="hidden"
           animate={controls}
           custom={6}
-          className="mt-20 grid grid-cols-1 lg:grid-cols-4 gap-6 text-gray-800"
+          className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-gray-800"
         >
           {/* Row 1 - Chitwan */}
           <div className="flex flex-col justify-between">

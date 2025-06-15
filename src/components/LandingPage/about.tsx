@@ -54,7 +54,7 @@ const AboutSection = () => {
           animate={inView ? "visible" : "hidden"}
         className="sm:hidden w-full h-64 relative rounded-2xl overflow-hidden shadow-lg">
           <Image
-            src="/about5.jpg"
+            src="/about4.jpg"
             alt="imgMobile"
             fill
             className="object-cover"

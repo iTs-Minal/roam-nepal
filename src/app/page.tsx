@@ -8,7 +8,7 @@ import FooterSection from "@/components/landingpage/footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col bg-white text-gray-900">
+    <main className="min-h-screen w-full flex flex-col bg-white text-gray-900">
       {/* Sticky navbar for better UX */}
       <header className="absolute w-full z-50 bg-white/10">
         <Navbar />

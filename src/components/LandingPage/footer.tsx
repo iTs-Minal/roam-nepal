@@ -13,10 +13,10 @@ import Image from "next/image";
 const FooterSection = () => {
   return (
     <footer className="bg-gray-400/20 text-gray-800 px-6 md:px-16 pt-12 pb-6 font-outfit border-t">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center sm:text-left">
         {/* Branding + Text */}
         <div>
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center justify-center sm:justify-start gap-3 mb-3">
             <Image src="/roam-nepal-black.png" alt="Logo" width={40} height={40} />
             <div className="font-kanit text-lg font-semibold">Travel Destination</div>
           </div>
@@ -26,7 +26,7 @@ const FooterSection = () => {
             destination? Let me know how I can assist you further.
           </p>
 
-          <div className="flex gap-4 mt-4 text-cyan-600">
+          <div className="flex justify-center sm:justify-start gap-4 mt-4 text-cyan-600">
             <Twitter className="w-5 h-5 cursor-pointer" />
             <Facebook className="w-5 h-5 cursor-pointer" />
             <Instagram className="w-5 h-5 cursor-pointer" />
@@ -91,13 +91,13 @@ const FooterSection = () => {
         <div>
           <h3 className="text-lg font-semibold font-exo mb-3">Contact</h3>
           <ul className="text-sm text-gray-600 space-y-4">
-            <li className="flex items-center gap-2">
+            <li className="flex justify-center sm:justify-start items-center gap-2">
               <MapPin className="w-4 h-4" /> Hetauda, Nepal (NP), 44100
             </li>
-            <li className="flex items-center gap-2">
+            <li className="flex justify-center sm:justify-start items-center gap-2">
               <Phone className="w-4 h-4" /> +977 9878560321
             </li>
-            <li className="flex items-center gap-2">
+            <li className="flex justify-center sm:justify-start items-center gap-2">
               <Mail className="w-4 h-4" /> roamnepal@gmail.com
             </li>
           </ul>
@@ -105,7 +105,7 @@ const FooterSection = () => {
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-10 border-t pt-4 text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-2">
+      <div className="mt-10 border-t pt-4 text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center gap-2 text-center">
         <div className="flex gap-4">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms Of Service</a>
