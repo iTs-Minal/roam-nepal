@@ -275,7 +275,7 @@ const DestinationSection = () => {
           custom={7}
           className="mt-12 flex justify-center"
         >
-          <button className="bg-gradient-to-r from-[#a7f3d0] to-[#6ee7b7] text-[#065f46] px-8 py-3 rounded-full font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out font-outfit">
+          <button className="bg-gradient-to-bl from-[#a7f3d0] to-[#6ee7b7] text-[#065f46] px-8 py-3 rounded-full font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out font-outfit">
             Explore More Destinations
           </button>
         </motion.div>
@@ -290,7 +290,7 @@ const DestinationSection = () => {
         >
           <path
             d="M0,30 C150,100 350,0 500,70 L500,00 L0,0 Z"
-            className="fill-[#3fb2ff]" // Change if your next section has a different bg
+            className="fill-[#2aaaff]" // Change if your next section has a different bg
           />
         </svg>
       </div>

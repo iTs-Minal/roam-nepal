@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Star } from "lucide-react";
+import { ArrowRightCircle, Star } from "lucide-react";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 
@@ -15,7 +15,7 @@ const InspirationSection = () => {
 
 
   return (
-    <section ref={ref} className="px-8 py-16 w-full mx-auto space-y-12 bg-gradient-to-r from-[#2aaaff] to-[#ffd2b8]">
+    <section ref={ref} className="relative px-8 py-16 w-full mx-auto space-y-12 bg-gradient-to-br from-[#2aaaff] to-[#ffffff]">
 
       {/* Section 1: Spark Ideas */}
       <motion.div
@@ -24,12 +24,13 @@ const InspirationSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
         variants={fadeUp}>
-        <p className="text-sm font-medium text-gray-500 uppercase mb-1 font-kanit">Start Your Journey</p>
+        <p className="text-md font-bold text-gray-800 uppercase mb-1 font-kanit">Start Your Journey</p>
         <div className="flex justify-between items-center">
           <h2 className="text-3xl font-semibold">
             Spark Ideas <span className="font-normal font-outfit">For Your Nepal Adventure</span>
           </h2>
-          <button className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105 hover:shadow-lg font-exo">More</button>
+          <button className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105 hover:shadow-lg font-exo">More <ArrowRightCircle/>
+          </button>
         </div>
         <p className="text-gray-800 mt-1 text-sm font-outfit">
           Popular Things To Do In The Heart Of The Himalayas
@@ -38,15 +39,15 @@ const InspirationSection = () => {
         {/* Idea Cards */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
 
-          <div className="relative rounded-xl overflow-hidden">
+          <div className="relative rounded-xl overflow-hidden ">
             <Image
               src="/paragliding.jpg" // Replace later
               alt="Pokhara"
               width={500}
               height={300}
-              className="object-cover w-full h-56"
+              className="object-cover w-full h-56 "
             />
-            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 bg-black/20 hover:bg-black/40" />
             <div className="absolute bottom-4 left-4 text-white z-10">
               <h3 className="text-lg font-semibold font-ovo">Paragliding Over Pokhara</h3>
               <p className="text-sm text-white max-w-[85%] font-exo">
@@ -63,7 +64,7 @@ const InspirationSection = () => {
               height={300}
               className="object-cover w-full h-56"
             />
-            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 bg-black/20 hover:bg-black/40" />
             <div className="absolute bottom-4 left-4 text-white z-10">
               <h3 className="text-lg font-semibold font-ovo">Himalayan Trekking Adventures</h3>
               <p className="text-sm text-white max-w-[85%] font-exo">
@@ -80,7 +81,7 @@ const InspirationSection = () => {
               height={300}
               className="object-cover w-full h-56"
             />
-            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 bg-black/20 hover:bg-black/40" />
             <div className="absolute bottom-4 left-4 text-white z-10">
               <h3 className="text-lg font-semibold font-ovo">Explore Flora & Fauna</h3>
               <p className="text-sm text-white max-w-[85%] font-exo">
@@ -101,13 +102,13 @@ const InspirationSection = () => {
         variants={fadeUp}
         className="mt-20"
       >
-        <p className="text-sm font-medium text-gray-500 uppercase mb-1 font-kanit">Best Retreats</p>
+        <p className="text-md font-bold text-gray-800 uppercase mb-1 font-kanit">Best Retreats</p>
         <div className="flex justify-between items-center">
           <h2 className="text-3xl font-semibold">
             Choose <span className="font-normal font-outfit">A Highly Acclaimed Holiday Stay</span>
           </h2>
-          <button className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105 hover:shadow-lg font-exo">
-            Discover Holiday Rentals
+          <button className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105 hover:shadow-lg font-exo">
+            Discover Holiday Rentals <ArrowRightCircle/>
           </button>
         </div>
         <p className="text-gray-800 mt-1 text-sm font-outfit">
@@ -117,7 +118,7 @@ const InspirationSection = () => {
         {/* Retreat Cards */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {[1, 2, 3].map((item, index) => (
-            <div key={index} className="border rounded-xl overflow-hidden shadow-sm">
+            <div key={index} className="border rounded-xl overflow-hidden shadow-sm hover:scale-102 transition">
               <Image
                 src={`/retreat${index + 1}.jpg`} // Replace later
                 alt={`Retreat ${index + 1}`}
@@ -137,7 +138,24 @@ const InspirationSection = () => {
             </div>
           ))}
         </div>
+
       </motion.div>
+
+      {/* Bottom Wave Transition */}
+       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <svg
+          viewBox="0 0 500 100"
+          preserveAspectRatio="none"
+          className="w-full h-[80px] transform rotate-180"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,30 C150,100 350,0 500,70 L500,00 L0,0 Z"
+            className="fill-[#000000]" // Change if your next section has a different bg
+          />
+        </svg>
+      </div>
+
     </section>
   );
 };

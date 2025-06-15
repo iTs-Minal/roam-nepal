@@ -3,6 +3,8 @@ import Navbar from "@/components/landingpage/navbar";
 import AboutSection from "@/components/landingpage/about";
 import DestinationSection from "@/components/landingpage/destination";
 import InspirationSection from "@/components/landingpage/inspiration";
+import TestimonialSection from "@/components/landingpage/testimonial";
+import FooterSection from "@/components/landingpage/footer";
 
 export default function Home() {
   return (
@@ -27,6 +29,14 @@ export default function Home() {
 
       <section>
         <InspirationSection />
+      </section>
+
+       <section>
+        <TestimonialSection />
+      </section>
+
+      <section>
+        <FooterSection />
       </section>
     </main>
   );

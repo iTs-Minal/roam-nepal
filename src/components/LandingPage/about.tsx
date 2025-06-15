@@ -31,11 +31,11 @@ const AboutSection = () => {
         className="relative w-full h-[400px] hidden sm:block">
           {/* Bottom Left */}
           <div className="absolute bottom-0 left-0 w-40 h-40 rounded-2xl overflow-hidden shadow-lg z-30">
-            <Image src="/about2.jpg" alt="img1" fill className="object-cover" />
+            <Image src="/about1.jpg" alt="img1" fill className="object-cover" />
           </div>
           {/* Bottom Right */}
           <div className="absolute bottom-0 right-5 w-32 h-32 rounded-2xl overflow-hidden shadow-lg z-30">
-            <Image src="/about6.jpg" alt="img2" fill className="object-cover" />
+            <Image src="/about2.jpg" alt="img2" fill className="object-cover" />
           </div>
           {/* Top Right */}
           <div className="absolute top-0 right-0 w-36 h-36 rounded-2xl overflow-hidden shadow-lg z-20">
@@ -43,7 +43,7 @@ const AboutSection = () => {
           </div>
           {/* Center */}
           <div className="absolute top-12 left-1/2 -translate-x-1/2 w-84 h-84 rounded-2xl overflow-hidden shadow-lg z-10">
-            <Image src="/about5.jpg" alt="img4" fill className="object-cover" />
+            <Image src="/about3.jpg" alt="img4" fill className="object-cover" />
           </div>
         </motion.div>
 
