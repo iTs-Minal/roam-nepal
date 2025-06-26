@@ -6,10 +6,9 @@ import { Globe, Menu, X } from "lucide-react";
 import Link from "next/link";
 
 const navLinks = [
-  { id: 1, text: "Tour", link: "/tour" },
-  { id: 2, text: "Destination", link: "/destination" },
+  { id: 1, text: "Destination", link: "/tour" },
+  { id: 2, text: "Activities", link: "/destination" },
   { id: 5, text: "Places", link: "/places" },
-  { id: 3, text: "Contact", link: "/contact" },
   { id: 4, text: "About", link: "#about" },
 ];
 
@@ -48,6 +47,7 @@ const Navbar = () => {
 
         {/* Right Section: Language + Auth + Menu */}
         <div className="flex items-center gap-4">
+
           {/* Language (hidden on small screens) */}
           <div className="hidden md:flex items-center gap-1 text-sm text-gray-700">
             <span className="p-1 bg-gray-200 rounded-full">
@@ -72,6 +72,7 @@ const Navbar = () => {
           </button>
           
         </div>
+        
       </div>
 
       {/* Mobile Menu */}
@@ -100,6 +101,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
+
     </nav>
   );
 };

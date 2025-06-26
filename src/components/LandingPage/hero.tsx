@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { Search } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const textFadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -68,12 +69,12 @@ const HeroSection = () => {
             <Button className="bg-gradient-to-l from-[#a7f3d0] to-[#46f3ae] text-black px-8 py-6 rounded-full hover:scale-105 text-lg font-semibold w-full sm:w-auto">
               Booking Now →
             </Button>
-            <Button
+            <Link href="/home"><Button
               variant="outline"
               className="bg-gradient-to-r from-[#99c7fc] to-[#38b7d6] border-2 border-black text-black px-8 py-6 rounded-full hover:scale-105 hover:bg-indigo-50 text-lg font-semibold w-full sm:w-auto"
             >
               Discover More →
-            </Button>
+            </Button></Link>
           </motion.div>
         </div>
 
