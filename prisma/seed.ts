@@ -50,10 +50,13 @@ async function createNestedData(
   const model = modelMap[modelName];
   if (!model) throw new Error(`Unknown model: ${modelName}`);
 
-  await model.createMany({
-    data: dataArray,
-    skipDuplicates: true,
-  });
+   for (const data of dataArray) {
+    await model.upsert({
+      where: { slug: data.slug },
+      update: data,
+      create: data,
+    });
+  }
 }
 
 async function main() {
@@ -75,7 +78,7 @@ async function main() {
       name: "Paragliding",
       slug: "paragliding",
       description: "Tandem paragliding flight above Phewa Lake with mountain views.",
-      images: ["https://example.com/images/paragliding.jpg"],
+      images: ["https://images.unsplash.com/photo-1544759911-0c7f10ab63ee?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
       latitude: 28.2345,
       longitude: 83.9821,
       placeId: null, // will set later
@@ -84,7 +87,7 @@ async function main() {
       name: "Boating on Phewa Lake",
       slug: "phewa-lake-boating",
       description: "Relaxing boat ride on the scenic Phewa Lake.",
-      images: ["https://example.com/images/boating.jpg"],
+      images: ["https://images.unsplash.com/photo-1637534077487-684ec4a044a7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
       latitude: 28.2085,
       longitude: 83.9640,
       placeId: null,
@@ -107,7 +110,7 @@ async function main() {
       name: "Barahi Temple",
       slug: "barahi-temple",
       description: "Pagoda temple on an island in Phewa Lake.",
-      images: ["https://example.com/images/barahi.jpg"],
+      images: ["https://images.unsplash.com/photo-1706187802171-30d8b6d91818?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
       latitude: 28.2105,
       longitude: 83.9616,
       placeId: null,
@@ -144,7 +147,7 @@ async function main() {
       name: "Jungle Safari",
       slug: "jungle-safari",
       description: "Explore Chitwan National Park on jeep or elephant safari.",
-      images: ["https://example.com/images/safari.jpg"],
+      images: ["https://images.unsplash.com/photo-1590514526581-bf7feaee0217?q=80&w=859&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
       latitude: 27.5845,
       longitude: 84.3551,
       placeId: null,
@@ -153,7 +156,7 @@ async function main() {
       name: "Canoeing",
       slug: "canoeing",
       description: "Canoe ride in the Rapti River to see crocodiles and birds.",
-      images: ["https://example.com/images/canoeing.jpg"],
+      images: ["https://images.unsplash.com/photo-1625413709782-bd873c0a21f1?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
       latitude: 27.585,
       longitude: 84.36,
       placeId: null,
@@ -176,7 +179,7 @@ async function main() {
       name: "Bishazari Tal",
       slug: "bishazari-tal",
       description: "Sacred lake known for biodiversity and birdwatching.",
-      images: ["https://example.com/images/bishazari.jpg"],
+      images: ["https://images.unsplash.com/photo-1668044616564-6a9a4561108a?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
       latitude: 27.5587,
       longitude: 84.4012,
       placeId: null,

@@ -21,7 +21,8 @@ export default function HomeNavbar({ isSearchSticky }: { isSearchSticky: boolean
           <li className="hover:text-black cursor-pointer">Discover</li>
           <li className="hover:text-black cursor-pointer">Trips</li>
           <li className="hover:text-black cursor-pointer">Review</li>
-          <li className="hover:text-black cursor-pointer">More</li>
+          <li className="hover:text-black cursor-pointer">Blogs</li>
+          <li className="hover:text-black cursor-pointer">About</li>
         </ul>
       )}
 
