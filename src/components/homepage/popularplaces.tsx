@@ -18,14 +18,13 @@ export default function PopularPlaces() {
   useEffect(() => {
     fetch("/api/places")
       .then((res) => res.json())
-      .then((data) =>{
-        console.log(data);
-        setPlaces(data)});
-      
+      .then((data) => {
+        setPlaces(data);
+      });
   }, []);
 
   return (
-    <section className="px-6 py-12 space-y-6">
+    <section className="px-6 py-12 space-y-6 mt-10">
       <h2 className="text-3xl font-bold">Popular Places</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {places.map((place) => (
