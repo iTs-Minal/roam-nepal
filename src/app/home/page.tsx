@@ -1,4 +1,5 @@
 "use client";
+import BlogsSection from "@/components/homepage/blogs";
 import FAQs from "@/components/homepage/faq";
 import HomeHero from "@/components/homepage/homehero";
 import HomeNavbar from "@/components/homepage/homenavbar";
@@ -21,6 +22,7 @@ export default function Home() {
       <TopAccommodations/>
       <TrendingActivities/>
       <ReligiousPlaces/>
+      <BlogsSection/>
       <FAQs/>
     </main>
   );
