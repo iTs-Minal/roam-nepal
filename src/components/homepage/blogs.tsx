@@ -1,13 +1,33 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default async function BlogsSection() {
-  const res = await fetch("http://localhost:3000/api/blogs", { cache: "no-store" });
-  const blogs = await res.json();
+type Blog = {
+  id: number;
+  title: string;
+  slug: string;
+  subtitle: string;
+  images: string[];
+};
+
+export default function BlogsSection() {
+
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+
+  useEffect(() => {
+    fetch("/api/blogs")
+      .then((res) => res.json())
+      .then((data) => {
+        setBlogs(data);
+      });
+  }, []);
+
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+    <section className="px-6 py-12 space-y-6 mt-10">
+      <h2 className="text-3xl font-bold">Popular Blogs</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       {blogs.map((blog: any) => (
         <div key={blog.id} className="border rounded-md overflow-hidden shadow hover:shadow-lg transition">
@@ -19,6 +39,7 @@ export default async function BlogsSection() {
           </div>
         </div>
       ))}
-    </div>
+      </div>
+    </section>
   );
 }

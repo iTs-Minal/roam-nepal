@@ -7,6 +7,7 @@ import TrendingActivities from "@/components/homepage/popularactivities";
 import PopularPlaces from "@/components/homepage/popularplaces";
 import ReligiousPlaces from "@/components/homepage/religiousplace";
 import TopAccommodations from "@/components/homepage/topaccommodation";
+import FooterSection from "@/components/landingpage/footer";
 import { useState } from "react";
 
 
@@ -24,6 +25,7 @@ export default function Home() {
       <ReligiousPlaces/>
       <BlogsSection/>
       <FAQs/>
+      <FooterSection/>
     </main>
   );
 }

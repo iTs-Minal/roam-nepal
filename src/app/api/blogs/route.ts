@@ -21,6 +21,7 @@ export async function POST(req: Request) {
 export async function GET() {
   const blogs = await prisma.blog.findMany({
     orderBy: { createdAt: "desc" },
+    take:5,
   });
 
   return NextResponse.json(blogs);
