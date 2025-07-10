@@ -99,7 +99,7 @@ async function main() {
       name: "Temple Tree Resort",
       slug: "temple-tree-resort",
       description: "Lakeside boutique resort with spa and garden views.",
-      images: ["https://example.com/images/templetree.jpg"],
+      images: ["/pokhara/temple-tree-resort1.jpg","/pokhara/temple-tree-resort2.webp","/pokhara/temple-tree-resort3.webp","/pokhara/temple-tree-resort4.webp"],
       price: 120.0,
       placeId: null,
     },

@@ -9,7 +9,8 @@ type Blog = {
   title: string;
   subtitle: string;
   slug: string;
-  image: string;
+  image: string[];
+  placeId:number;
   // Add other fields as needed
 };
 
@@ -22,6 +23,7 @@ export default function AdminBlogsPage() {
     const fetchBlogs = async () => {
       const res = await fetch('/api/blogs');
       const data = await res.json();
+      console.log('Fetched blogs:', data); // Debugging line
       setBlogs(data);
       setLoading(false);
     };
