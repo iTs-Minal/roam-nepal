@@ -1,17 +1,16 @@
 // app/admin/blogs/edit/[id]/page.tsx
-'use client';
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+"use client";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 
 type Blog = {
   id: number;
   title: string;
   slug: string;
   subtitle: string;
-  content:string;
-  images: string;
-}
-
+  content: string;
+  images: string[];
+};
 
 export default function EditBlogPage() {
   const { id } = useParams();
@@ -33,15 +32,15 @@ export default function EditBlogPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await fetch(`/api/blogs/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(blog),
     });
 
     if (res.ok) {
-      router.push('/blog');
+      router.push("/blog");
     } else {
-      alert('Failed to update blog');
+      alert("Failed to update blog");
     }
   };
 
@@ -77,8 +76,8 @@ export default function EditBlogPage() {
           type="text"
           placeholder="Image URL"
           className="w-full p-2 border rounded"
-          value={blog.images}
-          onChange={(e) => setBlog({ ...blog, images: e.target.value })}
+          value={blog.images[0] || ""}
+          onChange={(e) => setBlog({ ...blog, images: [e.target.value] })}
         />
         <textarea
           placeholder="Content"

@@ -9,7 +9,7 @@ type Blog = {
   title: string;
   subtitle: string;
   slug: string;
-  image: string[];
+  images: string[];
   placeId:number;
   // Add other fields as needed
 };
@@ -56,7 +56,7 @@ export default function AdminBlogsPage() {
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {blogs.map((blog: any) => (
             <div key={blog.id} className="border rounded-lg overflow-hidden shadow">
-              <Image src={blog.image} alt={blog.title} width={500} height={300} className="w-full h-40 object-cover" />
+              <Image src={blog.images[0]} alt={blog.title} width={500} height={300} className="w-full h-40 object-cover" />
               <div className="p-4">
                 <h2 className="text-xl font-semibold">{blog.title}</h2>
                 <p className="text-sm text-gray-600">{blog.subtitle}</p>

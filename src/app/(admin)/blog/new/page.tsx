@@ -13,7 +13,7 @@ export default function CreateBlogPage() {
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [slug, setSlug] = useState("");
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>(['']);
   const [content, setContent] = useState("");
   const [placeId, setPlaceId] = useState<number | null>(null);
   const [places, setPlaces] = useState<Place[]>([]);
@@ -31,7 +31,7 @@ export default function CreateBlogPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    
     const res = await fetch("/api/blogs", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -39,7 +39,7 @@ export default function CreateBlogPage() {
         title,
         subtitle,
         slug,
-        image: [images],
+        images,
         content,
         placeId,
       }),
