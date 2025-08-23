@@ -78,7 +78,7 @@ async function main() {
       name: "Paragliding",
       slug: "paragliding",
       description: "Tandem paragliding flight above Phewa Lake with mountain views.",
-      images: ["https://images.unsplash.com/photo-1544759911-0c7f10ab63ee?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+      images: ["pokahara/paragliding1.jpg"],
       latitude: 28.2345,
       longitude: 83.9821,
       placeId: null, // will set later

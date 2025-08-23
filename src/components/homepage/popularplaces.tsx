@@ -37,7 +37,7 @@ export default function PopularPlaces() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {places.map((place) => (
-          <Link href={`/place/${place.slug}`} key={place.id}>
+          <Link href={`/places/${place.slug}`} key={place.id}>
             <div className="relative rounded-lg overflow-hidden group shadow-lg hover:shadow-xl transition duration-300">
               {/* Image */}
               <Image
