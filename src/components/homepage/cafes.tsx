@@ -1,14 +1,12 @@
-
-
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaChevronLeft, FaChevronRight, FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import { FaChevronLeft, FaChevronRight, FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
+import itineraries from "./itineraries";
 
-
-type ReligiousSite = {
+type Cafe = {
   id: number;
   name: string;
   slug: string;
@@ -18,73 +16,78 @@ type ReligiousSite = {
     name: string;
     slug: string;
   };
-  rating?: number;
-  totalRatings?: number;
+  rating:number;
+  price: number;
+  totalRatings:number;
 };
 
-export default function ReligiousSitesSection() {
-
-const [religiousSites, setReligiousSites] = useState<ReligiousSite[]>([]);
+export default function TrendingCafes() {
+  const [cafes, setCafes] = useState<Cafe[]>([]);
 
   useEffect(() => {
-    fetch("/api/religious-sites")
+    fetch("/api/cafes")
       .then((res) => res.json())
-      .then((data) => setReligiousSites(data));
+      .then((data) => setCafes(data));
   }, []);
 
+  
 
   return (
-    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-10 bg-gray-100">
-      {/* Section Header */}
+    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-10 bg-neutral-100">
+      {/* Header */}
       <div className="text-center mb-12 max-w-2xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-gray-800">Religious Places</h2>
+        <h2 className="text-4xl font-extrabold text-gray-800">Cafes</h2>
         <p className="mt-4 text-lg text-gray-600">
-          Explore Nepal’s sacred and historic spiritual destinations.
+          Unwind in Nepal’s coziest cafes, where culture meets coffee. 
+    From lakeside hangouts to hidden gems in bustling streets, 
+    discover the perfect spots to relax and recharge.
         </p>
       </div>
 
-      {/* Site Grid */}
+      {/* Cafe Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        {religiousSites.map((site) => (
-          <ReligiousCard key={site.id} site={site} />
+        {cafes.map((cafe) => (
+          <CafeCard key={cafe.id} cafe={cafe} />
         ))}
       </div>
     </section>
   );
 }
 
-function ReligiousCard({ site }: { site: ReligiousSite }) {
+
+function CafeCard({ cafe }: { cafe: Cafe }) {
   const [currentImage, setCurrentImage] = useState(0);
+
   const [isFavorite, setIsFavorite] = useState(false);
-
-  const prevImage = () => {
-    setCurrentImage((prev) => (prev === 0 ? site.images.length - 1 : prev - 1));
-  };
-
-  const nextImage = () => {
-    setCurrentImage((prev) => (prev === site.images.length - 1 ? 0 : prev + 1));
-  };
 
   const toggleFavorite = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsFavorite((prev) => !prev);
-    // TODO: Call backend to save favorite
+    // TODO: Call your backend/API here to save favorite
+  };
+
+  const prevImage = () => {
+    setCurrentImage((prev) => (prev === 0 ? cafe.images.length - 1 : prev - 1));
+  };
+
+  const nextImage = () => {
+    setCurrentImage((prev) => (prev === cafe.images.length - 1 ? 0 : prev + 1));
   };
 
   return (
-    <Link href={`/religious-sites/${site.slug}`}>
+    <Link href={`/activity/${cafe.slug}`}>
       <div className="group relative rounded-xl overflow-hidden bg-white transition">
         {/* Image Carousel */}
         <div className="relative w-full h-56 overflow-hidden">
           <Image
-            src={site.images[currentImage]}
-            alt={site.name}
+            src={cafe.images[currentImage]}
+            alt={cafe.name}
             fill
             className="object-cover"
           />
 
-          {/* Heart Button */}
+          {/* Heart Icon (always visible) */}
           <button
             onClick={toggleFavorite}
             className="absolute top-3 right-3 bg-white/90 hover:bg-white p-1.5 rounded-full text-red-500 z-10"
@@ -92,7 +95,7 @@ function ReligiousCard({ site }: { site: ReligiousSite }) {
             {isFavorite ? <FaHeart size={18} /> : <FaRegHeart size={18} />}
           </button>
 
-          {/* Navigation Buttons */}
+          {/* Prev/Next Arrows */}
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -112,9 +115,9 @@ function ReligiousCard({ site }: { site: ReligiousSite }) {
             <FaChevronRight />
           </button>
 
-          {/* Dots */}
+          {/* Image Dots */}
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-            {site.images.slice(0,4).map((_, idx) => (
+            {cafe.images.slice(0,4).map((_, idx) => (
               <span
                 key={idx}
                 className={`w-2 h-2 rounded-full border border-white ${
@@ -125,21 +128,25 @@ function ReligiousCard({ site }: { site: ReligiousSite }) {
           </div>
         </div>
 
-        {/* Site Info */}
+        {/* Info Below */}
         <div className="pt-4 px-2 pb-2 space-y-1">
-          <h3 className="text-base font-semibold text-gray-800 truncate">{site.name}</h3>
-          <p className="text-sm text-blue-600">{site.place.name}</p>
+          <h3 className="text-base font-semibold text-gray-800 truncate">{cafe.name}</h3>
+          <p className="text-sm text-blue-600">{cafe.place.name}</p>
 
-          <div className="flex items-center mt-1 text-sm text-gray-700">
-            <FaStar className="text-yellow-400 mr-1" />
-            <span>
-              {site.rating?.toFixed(1) || "0.0"}
-              <span className="text-gray-500 text-xs ml-1">({site.totalRatings || 0})</span>
-            </span>
+          <div className="flex items-center justify-between mt-1 text-sm text-gray-700">
+            <div className="flex items-center gap-1">
+              <FaStar className="text-yellow-400" />
+              <span>
+                {cafe.rating?.toFixed(1) || "0.0"}
+                <span className="text-gray-500 text-xs ml-1">
+                  ({cafe.totalRatings || 0})
+                </span>
+              </span>
+            </div>
+            <p className="font-semibold text-green-600">Rs. {cafe.price}</p>
           </div>
         </div>
       </div>
     </Link>
   );
 }
-

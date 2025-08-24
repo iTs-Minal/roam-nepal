@@ -13,56 +13,109 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model Place {
-  id              Int              @id @default(autoincrement())
-  name            String
-  slug            String           @unique
-  description     String
-  images          String[]
-  latitude        Float
-  longitude       Float
+  id          Int   @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  description String   // Short summary for "About" section
+  history     String?  // Longer background/history
+  bestTime    String?  // e.g. "October - March"
+  location    String?  // City/District/Province
+  latitude    Float?
+  longitude   Float?
+  highlights  String[] // ["Adventure Sports", "Lakeside Walks", "Temples"]
+  tips        String?  // Travel tips
+  howToReach  String?  // Transport guide
+  images      String[]
+
+  // Relations
   activities      Activity[]
   accommodations  Accommodation[]
+  cafes           Cafe[]
+  itineraries     Itinerary[]
   religiousSites  ReligiousSite[]
-  blogs           Blog[] 
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
+  blogs           Blog[]
 }
 
+
 model Activity {
-  id        Int      @id @default(autoincrement())
-  name      String
-  slug      String   @unique
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
   description String
-  images     String[]
-  latitude   Float
-  longitude  Float
-  place      Place    @relation(fields: [placeId], references: [id])
-  placeId    Int
+  images      String[]
+  latitude    Float?
+  longitude   Float?
+  difficulty  String?
+  duration    String?
+  highlights  String[]
+  bookingInfo String?
+  placeId     Int?
+  place       Place?   @relation(fields: [placeId], references: [id])
 }
 
 model Accommodation {
-  id        Int      @id @default(autoincrement())
-  name      String
-  slug      String   @unique
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
   description String
-  images     String[]
-  price      Float
-  place      Place    @relation(fields: [placeId], references: [id])
-  placeId    Int
+  images      String[]
+  price       Float?
+  latitude    Float?
+  longitude   Float?
+  amenities   String[]
+  roomTypes   String[]
+  rating      Float?
+  placeId     Int?
+  place       Place?   @relation(fields: [placeId], references: [id])
 }
 
 model ReligiousSite {
-  id        Int      @id @default(autoincrement())
-  name      String
-  slug      String   @unique
-  description String
-  images     String[]
-  latitude   Float
-  longitude  Float
-  place      Place    @relation(fields: [placeId], references: [id])
-  placeId    Int
+  id           Int      @id @default(autoincrement())
+  name         String
+  slug         String   @unique
+  description  String
+  images       String[]
+  latitude     Float?
+  longitude    Float?
+  visitingHours String?
+  history      String?
+  rituals      String[]
+  placeId      Int?
+  place        Place?   @relation(fields: [placeId], references: [id])
 }
+
+model Cafe {
+  id           Int      @id @default(autoincrement())
+  name         String
+  slug         String   @unique
+  description  String
+  images       String[]
+  latitude     Float?
+  longitude    Float?
+  openingTime  String?
+  closingTime  String?
+  specialties  String[]
+  ambiance     String[]
+  placeId      Int?
+  place        Place?   @relation(fields: [placeId], references: [id])
+}
+
+model Itinerary {
+  id          Int        @id @default(autoincrement())
+  name        String
+  title       String
+  slug        String     @unique
+  description String
+  images      String[]
+  duration    Int?
+  highlights  String[]
+  days        Json
+  placeId     Int?
+  place       Place?     @relation(fields: [placeId], references: [id])
+}
+
 
 model Blog {
   id        Int      @id @default(autoincrement())

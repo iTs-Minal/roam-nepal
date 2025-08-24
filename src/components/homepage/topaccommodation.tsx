@@ -111,11 +111,11 @@ function AccommodationCard({ accommodation }: { accommodation: Accommodation }) 
 
           {/* Dots */}
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-            {accommodation.images.map((_, idx) => (
+            {accommodation.images.slice(0,4).map((_, idx) => (
               <span
                 key={idx}
                 className={`w-2 h-2 rounded-full border border-white ${
-                  idx === currentImage ? "bg-white" : "bg-transparent"
+                  idx === currentImage % 4 ? "bg-white" : "bg-transparent"
                 }`}
               />
             ))}

@@ -114,11 +114,11 @@ function ActivityCard({ activity }: { activity: Activity }) {
 
           {/* Image Dots */}
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-            {activity.images.map((_, idx) => (
+            {activity.images.slice(0,4).map((_, idx) => (
               <span
                 key={idx}
                 className={`w-2 h-2 rounded-full border border-white ${
-                  idx === currentImage ? "bg-white" : "bg-transparent"
+                  idx === currentImage % 4? "bg-white" : "bg-transparent"
                 }`}
               />
             ))}
