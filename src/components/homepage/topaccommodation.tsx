@@ -75,7 +75,7 @@ function AccommodationCard({ accommodation }: { accommodation: Accommodation }) 
         {/* Image Section */}
         <div className="relative w-full h-56 overflow-hidden">
           <Image
-            src={accommodation.images[currentImage]}
+            src={accommodation.images[currentImage]|| "/placeholder.webp"}
             alt={accommodation.name}
             fill
             className="object-cover"

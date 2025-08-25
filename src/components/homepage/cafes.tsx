@@ -81,7 +81,7 @@ function CafeCard({ cafe }: { cafe: Cafe }) {
         {/* Image Carousel */}
         <div className="relative w-full h-56 overflow-hidden">
           <Image
-            src={cafe.images[currentImage]}
+            src={cafe.images[currentImage] || "/placeholder.webp"}
             alt={cafe.name}
             fill
             className="object-cover"

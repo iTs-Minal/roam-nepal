@@ -78,7 +78,7 @@ function ActivityCard({ activity }: { activity: Activity }) {
         {/* Image Carousel */}
         <div className="relative w-full h-56 overflow-hidden">
           <Image
-            src={activity.images[currentImage]}
+            src={activity.images[currentImage]|| "/placeholder.webp"}
             alt={activity.name}
             fill
             className="object-cover"

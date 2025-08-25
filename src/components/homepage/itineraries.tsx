@@ -79,7 +79,7 @@ function ItineraryCard({ itinerary }: { itinerary: Itinerary }) {
         {/* Image Carousel */}
         <div className="relative w-full h-56 overflow-hidden">
           <Image
-            src={itinerary.images[currentImage]}
+            src={itinerary.images[currentImage]|| "/placeholder.webp"}
             alt={itinerary.name}
             fill
             className="object-cover"

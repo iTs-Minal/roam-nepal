@@ -4,25 +4,38 @@ import { useState } from "react";
 import Image from "next/image";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-export default function HeroSlider({ images, title }: { images: string[]; title: string }) {
+export default function HeroSlider({
+  images,
+  title,
+}: {
+  images: string[];
+  title: string;
+}) {
   const [current, setCurrent] = useState(0);
 
   if (!images || images.length === 0) return null;
 
-  const prev = () => setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  const next = () => setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  const prev = () =>
+    setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  const next = () =>
+    setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
   return (
     <div className="relative w-full h-[80vh] md:h-[90vh] overflow-hidden">
-      {/* Current Image */}
+      {/* All Images stacked */}
       <div className="w-full h-full relative z-0">
-        <Image
-          src={images[current]}
-          alt={title}
-          fill
-          className="object-cover transition-opacity duration-700"
-          priority
-        />
+        {images.map((img, i) => (
+          <Image
+            key={i}
+            src={img}
+            alt={title}
+            fill
+            className={`object-cover absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              i === current ? "opacity-100" : "opacity-0"
+            }`}
+            priority={i === 0}
+          />
+        ))}
       </div>
 
       {/* Overlay Title */}
@@ -32,7 +45,7 @@ export default function HeroSlider({ images, title }: { images: string[]; title:
         </h1>
       </div>
 
-      {/* Left & Right Arrows */}
+      {/* Arrows */}
       {images.length > 1 && (
         <>
           <button

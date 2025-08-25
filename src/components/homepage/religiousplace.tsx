@@ -78,7 +78,7 @@ function ReligiousCard({ site }: { site: ReligiousSite }) {
         {/* Image Carousel */}
         <div className="relative w-full h-56 overflow-hidden">
           <Image
-            src={site.images[currentImage]}
+            src={site.images[currentImage]|| "/placeholder.webp"}
             alt={site.name}
             fill
             className="object-cover"
