@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <main>
-      <HomeNavbar isSearchSticky={isSticky} />
+      <HomeNavbar />
       <HomeHero onStickyChange={setIsSticky} />
       <PopularPlaces/>
       <TopAccommodations/>

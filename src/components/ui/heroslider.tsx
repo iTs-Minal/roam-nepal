@@ -7,9 +7,11 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 export default function HeroSlider({
   images,
   title,
+  location,
 }: {
   images: string[];
   title: string;
+  location?: string;
 }) {
   const [current, setCurrent] = useState(0);
 
@@ -21,7 +23,7 @@ export default function HeroSlider({
     setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
   return (
-    <div className="relative w-full h-[80vh] md:h-[90vh] overflow-hidden">
+    <div className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
       {/* All Images stacked */}
       <div className="w-full h-full relative z-0">
         {images.map((img, i) => (

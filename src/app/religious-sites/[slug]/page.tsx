@@ -1,198 +1,357 @@
+import type { ReactNode } from "react";
+import HeroSlider from "@/components/ui/heroslider";
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import {
+  FaClock,
+  FaMapMarkerAlt,
+  FaMoneyBillWave,
+  FaUserShield,
+  FaInfoCircle,
+  FaUsers,
+  FaCamera,
+  FaTshirt,
+  FaStar,
+  FaPrayingHands,
+} from "react-icons/fa";
+import FooterSection from "@/components/landingpage/footer";
+import HomeNavbar from "@/components/homepage/homenavbar";
 
 interface Params {
   slug: string;
 }
 
-export default async function ReligiousSitePage({ params }: { params: Params }) {
-  // Fetch site data by slug
+export default async function ReligiousSitePage(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await props.params;
+
+  // Define the expected type for the religious site object
+  type ReligiousSite = {
+    name: string;
+    id: number;
+    slug: string;
+    description: string;
+    history?: string | null;
+    latitude?: number | null;
+    longitude?: number | null;
+    images?: string[];
+    placeId?: number | null;
+    visitingHours?: string | null;
+    rituals?: string[];
+    significance?: string | null;
+    bestTimeToVisit?: string | null;
+    nearbyAttractions?: string | null;
+    openingHours?: string | null;
+    entryFee?: { internal?: string; external?: string; notes?: string };
+    dressCode?: string | null;
+    photography?: string | null;
+    facilities?: Record<string, boolean>;
+    accessibility?: Record<string, boolean>;
+    festivals?: Array<{
+      name: string;
+      month?: string;
+      description?: string;
+      images?: string[];
+    }>;
+    safetyGuidelines?: string[];
+    contactInfo?: { phone?: string; email?: string; website?: string };
+  };
+
   const site = await prisma.religiousSite.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
   });
 
   if (!site) return notFound();
 
-  return (
-    <div className="max-w-6xl mx-auto px-4 py-10 space-y-12">
-      {/* Title */}
-      <div className="text-center">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 relative inline-block">
-          {site.name}
-          <span className="absolute left-1/2 -bottom-2 w-32 h-1 bg-yellow-400 rounded-full -translate-x-1/2"></span>
-        </h1>
-        <p className="mt-4 text-gray-600 sm:text-lg max-w-2xl mx-auto">
+ return (
+  <>
+
+  <HomeNavbar/>
+    {/* Hero Slider */}
+    <div className="w-full relative">
+      <HeroSlider
+        images={site.images || []}
+        title={site.name}
+        location={site.location}
+      />
+    </div>
+
+    <div className="max-w-6xl mx-auto py-12 space-y-12 px-4">
+      {/* Overview Section */}
+      <section className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl shadow-md p-8">
+        <h2 className="text-3xl md:text-4xl font-kanit font-bold mb-4 flex items-center gap-3 text-blue-800">
+          <FaInfoCircle /> Overview
+        </h2>
+        <p className="text-lg font-outfit text-gray-700 leading-relaxed">
           {site.description}
         </p>
-      </div>
+        <p className="text-lg font-outfit text-gray-700 leading-relaxed mt-3">
+          This beautiful temple is located on a small island in Phewa Lake. It
+          is a spiritual hub attracting devotees and tourists, hosting
+          traditional festivals, daily poojas, and rituals reflecting Nepalese
+          Hindu culture.
+        </p>
+      </section>
 
-      {/* Image gallery */}
-      {site.images?.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {site.images.map((img, idx) => (
-            <div key={idx} className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
-              <Image src={img} alt={site.name} fill className="object-cover" />
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* General Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {site.history && (
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 pb-1 border-b border-gray-300">
-              History
-            </h2>
-            <p className="mt-2 text-gray-700">{site.history}</p>
-          </div>
-        )}
-        {site.significance && (
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 pb-1 border-b border-gray-300">
-              Significance
-            </h2>
-            <p className="mt-2 text-gray-700">{site.significance}</p>
-          </div>
-        )}
-        {site.bestTimeToVisit && (
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 pb-1 border-b border-gray-300">
-              Best Time to Visit
-            </h2>
-            <p className="mt-2 text-gray-700">{site.bestTimeToVisit}</p>
-          </div>
-        )}
-        {site.nearbyAttractions && (
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 pb-1 border-b border-gray-300">
-              Nearby Attractions
-            </h2>
-            <p className="mt-2 text-gray-700">{site.nearbyAttractions}</p>
-          </div>
-        )}
-        {site.openingHours && (
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 pb-1 border-b border-gray-300">
-              Opening Hours
-            </h2>
-            <p className="mt-2 text-gray-700">{site.openingHours}</p>
-          </div>
-        )}
-        {site.entryFee && (
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 pb-1 border-b border-gray-300">
-              Entry Fee
-            </h2>
-            <ul className="mt-2 text-gray-700 list-disc list-inside">
-              {site.entryFee.internal && <li>Internal: {site.entryFee.internal}</li>}
-              {site.entryFee.external && <li>External: {site.entryFee.external}</li>}
-              {site.entryFee.notes && <li>Notes: {site.entryFee.notes}</li>}
-            </ul>
-          </div>
-        )}
-        {site.dressCode && (
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 pb-1 border-b border-gray-300">
-              Dress Code
-            </h2>
-            <p className="mt-2 text-gray-700">{site.dressCode}</p>
-          </div>
-        )}
-        {site.photography && (
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 pb-1 border-b border-gray-300">
-              Photography
-            </h2>
-            <p className="mt-2 text-gray-700">{site.photography}</p>
-          </div>
-        )}
-      </div>
-
-      {/* Facilities & Accessibility */}
-      {(site.facilities || site.accessibility) && (
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-900 border-b pb-1">Facilities & Accessibility</h2>
-          {site.facilities && (
-            <ul className="text-gray-700 list-disc list-inside">
-              {Object.entries(site.facilities).map(([key, value]) => (
-                <li key={key}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}: {value ? "Yes" : "No"}
-                </li>
-              ))}
-            </ul>
+      {/* Info Cards Grid */}
+      <section>
+        <h2 className="text-2xl font-kanit font-bold mb-6">Visitor Info</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {site.history && (
+            <InfoCard
+              title="History"
+              content={site.history}
+              icon={<FaUsers className="text-blue-600" />}
+              bgColor="bg-yellow-50"
+            />
           )}
-          {site.accessibility && (
-            <ul className="text-gray-700 list-disc list-inside mt-2">
-              {Object.entries(site.accessibility).map(([key, value]) => (
-                <li key={key}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}: {value ? "Yes" : "No"}
-                </li>
-              ))}
-            </ul>
+          {site.significance && (
+            <InfoCard
+              title="Significance"
+              content={site.significance}
+              icon={<FaUsers className="text-purple-600" />}
+              bgColor="bg-purple-50"
+            />
+          )}
+          {site.bestTimeToVisit && (
+            <InfoCard
+              title="Best Time to Visit"
+              content={site.bestTimeToVisit}
+              icon={<FaClock className="text-green-600" />}
+              bgColor="bg-green-50"
+            />
+          )}
+          {site.openingHours && (
+            <InfoCard
+              title="Opening Hours"
+              content={site.openingHours}
+              icon={<FaClock className="text-orange-600" />}
+              bgColor="bg-orange-50"
+            />
+          )}
+          {site.entryFee &&
+            typeof site.entryFee === "object" &&
+            !Array.isArray(site.entryFee) && (
+              <InfoCard
+                title="Entry Fee"
+                content={`Internal: ${
+                  (site.entryFee as { internal?: string }).internal || "N/A"
+                } | External: ${
+                  (site.entryFee as { external?: string }).external || "N/A"
+                }`}
+                icon={<FaMoneyBillWave className="text-teal-600" />}
+                bgColor="bg-teal-50"
+              />
+            )}
+          {site.dressCode && (
+            <InfoCard
+              title="Dress Code"
+              content={site.dressCode}
+              icon={<FaTshirt className="text-pink-600" />}
+              bgColor="bg-pink-50"
+            />
+          )}
+          {site.photography && (
+            <InfoCard
+              title="Photography"
+              content={site.photography}
+              icon={<FaCamera className="text-gray-600" />}
+              bgColor="bg-gray-100"
+            />
           )}
         </div>
-      )}
+      </section>
 
       {/* Rituals */}
       {site.rituals?.length > 0 && (
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900 border-b pb-1">Rituals & Ceremonies</h2>
-          <ul className="mt-2 text-gray-700 list-disc list-inside">
+        <section>
+          <h2 className="text-2xl font-kanit font-bold mb-6 flex items-center gap-2">
+            <FaPrayingHands /> Rituals & Ceremonies
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
             {site.rituals.map((ritual, idx) => (
-              <li key={idx}>{ritual}</li>
+              <div
+                key={idx}
+                className="bg-purple-50 rounded-xl shadow p-6 hover:shadow-lg transition"
+              >
+                <h3 className="text-lg font-lilita text-purple-800 mb-2">
+                  {ritual.split(":")[0]}
+                </h3>
+                <p className="text-gray-700 font-exo text-base">
+                  {ritual.split(":")[1]}
+                </p>
+              </div>
             ))}
-          </ul>
-        </div>
+          </div>
+        </section>
       )}
 
       {/* Festivals */}
-      {site.festivals?.length > 0 && (
-        <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-gray-900 border-b pb-1">Festivals</h2>
-          {site.festivals.map((festival: any, idx: number) => (
-            <div key={idx} className="space-y-2">
-              <h3 className="text-xl font-semibold text-gray-800">{festival.name}</h3>
-              <p className="text-gray-700">{festival.month} - {festival.description}</p>
-              {festival.images?.length > 0 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-2">
-                  {festival.images.map((img: string, idy: number) => (
-                    <div key={idy} className="relative w-full h-48 rounded-lg overflow-hidden shadow-md">
-                      <Image src={img} alt={festival.name} fill className="object-cover" />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+      {site.festivals && site.festivals.length > 0 && (
+        <section>
+          <h2 className="text-2xl font-kanit font-bold mb-6 flex items-center gap-2">
+            <FaStar /> Festivals
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {site.festivals.map((festival: {
+              name: string;
+              month?: string;
+              description?: string;
+              images?: string[];
+            }, idx: number) => (
+              <div
+                key={idx}
+                className="bg-yellow-50 rounded-xl shadow-md p-6 hover:shadow-lg transition"
+              >
+                <h3 className="text-lg font-lilita text-yellow-800 mb-2">
+                  {festival.name}
+                </h3>
+                <p className="text-gray-700 font-outfit text-base">
+                  <span className="font-ovo">{festival.month}</span> – {festival.description}
+                </p>
+                {festival.images && festival.images.length > 0 && (
+                  <div className="grid grid-cols-2 gap-2 mt-4">
+                    {festival.images?.map((img: string, idy: number) => (
+                      <div
+                        key={idy}
+                        className="relative w-full h-32 rounded overflow-hidden"
+                      >
+                        <Image
+                          src={img}
+                          alt={festival.name}
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black opacity-20 rounded"></div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
       )}
 
-      {/* Safety Guidelines */}
-      {site.safetyGuidelines?.length > 0 && (
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900 border-b pb-1">Safety Guidelines</h2>
-          <ul className="mt-2 text-gray-700 list-disc list-inside">
-            {site.safetyGuidelines.map((guide, idx) => (
-              <li key={idx}>{guide}</li>
-            ))}
-          </ul>
-        </div>
+      {/* Facilities & Accessibility */}
+      {(site.facilities || site.accessibility) && (
+        <section className="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl shadow-md p-8">
+          <h2 className="text-2xl font-kanit font-bold mb-4 flex items-center gap-2">
+            <FaUsers /> Facilities & Accessibility
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {site.facilities && (
+              <div className="bg-white rounded-lg shadow p-4">
+                <h3 className="font-lilita mb-2 text-lg">Facilities</h3>
+                <ul className="list-disc list-inside font-exo text-gray-700 space-y-1">
+                  {Object.entries(site.facilities).map(([key, value]) => (
+                    <li key={key}>
+                      {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
+                      {value ? "✅ Yes" : "❌ No"}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {site.accessibility && (
+              <div className="bg-white rounded-lg shadow p-4">
+                <h3 className="font-lilita mb-2 text-lg">Accessibility</h3>
+                <ul className="list-disc list-inside font-exo text-gray-700 space-y-1">
+                  {Object.entries(site.accessibility).map(([key, value]) => (
+                    <li key={key}>
+                      {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
+                      {value ? "✅ Yes" : "❌ No"}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Safety */}
+      {site.safetyGuidelines && (
+        <InfoCard
+          title="Safety Guidelines"
+          content={site.safetyGuidelines.join(", ")}
+          icon={<FaUserShield className="text-red-600" />}
+          bgColor="bg-red-50"
+        />
       )}
 
       {/* Contact Info */}
-      {site.contactInfo && (
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900 border-b pb-1">Contact Info</h2>
-          <ul className="mt-2 text-gray-700 list-disc list-inside">
-            {site.contactInfo.phone && <li>Phone: {site.contactInfo.phone}</li>}
-            {site.contactInfo.email && <li>Email: {site.contactInfo.email}</li>}
-            {site.contactInfo.website && <li>Website: <Link href={site.contactInfo.website} className="text-blue-600 underline">{site.contactInfo.website}</Link></li>}
-          </ul>
-        </div>
-      )}
+      {site.contactInfo &&
+        typeof site.contactInfo === "object" &&
+        !Array.isArray(site.contactInfo) && (
+          <section className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl shadow-md p-8">
+            <h2 className="text-2xl font-kanit font-bold mb-3 flex items-center gap-2">
+              <FaMapMarkerAlt /> Contact Info
+            </h2>
+            <ul className="text-gray-700 font-exo list-disc list-inside space-y-1">
+              {"phone" in site.contactInfo &&
+                (site.contactInfo as { phone?: string }).phone && (
+                  <li>
+                    Phone: {(site.contactInfo as { phone?: string }).phone}
+                  </li>
+                )}
+              {"email" in site.contactInfo &&
+                (site.contactInfo as { email?: string }).email && (
+                  <li>
+                    Email: {(site.contactInfo as { email?: string }).email}
+                  </li>
+                )}
+              {"website" in site.contactInfo &&
+                (site.contactInfo as { website?: string }).website && (
+                  <li>
+                    Website:{" "}
+                    <Link
+                      href={
+                        (site.contactInfo as { website?: string }).website!
+                      }
+                      className="text-blue-600 underline"
+                    >
+                      {(site.contactInfo as { website?: string }).website}
+                    </Link>
+                  </li>
+                )}
+            </ul>
+          </section>
+        )}
+    </div>
+
+    <FooterSection />
+  </>
+);
+
+// Reusable InfoCard
+
+
+function InfoCard({
+  title,
+  content,
+  icon,
+  bgColor,
+}: {
+  title: string;
+  content: string;
+  icon?: ReactNode;
+  bgColor?: string;
+}) {
+  return (
+    <div
+      className={`${
+        bgColor || "bg-white"
+      } rounded-xl shadow-md p-6 hover:shadow-lg transition`}
+    >
+      <div className="flex items-center gap-2 mb-2">
+        {icon}
+        <h3 className="text-xl font-lilita">{title}</h3>
+      </div>
+      <p className="text-gray-700 font-outfit text-base">{content}</p>
     </div>
   );
-}
+}}

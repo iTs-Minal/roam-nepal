@@ -5,18 +5,18 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Menu } from "lucide-react";
 
-export default function HomeNavbar({ isSearchSticky }: { isSearchSticky: boolean }) {
+export default function HomeNavbar() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
-    <nav className="w-full flex items-center justify-between px-4 md:px-6 py-4 shadow-sm bg-white fixed top-0 left-0 z-50 transition-all">
+    <nav className="w-full flex items-center justify-between px-4 md:px-6 py-4 shadow-sm bg-neutral-200 top-0 left-0 z-50 transition-all">
       {/* Left: Logo */}
       <div className="flex-shrink-0">
         <Image src="/roam-nepal-black.png" alt="Roam Nepal" width={80} height={60} />
       </div>
 
       {/* Center: Nav Links (hidden on small screens) */}
-      {!isSearchSticky && (
+      {(
         <ul className="hidden md:flex gap-6 text-sm text-gray-700 font-medium">
           <li className="hover:text-black cursor-pointer">Discover</li>
           <li className="hover:text-black cursor-pointer">Trips</li>
@@ -43,7 +43,7 @@ export default function HomeNavbar({ isSearchSticky }: { isSearchSticky: boolean
       </div>
 
       {/* Mobile Dropdown Menu */}
-      {mobileNavOpen && !isSearchSticky && (
+      {mobileNavOpen  && (
         <div className="absolute top-full right-0 w-full bg-white border-t mt-2 p-4 flex flex-col gap-3 md:hidden shadow-md">
           <a className="text-gray-700">Discover</a>
           <a className="text-gray-700">Trips</a>

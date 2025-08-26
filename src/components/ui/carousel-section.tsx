@@ -57,10 +57,10 @@ export default function CarouselSection({
     });
   };
 
-  return (
+return (
     <section className="mt-12 px-4 max-w-6xl mx-auto relative">
       {/* Title with emphasis */}
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 relative inline-block">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-lilita text-gray-900 mb-6 relative inline-block tracking-wide">
         {title}
         <span className="absolute left-0 -bottom-2 w-16 sm:w-20 h-1 bg-yellow-400 rounded-full"></span>
       </h2>
@@ -76,7 +76,10 @@ export default function CarouselSection({
               key={item.id}
               item={item}
               hrefPrefix={hrefPrefix}
-              className="flex-shrink-0 w-[220px] sm:w-[260px] md:w-[280px]"
+              className="flex-shrink-0 w-[220px] sm:w-[260px] md:w-[280px] font-outfit"
+              titleClass="font-kanit text-lg sm:text-xl"
+              subtitleClass="font-exo text-sm text-gray-600"
+              descriptionClass="font-ovo text-xs sm:text-sm text-gray-500"
             />
           ))}
         </div>
