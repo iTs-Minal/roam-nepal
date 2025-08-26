@@ -1,6 +1,7 @@
 import HeroSlider from "@/components/ui/heroslider";
 import CarouselSection from "@/components/ui/carousel-section";
 import { prisma } from "@/lib/prisma"; // make sure prisma client is exported here
+import FooterSection from "@/components/landingpage/footer";
 
 export default async function PlacePage(props: {
   params: Promise<{ slug: string }>;
@@ -15,6 +16,7 @@ export default async function PlacePage(props: {
       religiousSites: true,
       cafes: true,
       itineraries: true,
+      blogs: true,
     },
   });
 
@@ -23,7 +25,7 @@ export default async function PlacePage(props: {
   }
 
   return (
-    <div className="pb-16">
+    <div>
       <HeroSlider images={place.images} title={place.name} />
 
       {/* About Section */}
@@ -32,41 +34,66 @@ export default async function PlacePage(props: {
         <div className="text-center mb-8">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 relative inline-block">
             About {place.name}
-            <span className="absolute left-1/2 -bottom-2 w-20 h-1 bg-yellow-400 rounded-full -translate-x-1/2"></span>
+            <span className="absolute left-1/2 -bottom-2 w-30 h-1 bg-yellow-400 rounded-full -translate-x-1/2"></span>
           </h2>
           <p className="mt-3 text-gray-600 text-sm sm:text-base max-w-2xl mx-auto leading-snug">
             {place.description}
           </p>
         </div>
 
-        {/* Compact Info Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* About Section */}
+        <div className="space-y-10">
+          {/* Big content sections */}
           {place.history && (
-            <InfoCard title="History" content={place.history} icon="📜" />
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 relative inline-block pb-1">
+                History
+                <span className="absolute left-0 bottom-0 w-12 h-0.5 bg-blue-500 rounded"></span>
+              </h3>
+              <p className="mt-3 text-gray-600 leading-relaxed">
+                {place.history}
+              </p>
+            </div>
           )}
+
           {place.howToReach && (
-            <InfoCard
-              title="How to Reach"
-              content={place.howToReach}
-              icon="🛣️"
-            />
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 relative inline-block pb-1">
+                How to Reach
+                <span className="absolute left-0 bottom-0 w-12 h-0.5 bg-blue-500 rounded"></span>
+              </h3>
+              <p className="mt-3 text-gray-600 leading-relaxed">
+                {place.howToReach}
+              </p>
+            </div>
           )}
-          {place.location && (
-            <InfoCard title="Location" content={place.location} icon="📍" />
-          )}
-          {place.bestTime && (
-            <InfoCard title="Best Time" content={place.bestTime} icon="⏰" />
-          )}
-          {place.highlights?.length && (
-            <InfoCard
-              title="Highlights"
-              content={place.highlights.join(", ")}
-              icon="✨"
-            />
-          )}
-          {place.tips && (
-            <InfoCard title="Travel Tips" content={place.tips} icon="💡" />
-          )}
+
+          {/* Short info grouped into highlight chips */}
+          <div className="flex flex-wrap gap-3">
+            {place.location && (
+              <div className="bg-gray-100 px-4 py-2 rounded-lg shadow-sm text-gray-700 text-sm">
+                <span className="font-bold">Location:</span>{" "}
+                {place.location}
+              </div>
+            )}
+            {place.bestTime && (
+              <div className="bg-gray-100 px-4 py-2 rounded-lg shadow-sm text-gray-700 text-sm">
+                <span className="font-bold">Best Time:</span>{" "}
+                {place.bestTime}
+              </div>
+            )}
+            {place.tips && (
+              <div className="bg-gray-100 px-4 py-2 rounded-lg shadow-sm text-gray-700 text-sm">
+                <span className="font-bold">Travel Tips:</span> {place.tips}
+              </div>
+            )}
+            {place.highlights?.length > 0 && (
+              <div className="bg-gray-100 px-4 py-2 rounded-lg shadow-sm text-gray-700 text-sm">
+                <span className="font-bold">Highlights:</span>{" "}
+                {place.highlights.join(", ")}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -96,6 +123,18 @@ export default async function PlacePage(props: {
         items={place.religiousSites}
         hrefPrefix="/religious-sites"
       />
+
+      <CarouselSection
+        title="Blogs"
+        items={place.blogs.map((blog) => ({
+          ...blog,
+          name: blog.title,
+        }))}
+        hrefPrefix="/blogs"
+      />
+      <div>
+        <FooterSection />
+      </div>
     </div>
   );
 }

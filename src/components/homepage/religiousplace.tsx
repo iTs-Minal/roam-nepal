@@ -34,10 +34,12 @@ const [religiousSites, setReligiousSites] = useState<ReligiousSite[]>([]);
 
 
   return (
-    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-10 bg-gray-100">
+    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-8 bg-white">
       {/* Section Header */}
       <div className="text-center mb-12 max-w-2xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-gray-800">Religious Places</h2>
+        <h2 className="text-4xl font-extrabold text-gray-800">Religious Places
+          <span className="block w-30 h-1 bg-orange-500 mx-auto mt-2 rounded"></span>
+        </h2>
         <p className="mt-4 text-lg text-gray-600">
           Explore Nepal’s sacred and historic spiritual destinations.
         </p>

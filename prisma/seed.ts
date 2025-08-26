@@ -243,65 +243,169 @@ const pokharaAccommodations = [
 
 const pokharaReligiousSites = [
   {
-    name: "Barahi Temple",
-    slug: "barahi-temple",
-    description: "Pagoda temple on an island in Phewa Lake.",
-    images: [""],
-    latitude: 28.2105,
-    longitude: 83.9616,
-    visitingHours: "06:00 AM - 06:00 PM",
-    history: "Dedicated to Goddess Barahi, built centuries ago on a small island.",
-    rituals: ["Maha Shivaratri celebration", "Daily prayer ceremonies", "Special boat pujas"],
-    placeId: null,
-  },
-  {
-    name: "World Peace Pagoda",
-    slug: "world-peace-pagoda",
-    description: "Buddhist stupa overlooking Pokhara Valley and the Himalayas.",
-    images: [""],
-    latitude: 28.215,
-    longitude: 83.95,
-    visitingHours: "05:00 AM - 07:00 PM",
-    history: "Built by Japanese Buddhists to promote peace and harmony.",
-    rituals: ["Meditation sessions", "Full moon prayers", "Peace ceremonies"],
-    placeId: null,
-  },
-  {
-    name: "Bindhyabasini Temple",
-    slug: "bindhyabasini-temple",
-    description: "Ancient Hindu temple dedicated to Goddess Durga, located in Pokhara city center.",
-    images: [""],
-    latitude: 28.212,
-    longitude: 83.972,
-    visitingHours: "05:30 AM - 08:00 PM",
-    history: "One of the oldest temples in Pokhara, attracting devotees from across Nepal.",
-    rituals: ["Navaratri celebrations", "Daily pooja", "Festivals"],
-    placeId: null,
-  },
-  {
-    name: "Gupteshwor Mahadev Cave Temple",
-    slug: "gupteshwor-cave-temple",
-    description: "Sacred cave temple with a waterfall and Shiva Lingam inside.",
-    images: [""],
-    latitude: 28.218,
-    longitude: 83.967,
-    visitingHours: "06:00 AM - 06:30 PM",
-    history: "A unique temple inside a cave, connected with the nearby Davis Falls.",
-    rituals: ["Daily worship", "Special Shiva puja", "Festivals"],
-    placeId: null,
-  },
-  {
-    name: "Mahendra Cave",
-    slug: "mahendra-cave",
-    description: "Limestone cave considered sacred with small shrines inside.",
-    images: [""],
-    latitude: 28.219,
-    longitude: 83.968,
-    visitingHours: "08:00 AM - 05:00 PM",
-    history: "Popular for its natural formations and small religious significance.",
-    rituals: ["Occasional worship", "Visitor offerings", "Local festivals"],
-    placeId: null,
-  },
+      name: "Barahi Temple",
+      slug: "barahi-temple",
+      description: "Pagoda temple on an island in Phewa Lake, dedicated to Goddess Barahi.",
+      location: "Pokhara, Gandaki Province",
+      history: "Built centuries ago on a small island, attracting devotees for daily prayers and festivals.",
+      significance: "Important spiritual site for Hindus, especially for women seeking blessings.",
+      openingHours: "06:00 AM - 06:00 PM",
+      entryFee: { internal: "Free", external: "Rs 200" },
+      dressCode: "Modest clothing required. Remove shoes before entering.",
+      photography: "Photography allowed outside only.",
+      bestTimeToVisit: "Morning or during festivals",
+      nearbyAttractions: "Fewa Lake, Lakeside Pokhara",
+      facilities: { parking: false, guide: true, restrooms: false, shops: true },
+      festivals: [
+        {
+          name: "Maha Shivaratri",
+          month: "February/March",
+          description: "Special celebrations and boat rituals for devotees.",
+          images: ["/images/festivals/barahi-shivaratri1.jpg"]
+        }
+      ],
+      rituals: ["Maha Shivaratri celebration", "Daily prayer ceremonies", "Special boat pujas"],
+      images: [
+        "/images/religious/barahi-1.jpg",
+        "/images/religious/barahi-2.jpg"
+      ],
+      contactInfo: { phone: "+977-61-555000", email: "info@barahitemple.np", website: "" },
+      accessibility: { wheelchair: false, stairsOnly: true, audioGuide: false },
+      safetyGuidelines: [
+        "Respect local customs",
+        "Remove shoes before entering",
+        "Maintain silence inside temple"
+      ],
+      placeId: null,
+    },
+    {
+      name: "World Peace Pagoda",
+      slug: "world-peace-pagoda",
+      description: "Buddhist stupa overlooking Pokhara Valley and the Himalayas, promoting peace and harmony.",
+      location: "Pokhara, Gandaki Province",
+      history: "Built by Japanese Buddhists to promote peace, meditation, and scenic views.",
+      significance: "Famous pilgrimage site for Buddhists and tourists seeking panoramic views.",
+      openingHours: "05:00 AM - 07:00 PM",
+      entryFee: { internal: "Free", external: "Rs 100" },
+      dressCode: "Respectful clothing recommended. No restrictions inside.",
+      photography: "Photography allowed throughout the site.",
+      bestTimeToVisit: "Sunrise or sunset",
+      nearbyAttractions: "Sarangkot viewpoint, Phewa Lake",
+      facilities: { parking: true, guide: true, restrooms: true, shops: true },
+      festivals: [
+        {
+          name: "Full Moon Meditation",
+          month: "Every full moon",
+          description: "Meditation sessions and prayers during full moon nights.",
+          images: ["/images/festivals/peacepagoda-fullmoon1.jpg"]
+        }
+      ],
+      rituals: ["Meditation sessions", "Full moon prayers", "Peace ceremonies"],
+      images: [
+        "/images/religious/peacepagoda-1.jpg",
+        "/images/religious/peacepagoda-2.jpg"
+      ],
+      contactInfo: { phone: "+977-61-555111", email: "info@peacepagoda.org", website: "" },
+      accessibility: { wheelchair: true, stairsOnly: false, audioGuide: true },
+      safetyGuidelines: ["Respect local customs", "Keep noise low", "Do not litter"],
+      placeId: null,
+    },
+    {
+      name: "Bindhyabasini Temple",
+      slug: "bindhyabasini-temple",
+      description: "Ancient Hindu temple dedicated to Goddess Durga, located in the heart of Pokhara.",
+      location: "Pokhara, Gandaki Province",
+      history: "One of the oldest temples in Pokhara, attracting devotees from across Nepal.",
+      significance: "Spiritual center for Durga worship, especially during Navaratri.",
+      openingHours: "05:30 AM - 08:00 PM",
+      entryFee: { internal: "Free", external: "Rs 50" },
+      dressCode: "Modest clothing required. Remove shoes inside temple.",
+      photography: "Photography allowed only outside main sanctum.",
+      bestTimeToVisit: "During Navaratri or early morning",
+      nearbyAttractions: "Pokhara City Center, Lakeside",
+      facilities: { parking: false, guide: true, restrooms: true, shops: true },
+      festivals: [
+        {
+          name: "Navaratri",
+          month: "September/October",
+          description: "Nine-day festival honoring Goddess Durga with rituals and prayers.",
+          images: ["/images/festivals/bindhyabasini-navaratri1.jpg"]
+        }
+      ],
+      rituals: ["Navaratri celebrations", "Daily pooja", "Other festivals"],
+      images: [
+        "/images/religious/bindhyabasini-1.jpg",
+        "/images/religious/bindhyabasini-2.jpg"
+      ],
+      contactInfo: { phone: "+977-61-555222", email: "info@bindhyabasini.org", website: "" },
+      accessibility: { wheelchair: false, stairsOnly: true, audioGuide: false },
+      safetyGuidelines: ["Respect rituals", "Remove shoes before entering", "No loud noises"],
+      placeId: null,
+    },
+    {
+      name: "Gupteshwor Mahadev Cave Temple",
+      slug: "gupteshwor-cave-temple",
+      description: "Sacred cave temple with waterfall and Shiva Lingam inside, connected to Davis Falls.",
+      location: "Pokhara, Gandaki Province",
+      history: "A unique temple inside a cave, attracting devotees and tourists alike.",
+      significance: "Important pilgrimage site for Lord Shiva devotees.",
+      openingHours: "06:00 AM - 06:30 PM",
+      entryFee: { internal: "Free", external: "Rs 50" },
+      dressCode: "Modest clothing recommended",
+      photography: "Photography allowed only outside sanctum",
+      bestTimeToVisit: "Morning or festival days",
+      nearbyAttractions: "Davis Falls, Phewa Lake",
+      facilities: { parking: true, guide: true, restrooms: true, shops: false },
+      festivals: [
+        {
+          name: "Shivaratri Special Puja",
+          month: "February/March",
+          description: "Special pujas performed for Lord Shiva devotees.",
+          images: ["/images/festivals/gupteshwor-shivaratri1.jpg"]
+        }
+      ],
+      rituals: ["Daily worship", "Special Shiva puja", "Festivals"],
+      images: [
+        "/images/religious/gupteshwor-1.jpg",
+        "/images/religious/gupteshwor-2.jpg"
+      ],
+      contactInfo: { phone: "+977-61-555333", email: "info@gupteshwor.org", website: "" },
+      accessibility: { wheelchair: false, stairsOnly: true, audioGuide: false },
+      safetyGuidelines: ["Be cautious of slippery areas", "Respect rituals"],
+      placeId: null,
+    },
+    {
+      name: "Mahendra Cave",
+      slug: "mahendra-cave",
+      description: "Limestone cave considered sacred with small shrines inside.",
+      location: "Pokhara, Gandaki Province",
+      history: "Popular for natural formations and small religious significance.",
+      significance: "Tourists visit for exploration and religious offerings.",
+      openingHours: "08:00 AM - 05:00 PM",
+      entryFee: { internal: "Free", external: "Rs 50" },
+      dressCode: "Casual clothing allowed, modesty recommended",
+      photography: "Photography allowed",
+      bestTimeToVisit: "Morning",
+      nearbyAttractions: "Davis Falls, Barahi Temple",
+      facilities: { parking: true, guide: false, restrooms: false, shops: false },
+      festivals: [
+        {
+          name: "Local Festivals",
+          month: "Varies",
+          description: "Local ceremonies and offerings held occasionally.",
+          images: ["/images/festivals/mahendra-local1.jpg"]
+        }
+      ],
+      rituals: ["Occasional worship", "Visitor offerings", "Local festivals"],
+      images: [
+        "/images/religious/mahendra-1.jpg",
+        "/images/religious/mahendra-2.jpg"
+      ],
+      contactInfo: { phone: "+977-61-555444", email: "", website: "" },
+      accessibility: { wheelchair: false, stairsOnly: true, audioGuide: false },
+      safetyGuidelines: ["Watch your step", "Respect shrines"],
+      placeId: null,
+    }
 ];
 
 

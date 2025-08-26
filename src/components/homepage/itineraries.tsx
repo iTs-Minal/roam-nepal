@@ -32,10 +32,12 @@ export default function TrendingItineraries() {
   
 
   return (
-    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-10 bg-neutral-100">
+    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-8 bg-white">
       {/* Header */}
       <div className="text-center mb-12 max-w-2xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-gray-800">Itineraries</h2>
+        <h2 className="text-4xl font-extrabold text-gray-800">Itineraries
+          <span className="block w-30 h-1 bg-green-500 mx-auto mt-2 rounded"></span>
+        </h2>
         <p className="mt-4 text-lg text-gray-600">
            Discover handpicked travel itineraries designed to help you make the most of your journey across Nepal. 
     From short getaways to extended adventures, find the perfect plan tailored to your interests.

@@ -25,16 +25,27 @@ export default function CarouselSection({
   hrefPrefix: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [showButtons, setShowButtons] = useState(false);
+  const [showLeft, setShowLeft] = useState(false);
+  const [showRight, setShowRight] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const updateButtons = () => setShowButtons(container.scrollWidth > container.clientWidth);
+    const updateButtons = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = container;
+      setShowLeft(scrollLeft > 0); // Show left if not at the very start
+      setShowRight(scrollLeft + clientWidth < scrollWidth - 1); // Show right if not at the very end
+    };
+
     updateButtons();
+    container.addEventListener("scroll", updateButtons);
     window.addEventListener("resize", updateButtons);
-    return () => window.removeEventListener("resize", updateButtons);
+
+    return () => {
+      container.removeEventListener("scroll", updateButtons);
+      window.removeEventListener("resize", updateButtons);
+    };
   }, [items]);
 
   const scroll = (direction: "left" | "right") => {
@@ -58,7 +69,7 @@ export default function CarouselSection({
         {/* Carousel container */}
         <div
           ref={containerRef}
-          className="flex space-x-4 sm:space-x-6 overflow-x-hidden pb-6"
+          className="flex space-x-4 sm:space-x-6 overflow-x-hidden pb-6 scroll-smooth"
         >
           {items.map((item) => (
             <CarouselCard
@@ -71,21 +82,21 @@ export default function CarouselSection({
         </div>
 
         {/* Scroll buttons */}
-        {showButtons && (
-          <>
-            <button
-              onClick={() => scroll("left")}
-              className="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/90 rounded-full shadow-md hover:bg-white transition"
-            >
-              <FaChevronLeft className="text-sm sm:text-base" />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/90 rounded-full shadow-md hover:bg-white transition"
-            >
-              <FaChevronRight className="text-sm sm:text-base" />
-            </button>
-          </>
+        {showLeft && (
+          <button
+            onClick={() => scroll("left")}
+            className="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/90 rounded-full shadow-md hover:bg-white transition"
+          >
+            <FaChevronLeft className="text-sm sm:text-base" />
+          </button>
+        )}
+        {showRight && (
+          <button
+            onClick={() => scroll("right")}
+            className="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 bg-white/90 rounded-full shadow-md hover:bg-white transition"
+          >
+            <FaChevronRight className="text-sm sm:text-base" />
+          </button>
         )}
       </div>
     </section>

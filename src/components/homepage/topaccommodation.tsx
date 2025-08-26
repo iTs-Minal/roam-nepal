@@ -3,7 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaChevronLeft, FaChevronRight, FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaHeart,
+  FaRegHeart,
+  FaStar,
+} from "react-icons/fa";
 
 type Accommodation = {
   id: number;
@@ -16,9 +22,9 @@ type Accommodation = {
     name: string;
     slug: string;
   };
-  rating:number;
+  rating: number;
   price: number;
-  totalRatings:number;
+  totalRatings: number;
 };
 
 export default function TopAccommodations() {
@@ -31,26 +37,37 @@ export default function TopAccommodations() {
   }, []);
 
   return (
-    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-10 bg-neutral-100">
+    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-8 bg-white">
       {/* Header */}
       <div className="text-center mb-12 max-w-2xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-gray-800">Top Accommodations</h2>
+        <h2 className="text-4xl font-extrabold text-gray-800 inline-block relative">
+          Top Accommodations
+          <span className="block w-30 h-1 bg-cyan-500 mx-auto mt-2 rounded"></span>
+        </h2>
         <p className="mt-4 text-lg text-gray-600">
-          Discover the best places to stay in Nepal’s most beautiful destinations.
+          Discover the best places to stay in Nepal’s most beautiful
+          destinations.
         </p>
       </div>
 
       {/* Accommodation Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {accommodations.map((accommodation) => (
-          <AccommodationCard key={accommodation.id} accommodation={accommodation} />
+          <AccommodationCard
+            key={accommodation.id}
+            accommodation={accommodation}
+          />
         ))}
       </div>
     </section>
   );
 }
 
-function AccommodationCard({ accommodation }: { accommodation: Accommodation }) {
+function AccommodationCard({
+  accommodation,
+}: {
+  accommodation: Accommodation;
+}) {
   const [currentImage, setCurrentImage] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -62,11 +79,15 @@ function AccommodationCard({ accommodation }: { accommodation: Accommodation }) 
   };
 
   const prevImage = () => {
-    setCurrentImage((prev) => (prev === 0 ? accommodation.images.length - 1 : prev - 1));
+    setCurrentImage((prev) =>
+      prev === 0 ? accommodation.images.length - 1 : prev - 1
+    );
   };
 
   const nextImage = () => {
-    setCurrentImage((prev) => (prev === accommodation.images.length - 1 ? 0 : prev + 1));
+    setCurrentImage((prev) =>
+      prev === accommodation.images.length - 1 ? 0 : prev + 1
+    );
   };
 
   return (
@@ -75,7 +96,7 @@ function AccommodationCard({ accommodation }: { accommodation: Accommodation }) 
         {/* Image Section */}
         <div className="relative w-full h-56 overflow-hidden">
           <Image
-            src={accommodation.images[currentImage]|| "/placeholder.webp"}
+            src={accommodation.images[currentImage] || "/placeholder.webp"}
             alt={accommodation.name}
             fill
             className="object-cover"
@@ -111,7 +132,7 @@ function AccommodationCard({ accommodation }: { accommodation: Accommodation }) 
 
           {/* Dots */}
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-            {accommodation.images.slice(0,4).map((_, idx) => (
+            {accommodation.images.slice(0, 4).map((_, idx) => (
               <span
                 key={idx}
                 className={`w-2 h-2 rounded-full border border-white ${
@@ -124,7 +145,9 @@ function AccommodationCard({ accommodation }: { accommodation: Accommodation }) 
 
         {/* Info Below */}
         <div className="pt-4 px-2 pb-2 space-y-1">
-          <h3 className="text-base font-semibold text-gray-800">{accommodation.name}</h3>
+          <h3 className="text-base font-semibold text-gray-800">
+            {accommodation.name}
+          </h3>
           <p className="text-sm text-blue-600">{accommodation.place.name}</p>
 
           <div className="flex items-center mt-1 text-sm text-gray-700">
