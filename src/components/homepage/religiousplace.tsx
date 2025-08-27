@@ -34,7 +34,7 @@ const [religiousSites, setReligiousSites] = useState<ReligiousSite[]>([]);
 
 
   return (
-    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-8 bg-white">
+    <section className="px-4 sm:px-6 lg:px-12 py-10 mt-8 bg-white">
       {/* Section Header */}
       <div className="text-center mb-12 max-w-2xl mx-auto">
         <h2 className="text-4xl font-extrabold text-gray-800">Religious Places

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const religiousSites = await prisma.religiousSite.findMany({
-    take: 6,
+    take: 10,
     select: {
       id: true,
       name: true,

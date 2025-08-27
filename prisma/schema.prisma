@@ -72,34 +72,36 @@ model Accommodation {
 }
 
 model ReligiousSite {
-  id             String   @id @default(cuid())
-  name           String
-  slug           String   @unique
-  description    String   // Overall description of the site
-  location       String   // District / city / province
-  history        String?  // Background and historical info
-  significance   String?  // Spiritual or cultural importance
-  openingHours   String?  // e.g., "5:00 AM – 8:00 PM"
-  entryFee       Json?    // { internal: "Rs 50", external: "Rs 500", notes: "Children free" }
-  dressCode      String?  // e.g., "Modest clothing, no shoes inside"
-  photography    String?  // e.g., "Photography allowed only outside main sanctum"
-  bestTimeToVisit String? // e.g., "During Dashain or early morning"
-  nearbyAttractions String? // Text or list of nearby places
-  facilities     Json?    // e.g., { parking: true, restroom: true, guide: true, shops: true }
-  festivals      Json?    // [{ name, month, description, images[] }]
-  rituals        String[] // Daily rituals, ceremonies, special events
-  images         String[]  // Images of the temple/site
-  contactInfo    Json?     // { phone, email, website }
-  accessibility  Json?     // { wheelchair: true, stairsOnly: false, audioGuide: true }
-  safetyGuidelines String[] // Do's and Don'ts for visitors
-  reviews        Json?     // Optional future field: [{ user, rating, comment }]
+  id               String   @id @default(cuid())
+  name             String
+  slug             String   @unique
+  description      String
+  location         String
+  history          String?
+  significance     String?
+  openingHours     String?
+  entryFee         Json?    // { internal, external, notes }
+  dressCode        String?
+  photography      String?
+  bestTimeToVisit  String?
+  nearbyAttractions Json?   // [{ name, description, distance, images[] }]
+  facilities       Json?    // { parking, restrooms, guide, shops, ... }
+  festivals        Json?    // [{ name, month, description, images[] }]
+  rituals          Json?    // [{ name, description, time, images[] }]
+  images           String[]
+  contactInfo      Json?    // { phone, email, website, address }
+  accessibility    Json?    // { wheelchair, stairsOnly, audioGuide, ramps }
+  safetyGuidelines Json?    // [{ rule, description }]
+  reviews          Json?    // [{ user, rating, comment, date }]
+  rating           Float?   // Average rating
 
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 
   place   Place?   @relation(fields: [placeId], references: [id])
   placeId Int?
 }
+
 
 
 model Cafe {

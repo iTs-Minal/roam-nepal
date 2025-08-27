@@ -294,105 +294,212 @@ async function main() {
 
   const pokharaReligiousSites = [
     {
-      name: "Barahi Temple",
-      slug: "barahi-temple",
+      name: "World Peace Pagoda (Shanti Stupa)",
+      slug: "world-peace-pagoda",
       description:
-        "Barahi Temple is a beautiful pagoda-style temple situated on a small island in the middle of Phewa Lake in Pokhara. Dedicated to Goddess Barahi, the temple attracts both devotees and tourists. The serene surroundings, combined with the spiritual ambiance, make it a must-visit destination for those exploring Pokhara.",
+        "The World Peace Pagoda, also known as Shanti Stupa, is a stunning white-domed Buddhist monument situated on a hilltop overlooking Phewa Lake and Pokhara city. It symbolizes peace and harmony.",
       location: "Pokhara, Gandaki Province",
       history:
-        "The temple was built centuries ago on a small island in Phewa Lake and has been a center of worship and devotion ever since. It has witnessed numerous cultural events and religious rituals, preserving the spiritual heritage of the region.",
+        "Built by Buddhist monks of the Nipponzan-Myōhōji order from Japan, the stupa was constructed in 1999 as part of a global initiative to promote peace.",
       significance:
-        "Barahi Temple holds special significance for Hindus, particularly women seeking blessings from the goddess. It is an important spiritual site in Pokhara and a hub for religious festivals and ceremonies.",
-      openingHours: "06:00 AM - 06:00 PM",
-      entryFee: { internal: "Free", external: "Rs 200" },
-      dressCode:
-        "Modest clothing required. Shoes must be removed before entering the temple.",
+        "The stupa is a sacred pilgrimage site for Buddhists and a symbol of world peace. It attracts both devotees and tourists seeking tranquility.",
+      openingHours: "05:00 AM - 06:00 PM",
+      entryFee: {
+        internal: "Free",
+        external: "Free",
+        notes: "No entry fee, but donations are welcome.",
+      },
+      dressCode: "Respectful attire recommended.",
       photography:
-        "Photography is allowed only outside the main sanctum of the temple.",
+        "Photography allowed everywhere except inside the prayer halls.",
       bestTimeToVisit:
-        "Early morning or during major festivals, especially Maha Shivaratri.",
-      nearbyAttractions: "Fewa Lake, Lakeside Pokhara, World Peace Pagoda",
+        "Sunrise and sunset for panoramic mountain and lake views.",
+      nearbyAttractions: [
+        {
+          name: "Phewa Lake Viewpoint",
+          description:
+            "Panoramic viewpoint overlooking the lake and Pokhara city.",
+          distance: "0.5 km",
+          images: ["/pokhara/attractions/stupa_viewpoint.jpg"],
+        },
+        {
+          name: "Gupteshwor Mahadev Cave",
+          description:
+            "Famous cave temple with underground shrine of Lord Shiva.",
+          distance: "2 km",
+          images: ["/pokhara/attractions/gupteshwor.jpg"],
+        },
+      ],
       facilities: {
-        parking: false,
-        guide: true,
-        restrooms: false,
+        parking: true,
+        restrooms: true,
         shops: true,
+        teaHouses: true,
+        meditationHall: true,
       },
       festivals: [
         {
-          name: "Maha Shivaratri",
-          month: "February/March",
+          name: "Buddha Jayanti",
+          month: "April/May",
           description:
-            "A major festival where devotees gather for special boat rituals, prayers, and celebrations in honor of Goddess Barahi.",
-          images: [],
+            "Celebration of the birth of Lord Buddha with special prayers and offerings.",
+          images: ["/pokhara/religious/buddha_jayanti.jpg"],
         },
       ],
       rituals: [
-        "Maha Shivaratri celebration: Devotees gather on the island for special prayers and rituals.",
-        "Daily prayer ceremonies: Morning and evening rituals conducted by temple priests.",
-        "Special boat pujas: Offerings and prayers performed on boats approaching the temple.",
+        {
+          name: "Morning Meditation",
+          description:
+            "Monks and visitors gather for peaceful chanting and meditation.",
+          time: "06:00 AM",
+          images: ["/pokhara/religious/stupa_meditation.jpg"],
+        },
+        {
+          name: "Prayer Ceremony",
+          description:
+            "Daily Buddhist prayers performed inside the stupa halls.",
+          time: "Morning & Evening",
+          images: ["/pokhara/religious/stupa_prayer.jpg"],
+        },
       ],
       images: [
-        "/pokhara/religious/barahi1.webp",
-        "/pokhara/religious/barahi2.jpeg",
-        "/pokhara/religious/barahi3.jpeg",
-        "/pokhara/religious/barahi4.webp",
-        "/pokhara/religious/barahi5.webp",
+        "/pokhara/religious/peacepagoda1.jpg",
+        "/pokhara/religious/peacepagoda2.jpg",
+        "/pokhara/religious/peacepagoda3.jpg",
       ],
       contactInfo: {
-        phone: "+977-61-555000",
-        email: "info@barahitemple.np",
-        website: "",
+        phone: null,
+        email: null,
+        website: null,
+        address: "Anadu Hill, Pokhara, Nepal",
       },
-      accessibility: { wheelchair: false, stairsOnly: true, audioGuide: false },
+      accessibility: {
+        wheelchair: false,
+        stairsOnly: true,
+        audioGuide: false,
+        ramps: false,
+      },
       safetyGuidelines: [
-        "Respect local customs and traditions.",
-        "Remove shoes before entering the temple.",
-        "Maintain silence and a peaceful environment inside the temple.",
-        "Avoid touching sacred objects unless permitted.",
+        {
+          rule: "No Loud Noise",
+          description: "Maintain silence for meditation and prayers.",
+        },
+        {
+          rule: "Respect Monks",
+          description: "Do not interrupt monks during rituals.",
+        },
+        {
+          rule: "No Shoes",
+          description: "Remove shoes before entering prayer halls.",
+        },
       ],
+      reviews: [],
+      rating: null,
       placeId: null,
     },
 
     {
-      name: "World Peace Pagoda",
-      slug: "world-peace-pagoda",
+      name: "Tal Barahi Temple",
+      slug: "tal-barahi-temple",
       description:
-        "Buddhist stupa overlooking Pokhara Valley and the Himalayas, promoting peace and harmony.",
+        "Tal Barahi Temple, located on a small island in Phewa Lake, is one of Pokhara’s most iconic landmarks. Dedicated to Goddess Barahi (a manifestation of Durga), it is a hub for religious rituals and a major tourist attraction.",
       location: "Pokhara, Gandaki Province",
       history:
-        "Built by Japanese Buddhists to promote peace, meditation, and scenic views.",
+        "The temple is believed to have been constructed in the 18th century by King Kulmandan Shah. It has been a center of worship and pilgrimage for centuries, with a strong connection to the Malla and Shah dynasties.",
       significance:
-        "Famous pilgrimage site for Buddhists and tourists seeking panoramic views.",
-      openingHours: "05:00 AM - 07:00 PM",
-      entryFee: { internal: "Free", external: "Rs 100" },
-      dressCode: "Respectful clothing recommended. No restrictions inside.",
-      photography: "Photography allowed throughout the site.",
-      bestTimeToVisit: "Sunrise or sunset",
-      nearbyAttractions: "Sarangkot viewpoint, Phewa Lake",
-      facilities: { parking: true, guide: true, restrooms: true, shops: true },
-      festivals: [
+        "The temple is a key site of Hindu devotion, especially to Goddess Barahi. It is considered highly auspicious for ceremonies, weddings, and rituals performed by priests.",
+      openingHours: "06:00 AM - 07:00 PM",
+      entryFee: {
+        internal: "Free",
+        external: "Rs 50 for boat ride",
+        notes: "Temple entry is free; boat fare is separate.",
+      },
+      dressCode:
+        "Decent clothing required. Shoes must be removed before entry.",
+      photography: "Allowed outside but restricted inside the sanctum.",
+      bestTimeToVisit: "Morning hours and during festivals like Dashain.",
+      nearbyAttractions: [
         {
-          name: "Full Moon Meditation",
-          month: "Every full moon",
+          name: "Phewa Lake Boating",
           description:
-            "Meditation sessions and prayers during full moon nights.",
-          images: ["/images/festivals/peacepagoda-fullmoon1.jpg"],
+            "Traditional wooden boats take visitors around the scenic Phewa Lake.",
+          distance: "0 km (on the lake itself)",
+          images: [],
+        },
+        {
+          name: "Lakeside",
+          description:
+            "Bustling tourist hub with shops, restaurants, and cafes.",
+          distance: "500 m",
+          images: [],
         },
       ],
-      rituals: ["Meditation sessions", "Full moon prayers", "Peace ceremonies"],
-      images: [],
-      contactInfo: {
-        phone: "+977-61-555111",
-        email: "info@peacepagoda.org",
-        website: "",
+      facilities: {
+        parking: false,
+        restrooms: true,
+        guide: true,
+        shops: true,
+        prasadStalls: true,
       },
-      accessibility: { wheelchair: true, stairsOnly: false, audioGuide: true },
-      safetyGuidelines: [
-        "Respect local customs",
-        "Keep noise low",
-        "Do not litter",
+      festivals: [
+        {
+          name: "Dashain",
+          month: "September/October",
+          description:
+            "Major festival when thousands of devotees visit the temple to receive blessings.",
+          images: [],
+        },
       ],
+      rituals: [
+        {
+          name: "Morning Pooja",
+          description: "Daily prayers with offerings of flowers and incense.",
+          time: "06:00 AM – 07:30 AM",
+          images: [],
+        },
+        {
+          name: "Special Ceremonies",
+          description:
+            "Priests conduct wedding rituals and special pujas for devotees.",
+          time: "On request",
+          images: [],
+        },
+      ],
+      images: [
+        "/pokhara/religious/talbarahi1.webp",
+        "/pokhara/religious/talbarahi2.jpeg",
+        "/pokhara/religious/talbarahi3.jpeg",
+        "/pokhara/religious/talbarahi4.webp",
+        "/pokhara/religious/talbarahi5.webp",
+      ],
+      contactInfo: {
+        phone: "+977-61-555333",
+        email: null,
+        website: null,
+        address: "Tal Barahi Island, Phewa Lake, Pokhara",
+      },
+      accessibility: {
+        wheelchair: false,
+        stairsOnly: true,
+        audioGuide: false,
+        ramps: false,
+      },
+      safetyGuidelines: [
+        {
+          rule: "Boat Safety",
+          description: "Always wear life jackets while boating to the temple.",
+        },
+        {
+          rule: "Respect Rituals",
+          description: "Do not disturb ongoing prayers.",
+        },
+        {
+          rule: "Remove Shoes",
+          description: "Shoes must be left outside temple premises.",
+        },
+      ],
+      reviews: [],
+      rating: null,
       placeId: null,
     },
 
@@ -407,13 +514,43 @@ async function main() {
       significance:
         "The temple is a major spiritual center for devotees of Goddess Durga. It plays a central role during Navaratri celebrations and other religious ceremonies, making it a hub of cultural and spiritual activities.",
       openingHours: "05:30 AM - 08:00 PM",
-      entryFee: { internal: "Free", external: "Rs 50" },
+      entryFee: {
+        internal: "Free",
+        external: "Rs 50",
+        notes: "Children and elderly (above 70) free",
+      },
       dressCode: "Modest clothing required. Remove shoes inside the temple.",
       photography: "Photography allowed only outside the main sanctum.",
-      bestTimeToVisit: "Early morning or during Navaratri festival",
-      nearbyAttractions:
-        "Pokhara City Center, Lakeside, Phewa Lake, Tal Barahi Temple",
-      facilities: { parking: true, guide: true, restrooms: true, shops: true },
+      bestTimeToVisit: "Early morning, sunrise, or during Navaratri festival",
+      nearbyAttractions: [
+        {
+          name: "Phewa Lake",
+          description:
+            "A serene freshwater lake with boating and lakeside activities.",
+          distance: "2 km",
+          images: [],
+        },
+        {
+          name: "Tal Barahi Temple",
+          description: "Famous lakeside temple dedicated to Goddess Barahi.",
+          distance: "2.5 km",
+          images: [],
+        },
+        {
+          name: "Pokhara City Center",
+          description: "Shopping, cafes, and restaurants in downtown Pokhara.",
+          distance: "1 km",
+          images: [],
+        },
+      ],
+      facilities: {
+        parking: true,
+        restrooms: true,
+        guide: true,
+        shops: true,
+        prasadStalls: true,
+        drinkingWater: true,
+      },
       festivals: [
         {
           name: "Navaratri",
@@ -427,25 +564,31 @@ async function main() {
           month: "September/October",
           description:
             "Major Hindu festival celebrating the victory of good over evil. The temple sees thousands of worshippers during this period.",
-          images: [
-            "/pokhara/religious/bindhyabasini1.jpg",
-            "/pokhara/religious/bindhyabasini2.jpg",
-            "/pokhara/religious/bindhyabasini3.jpg",
-            "/pokhara/religious/bindhyabasini4.jpg",
-            "/pokhara/religious/bindhyabasini5.jpg",
-            "/pokhara/religious/bindhyabasini6.jpg",
-            "/pokhara/religious/bindhyabasini7.jpg",
-            "/pokhara/religious/bindhyabasini8.jpg",
-            "/pokhara/religious/bindhyabasini9.jpg",
-            "/pokhara/religious/bindhyabasini10.jpg",
-          ],
+          images: [],
         },
       ],
       rituals: [
-        "Daily morning and evening pooja by temple priests",
-        "Navaratri celebrations with special offerings",
-        "Dashain rituals and blessings",
-        "Regular temple cleaning and flower offerings",
+        {
+          name: "Morning Pooja",
+          description:
+            "Daily morning ritual performed by temple priests with offerings of flowers and incense.",
+          time: "05:30 AM – 07:00 AM",
+          images: [],
+        },
+        {
+          name: "Evening Aarti",
+          description:
+            "Evening prayer ceremony with chants, lamps, and offerings to the goddess.",
+          time: "06:30 PM – 07:30 PM",
+          images: [],
+        },
+        {
+          name: "Special Navaratri Pooja",
+          description:
+            "Elaborate nine-day rituals with music, offerings, and traditional dances.",
+          time: "Navaratri (September/October)",
+          images: [],
+        },
       ],
       images: [
         "/pokhara/religious/bindhyabasini1.jpg",
@@ -453,137 +596,542 @@ async function main() {
         "/pokhara/religious/bindhyabasini3.jpg",
         "/pokhara/religious/bindhyabasini4.jpg",
         "/pokhara/religious/bindhyabasini5.jpg",
+        "/pokhara/religious/bindhyabasini6.jpg",
+        "/pokhara/religious/bindhyabasini7.jpg",
+        "/pokhara/religious/bindhyabasini8.jpg",
+        "/pokhara/religious/bindhyabasini9.jpg",
+        "/pokhara/religious/bindhyabasini10.jpg",
       ],
       contactInfo: {
         phone: "+977-61-555222",
         email: "info@bindhyabasini.org",
         website: "https://www.bindhyabasini.org",
+        address: "Bindhyabasini Temple Road, Pokhara, Nepal",
       },
-      accessibility: { wheelchair: false, stairsOnly: true, audioGuide: false },
+      accessibility: {
+        wheelchair: false,
+        stairsOnly: true,
+        audioGuide: false,
+        ramps: false,
+      },
       safetyGuidelines: [
-        "Respect temple rituals and customs",
-        "Remove shoes before entering",
-        "Maintain silence inside the sanctum",
-        "Avoid touching sacred objects",
-        "Dress modestly",
+        {
+          rule: "Respect temple rituals and customs",
+          description: "Follow instructions given by priests.",
+        },
+        {
+          rule: "Remove shoes before entering",
+          description: "Leave shoes at designated shoe stand.",
+        },
+        {
+          rule: "Maintain silence inside sanctum",
+          description: "Avoid loud conversations or phone use.",
+        },
+        {
+          rule: "Avoid touching sacred objects",
+          description: "Do not handle offerings or idols.",
+        },
+        {
+          rule: "Dress modestly",
+          description: "Cover shoulders and knees when visiting.",
+        },
       ],
+      reviews: [],
+      rating: null,
       placeId: null,
     },
 
     {
       name: "Gupteshwor Mahadev Cave Temple",
-      slug: "gupteshwor-cave-temple",
+      slug: "gupteshwor-mahadev-cave",
       description:
-        "Sacred cave temple with waterfall and Shiva Lingam inside, connected to Davis Falls.",
+        "Gupteshwor Mahadev Cave is a sacred underground cave temple dedicated to Lord Shiva. It is located near Davis Falls and is one of the most mysterious spiritual sites in Pokhara.",
       location: "Pokhara, Gandaki Province",
       history:
-        "A unique temple inside a cave, attracting devotees and tourists alike.",
-      significance: "Important pilgrimage site for Lord Shiva devotees.",
-      openingHours: "06:00 AM - 06:30 PM",
-      entryFee: { internal: "Free", external: "Rs 50" },
-      dressCode: "Modest clothing recommended",
-      photography: "Photography allowed only outside sanctum",
-      bestTimeToVisit: "Morning or festival days",
-      nearbyAttractions: "Davis Falls, Phewa Lake",
-      facilities: { parking: true, guide: true, restrooms: true, shops: false },
-      festivals: [
+        "The cave has been revered for centuries as a hidden shrine of Lord Shiva. The temple was established in the 1990s to allow pilgrims access to the underground sanctum.",
+      significance:
+        "A powerful pilgrimage site for Shiva devotees. The underground temple’s natural setting enhances its spiritual aura.",
+      openingHours: "06:00 AM - 07:00 PM",
+      entryFee: {
+        internal: "Rs 50",
+        external: "Rs 100",
+        notes: "Special discounts for students and groups.",
+      },
+      dressCode: "Modest attire required inside the cave temple.",
+      photography: "Photography prohibited inside sanctum, allowed outside.",
+      bestTimeToVisit: "Morning or late afternoon to avoid crowds.",
+      nearbyAttractions: [
         {
-          name: "Shivaratri Special Puja",
-          month: "February/March",
-          description: "Special pujas performed for Lord Shiva devotees.",
+          name: "Davis Falls",
+          description:
+            "A famous waterfall located right across from the cave entrance.",
+          distance: "100 m",
+          images: [],
+        },
+        {
+          name: "World Peace Pagoda",
+          description: "A stunning Buddhist stupa overlooking Pokhara.",
+          distance: "2 km",
           images: [],
         },
       ],
-      rituals: ["Daily worship", "Special Shiva puja", "Festivals"],
-      images: [],
-      contactInfo: {
-        phone: "+977-61-555333",
-        email: "info@gupteshwor.org",
-        website: "",
-      },
-      accessibility: { wheelchair: false, stairsOnly: true, audioGuide: false },
-      safetyGuidelines: ["Be cautious of slippery areas", "Respect rituals"],
-      placeId: null,
-    },
-
-    {
-      name: "Mahendra Cave",
-      slug: "mahendra-cave",
-      description:
-        "Mahendra Cave is a limestone cave considered sacred, with unique natural formations and small shrines inside. Visitors can experience both spiritual significance and adventure exploration.",
-      location: "Pokhara, Gandaki Province, Nepal",
-      history:
-        "Discovered in the mid-20th century, Mahendra Cave has been a popular site for both locals and tourists due to its natural stalagmites and stalactites, as well as its religious importance.",
-      significance:
-        "Tourists visit Mahendra Cave for adventure, photography, and religious offerings. The cave is also part of local folklore and cultural rituals.",
-      openingHours: "08:00 AM - 05:00 PM",
-      entryFee: { internal: "Free", external: "Rs 50" },
-      dressCode:
-        "Casual clothing allowed, modesty recommended; sturdy shoes recommended",
-      photography: "Allowed inside, but respect shrines and worshippers",
-      bestTimeToVisit: "Morning or late afternoon for cooler temperatures",
-      nearbyAttractions: "Davis Falls, Barahi Temple, Pokhara Lakeside",
       facilities: {
         parking: true,
-        guide: true,
         restrooms: true,
         shops: true,
-        drinkingWater: true,
+        lightingInside: true,
+        guardRails: true,
       },
       festivals: [
         {
-          name: "Local Religious Ceremonies",
-          month: "Varies throughout the year",
+          name: "Maha Shivaratri",
+          month: "February/March",
           description:
-            "Special worship ceremonies and offerings are conducted occasionally, attracting both devotees and tourists.",
-          images: [
-            "/images/pokhara/religious/mahendra-cave1.jpg",
-            "/images/pokhara/religious/mahendra-cave2.jpg",
-          ],
-        },
-        {
-          name: "Pokhara Cultural Festival",
-          month: "October",
-          description:
-            "Cultural events in the city sometimes include visits to Mahendra Cave as part of traditional celebrations.",
-          images: [
-            "/images/pokhara/religious/mahendra-cave3.jpg",
-            "/images/pokhara/religious/mahendra-cave4.jpg",
-          ],
+            "Thousands of devotees gather inside and outside the cave temple to worship Lord Shiva with offerings of milk and bel leaves.",
+          images: [],
         },
       ],
       rituals: [
-        "Occasional worship inside the cave",
-        "Visitor offerings at small shrines",
-        "Lighting candles during festivals",
-        "Local cultural rituals and prayers",
+        {
+          name: "Daily Shiva Aarti",
+          description:
+            "Priests perform daily worship ceremonies with lamps and chants.",
+          time: "Morning & Evening",
+          images: [],
+        },
+        {
+          name: "Maha Shivaratri Pooja",
+          description:
+            "All-night rituals with thousands of devotees during Shivaratri.",
+          time: "Annual Festival",
+          images: [],
+        },
       ],
-      images: [
-        "/pokhara/religious/mahendra-cave1.jpg",
-        "/pokhara/religious/mahendra-cave2.jpg",
-        "/pokhara/religious/mahendra-cave3.jpg",
-        "/pokhara/religious/mahendra-cave4.jpg",
-        "/pokhara/religious/mahendra-cave5.jpg",
-        "/pokhara/religious/mahendra-cave6.jpg",
-        "/pokhara/religious/mahendra-cave7.jpg",
-      ],
+      images: [],
       contactInfo: {
         phone: "+977-61-555444",
-        email: "info@mahendracave.com",
-        website: "https://www.mahendracavepokhara.com",
+        email: null,
+        website: null,
+        address: "Chhorepatan, Pokhara, Nepal",
       },
       accessibility: {
         wheelchair: false,
         stairsOnly: true,
-        audioGuide: true,
-        guidedTours: true,
+        audioGuide: false,
+        ramps: false,
       },
       safetyGuidelines: [
-        "Watch your step inside the cave",
-        "Respect shrines and worshippers",
-        "Avoid touching stalagmites or stalactites",
-        "Use handrails where available",
+        {
+          rule: "Mind Your Step",
+          description: "Cave floor can be slippery, especially during monsoon.",
+        },
+        {
+          rule: "Low Ceilings",
+          description: "Watch your head in narrow passages.",
+        },
+        {
+          rule: "No Flash",
+          description:
+            "Flash photography disturbs the sanctity and bats inside.",
+        },
       ],
+      reviews: [],
+      rating: null,
+      placeId: null,
+    },
+
+    {
+      name: "Matepani Gumba",
+      slug: "matepani-gumba",
+      description:
+        "Matepani Gumba is a Tibetan-style Buddhist monastery located on a hilltop in Pokhara. It is renowned for its vibrant murals, peaceful surroundings, and panoramic views of the valley.",
+      location: "Pokhara, Gandaki Province",
+      history:
+        "Built in 1960 by Tibetan refugees, Matepani Gumba has been an important center of Mahayana Buddhist teachings and cultural preservation.",
+      significance:
+        "The monastery is a key spiritual and cultural hub for the Tibetan Buddhist community in Pokhara. It symbolizes compassion and wisdom, attracting devotees and tourists alike.",
+      openingHours: "05:30 AM - 05:00 PM",
+      entryFee: {
+        internal: "Free",
+        external: "Free",
+        notes: "Donations are welcome.",
+      },
+      dressCode: "Respectful attire required.",
+      photography: "Allowed outside; restricted inside prayer hall.",
+      bestTimeToVisit: "Morning for prayers or late afternoon for meditation.",
+      nearbyAttractions: [
+        {
+          name: "Mahendra Cave",
+          description: "A popular limestone cave with natural formations.",
+          distance: "3 km",
+          images: [],
+        },
+        {
+          name: "Seti River Gorge",
+          description: "A deep gorge carved by the Seti River.",
+          distance: "2 km",
+          images: [],
+        },
+      ],
+      facilities: {
+        parking: true,
+        restrooms: true,
+        meditationHall: true,
+        shops: false,
+      },
+      festivals: [
+        {
+          name: "Losar (Tibetan New Year)",
+          month: "February/March",
+          description:
+            "Celebrated with chanting, dances, and special offerings to mark the Tibetan New Year.",
+          images: [],
+        },
+      ],
+      rituals: [
+        {
+          name: "Morning Chanting",
+          description: "Monks perform daily prayers and chanting ceremonies.",
+          time: "06:00 AM – 07:00 AM",
+          images: [],
+        },
+        {
+          name: "Evening Meditation",
+          description:
+            "Visitors can join silent meditation sessions with monks.",
+          time: "04:30 PM – 05:00 PM",
+          images: [],
+        },
+      ],
+      images: [],
+      contactInfo: {
+        phone: "+977-61-555555",
+        email: null,
+        website: null,
+        address: "Matepani Hill, Pokhara, Nepal",
+      },
+      accessibility: {
+        wheelchair: false,
+        stairsOnly: true,
+        audioGuide: false,
+        ramps: false,
+      },
+      safetyGuidelines: [
+        {
+          rule: "Silence Required",
+          description: "Maintain silence in prayer halls.",
+        },
+        {
+          rule: "No Smoking",
+          description: "Smoking is prohibited within monastery grounds.",
+        },
+        {
+          rule: "Respect Monks",
+          description: "Do not interrupt ongoing chanting.",
+        },
+      ],
+      reviews: [],
+      rating: null,
+      placeId: null,
+    },
+
+    {
+      name: "Bhadrakali Temple",
+      slug: "bhadrakali-temple",
+      description:
+        "Bhadrakali Temple is a revered Hindu temple dedicated to Goddess Bhadrakali, located on a small hill in east Pokhara. It offers a tranquil environment and panoramic views of the city.",
+      location: "Pokhara, Gandaki Province",
+      history:
+        "The temple is believed to have been built in the 19th century. It has long been an important site for devotees of Goddess Bhadrakali, symbolizing protection and strength.",
+      significance:
+        "A key spiritual site for Hindu devotees, particularly during festivals like Navaratri and Dashain. It is also a popular local pilgrimage spot.",
+      openingHours: "06:00 AM - 08:00 PM",
+      entryFee: {
+        internal: "Free",
+        external: "Free",
+        notes: "Voluntary donations accepted.",
+      },
+      dressCode: "Traditional or modest attire recommended.",
+      photography: "Allowed in the temple compound.",
+      bestTimeToVisit: "During Navaratri festival or early mornings.",
+      nearbyAttractions: [
+        {
+          name: "Seti River Gorge",
+          description: "Natural gorge with viewpoints around Pokhara.",
+          distance: "1 km",
+          images: [],
+        },
+      ],
+      facilities: {
+        parking: true,
+        restrooms: true,
+        shops: true,
+        prasadStalls: true,
+      },
+      festivals: [
+        {
+          name: "Navaratri",
+          month: "September/October",
+          description:
+            "Nine nights of devotion to Goddess Durga, celebrated with rituals, dances, and offerings.",
+          images: [],
+        },
+      ],
+      rituals: [
+        {
+          name: "Morning Aarti",
+          description: "Daily worship with flowers, incense, and chants.",
+          time: "06:30 AM",
+          images: [],
+        },
+        {
+          name: "Special Navaratri Pooja",
+          description: "Nine-day special prayers and offerings to the goddess.",
+          time: "Annual (Navaratri)",
+          images: [],
+        },
+      ],
+      images: [],
+      contactInfo: {
+        phone: "+977-61-555666",
+        email: null,
+        website: null,
+        address: "Bhadrakali Hill, East Pokhara, Nepal",
+      },
+      accessibility: {
+        wheelchair: false,
+        stairsOnly: true,
+        audioGuide: false,
+        ramps: false,
+      },
+      safetyGuidelines: [
+        {
+          rule: "No Shoes",
+          description: "Leave footwear outside before entering.",
+        },
+        {
+          rule: "Respect Priests",
+          description: "Follow instructions of temple priests.",
+        },
+        {
+          rule: "No Loud Noise",
+          description: "Maintain silence inside sanctum.",
+        },
+      ],
+      reviews: [],
+      rating: null,
+      placeId: null,
+    },
+
+    {
+      name: "Sitaldevi Temple",
+      slug: "sitaldevi-temple",
+      description:
+        "Sitaldevi Temple is an ancient Hindu shrine located in Pokhara, dedicated to Goddess Durga in her Sitaldevi form. It is one of the oldest temples in the city.",
+      location: "Pokhara, Gandaki Province",
+      history:
+        "The temple is said to date back several centuries and has long been a center of devotion for local communities. It is believed to hold great spiritual power for devotees seeking protection and blessings.",
+      significance:
+        "Sitaldevi Temple is a major religious site for the people of Pokhara, particularly significant during Dashain when thousands of devotees gather.",
+      openingHours: "05:00 AM - 08:00 PM",
+      entryFee: {
+        internal: "Free",
+        external: "Free",
+        notes: "Open to all devotees.",
+      },
+      dressCode: "Traditional attire preferred. Modest clothing required.",
+      photography: "Photography not allowed inside sanctum.",
+      bestTimeToVisit: "Dashain festival or early mornings.",
+      nearbyAttractions: [
+        {
+          name: "Bindhyabasini Temple",
+          description: "Another important Durga temple located in Pokhara.",
+          distance: "2 km",
+          images: [],
+        },
+      ],
+      facilities: {
+        parking: true,
+        restrooms: true,
+        shops: true,
+        guide: false,
+      },
+      festivals: [
+        {
+          name: "Dashain",
+          month: "September/October",
+          description:
+            "Major festival with thousands of devotees gathering to offer prayers and sacrifices.",
+          images: [],
+        },
+      ],
+      rituals: [
+        {
+          name: "Daily Morning Pooja",
+          description: "Temple priests perform daily prayers to Goddess Durga.",
+          time: "05:00 AM – 07:00 AM",
+          images: [],
+        },
+        {
+          name: "Dashain Special Rituals",
+          description:
+            "Animal sacrifices and offerings performed during Dashain.",
+          time: "Annual (Dashain)",
+          images: [],
+        },
+      ],
+      images: [],
+      contactInfo: {
+        phone: "+977-61-555777",
+        email: null,
+        website: null,
+        address: "Sitaldevi, Pokhara, Nepal",
+      },
+      accessibility: {
+        wheelchair: false,
+        stairsOnly: true,
+        audioGuide: false,
+        ramps: false,
+      },
+      safetyGuidelines: [
+        {
+          rule: "Respect Rituals",
+          description:
+            "Dashain rituals may involve animal sacrifice; be respectful.",
+        },
+        { rule: "Remove Shoes", description: "Shoes must be left outside." },
+        {
+          rule: "Maintain Cleanliness",
+          description: "Dispose of offerings responsibly.",
+        },
+      ],
+      reviews: [],
+      rating: null,
+      placeId: null,
+    },
+
+    {
+      name: "Mahendra Gufa",
+      slug: "mahendra-gufa",
+      description:
+        "Mahendra Gufa (Mahendra Cave) is a natural limestone cave in Pokhara, known for its sacred Shivalinga and fascinating rock formations. It is a popular site for both devotees of Lord Shiva and visitors seeking to experience its cool and mystical atmosphere.",
+      location: "Batulechaur, Pokhara, Gandaki Province",
+      history:
+        "The cave was officially discovered in the late 1950s and named after King Mahendra Bir Bikram Shah Dev. It has long been visited by devotees who believe the cave was once a meditation site for sages. Over time, it has also become a popular tourist attraction due to its unique limestone structures and underground sanctum.",
+      significance:
+        "Mahendra Gufa is spiritually significant because of the naturally formed Shivalinga inside, where daily prayers and offerings are made. The cave also holds cultural importance as one of Pokhara’s most visited natural and religious landmarks.",
+      openingHours: "05:00 AM - 07:00 PM",
+      entryFee: {
+        internal: "Rs. 50",
+        external: "Rs. 150",
+        student: "Rs. 25 (with ID)",
+        child: "Free under 10 years",
+        notes: "Discounts may apply during major festivals.",
+      },
+      dressCode:
+        "Respectful, modest clothing recommended. Comfortable, non-slip shoes advised due to wet cave floor.",
+      photography:
+        "Allowed in outer chambers. Flash photography discouraged near shrines.",
+      bestTimeToVisit:
+        "October to March, when the cave floor is less slippery. Maha Shivaratri festival attracts the largest gatherings.",
+      nearbyAttractions: [
+        {
+          name: "Bat Cave (Chamere Gufa)",
+          description: "Another limestone cave nearby, known for its bats.",
+          distance: "1 km",
+          images: [],
+        },
+        {
+          name: "Gupteshwor Mahadev Cave",
+          description:
+            "A sacred cave dedicated to Lord Shiva, featuring a waterfall inside.",
+          distance: "5 km",
+          images: [],
+        },
+        {
+          name: "Bindhyabasini Temple",
+          description:
+            "An important Durga temple situated on a hilltop overlooking Pokhara.",
+          distance: "3 km",
+          images: [],
+        },
+      ],
+      facilities: {
+        parking: true,
+        restrooms: true,
+        shops: true,
+        guide: true,
+        lighting: true,
+      },
+      festivals: [
+        {
+          name: "Maha Shivaratri",
+          month: "February/March",
+          description:
+            "Thousands of devotees gather at Mahendra Gufa to worship Lord Shiva with offerings, prayers, and all-night chanting near the Shivalinga.",
+          images: [],
+        },
+        {
+          name: "Teej",
+          month: "August/September",
+          description:
+            "Women celebrate Teej by offering prayers to Lord Shiva, performing rituals, and singing devotional songs inside and near the cave.",
+          images: [],
+        },
+      ],
+      rituals: [
+        {
+          name: "Daily Shivalinga Worship",
+          description:
+            "Devotees offer water, bel leaves, incense, and oil lamps to the Shivalinga every morning and evening.",
+          time: "05:00 AM – 07:00 AM, 05:00 PM – 07:00 PM",
+          images: [],
+        },
+        {
+          name: "Festival Pujas",
+          description:
+            "On special occasions like Maha Shivaratri, priests lead extended rituals with chants, lamp-lighting, and group blessings.",
+          time: "Annual (Maha Shivaratri, Teej)",
+          images: [],
+        },
+      ],
+      images: [],
+      contactInfo: {
+        phone: "+977-61-552333",
+        email: "info@pokharatourism.org",
+        website: "https://www.pokharatourism.org/mahendra-gufa",
+        address: "Batulechaur, Pokhara, Nepal",
+      },
+      accessibility: {
+        wheelchair: false,
+        stairsOnly: true,
+        audioGuide: false,
+        ramps: false,
+      },
+      safetyGuidelines: [
+        {
+          rule: "Slippery Floors",
+          description:
+            "The cave floor can be wet and uneven. Wear non-slip shoes and move carefully.",
+        },
+        {
+          rule: "Preserve Formations",
+          description:
+            "Do not touch or damage limestone structures inside the cave.",
+        },
+        {
+          rule: "Respect Rituals",
+          description:
+            "Maintain silence and respect during religious ceremonies inside the sanctum.",
+        },
+        {
+          rule: "Use Lighting Carefully",
+          description:
+            "Carry a flashlight or follow guides for safe passage in darker chambers.",
+        },
+      ],
+      reviews: [],
+      rating: null,
       placeId: null,
     },
   ];
