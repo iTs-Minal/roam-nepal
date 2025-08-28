@@ -245,9 +245,9 @@ export default async function ReligiousSitePage(props: {
               <FaUserShield className="text-red-600" /> Safety Guidelines
             </h2>
             <ul className="list-disc list-inside text-gray-700 font-outfit space-y-2">
-              {site.safetyGuidelines.map((rule, idx) => (
+              {site.safetyGuidelines?.map((rule: string, idx: number) => (
                 <li key={idx}>
-                  {rule.description}
+                  {rule}
                 </li>
               ))}
             </ul>

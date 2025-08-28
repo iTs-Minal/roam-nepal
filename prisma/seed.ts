@@ -320,14 +320,14 @@ async function main() {
           description:
             "Panoramic viewpoint overlooking the lake and Pokhara city.",
           distance: "0.5 km",
-          images: ["/pokhara/attractions/stupa_viewpoint.jpg"],
+          images: ["/pokhara/phewalakeviewpoint.jpg"],
         },
         {
           name: "Gupteshwor Mahadev Cave",
           description:
             "Famous cave temple with underground shrine of Lord Shiva.",
           distance: "2 km",
-          images: ["/pokhara/attractions/gupteshwor.jpg"],
+          images: ["/pokhara/religious/gupteshwor1.jpg"],
         },
       ],
       facilities: {
@@ -343,7 +343,7 @@ async function main() {
           month: "April/May",
           description:
             "Celebration of the birth of Lord Buddha with special prayers and offerings.",
-          images: ["/pokhara/religious/buddha_jayanti.jpg"],
+          images: ["/pokhara/buddhajayanti.webp"],
         },
       ],
       rituals: [
@@ -352,20 +352,19 @@ async function main() {
           description:
             "Monks and visitors gather for peaceful chanting and meditation.",
           time: "06:00 AM",
-          images: ["/pokhara/religious/stupa_meditation.jpg"],
-        },
-        {
-          name: "Prayer Ceremony",
-          description:
-            "Daily Buddhist prayers performed inside the stupa halls.",
-          time: "Morning & Evening",
-          images: ["/pokhara/religious/stupa_prayer.jpg"],
+          images: ["/pokhara/morningmeditation.webp"],
         },
       ],
       images: [
         "/pokhara/religious/peacepagoda1.jpg",
         "/pokhara/religious/peacepagoda2.jpg",
         "/pokhara/religious/peacepagoda3.jpg",
+        "/pokhara/religious/peacepagoda4.jpg",
+        "/pokhara/religious/peacepagoda5.jpg",
+        "/pokhara/religious/peacepagoda6.jpg",
+        "/pokhara/religious/peacepagoda7.jpg",
+        "/pokhara/religious/peacepagoda8.jpg",
+        "/pokhara/religious/peacepagoda9.jpg",
       ],
       contactInfo: {
         phone: null,
@@ -424,14 +423,14 @@ async function main() {
           description:
             "Traditional wooden boats take visitors around the scenic Phewa Lake.",
           distance: "0 km (on the lake itself)",
-          images: [],
+          images: ["/pokhara/boating.webp"],
         },
         {
           name: "Lakeside",
           description:
             "Bustling tourist hub with shops, restaurants, and cafes.",
           distance: "500 m",
-          images: [],
+          images: ["/pokhara/lakeside.webp"],
         },
       ],
       facilities: {
@@ -447,7 +446,7 @@ async function main() {
           month: "September/October",
           description:
             "Major festival when thousands of devotees visit the temple to receive blessings.",
-          images: [],
+          images: ["/pokhara/dashain.webp"],
         },
       ],
       rituals: [
@@ -455,22 +454,26 @@ async function main() {
           name: "Morning Pooja",
           description: "Daily prayers with offerings of flowers and incense.",
           time: "06:00 AM – 07:30 AM",
-          images: [],
+          images: ["/pokhara/morningpooja.webp"],
         },
         {
           name: "Special Ceremonies",
           description:
             "Priests conduct wedding rituals and special pujas for devotees.",
           time: "On request",
-          images: [],
+          images: ["/pokhara/specialceremonies.jpg"],
         },
       ],
       images: [
-        "/pokhara/religious/talbarahi1.webp",
-        "/pokhara/religious/talbarahi2.jpeg",
-        "/pokhara/religious/talbarahi3.jpeg",
-        "/pokhara/religious/talbarahi4.webp",
-        "/pokhara/religious/talbarahi5.webp",
+        "/pokhara/religious/talbarahi1.jpg",
+        "/pokhara/religious/talbarahi2.jpg",
+        "/pokhara/religious/talbarahi3.jpg",
+        "/pokhara/religious/talbarahi4.jpg",
+        "/pokhara/religious/talbarahi5.jpg",
+        "/pokhara/religious/talbarahi6.jpg",
+        "/pokhara/religious/talbarahi7.jpg",
+        "/pokhara/religious/talbarahi8.jpg",
+        "/pokhara/religious/talbarahi9.jpg",
       ],
       contactInfo: {
         phone: "+977-61-555333",
@@ -528,19 +531,19 @@ async function main() {
           description:
             "A serene freshwater lake with boating and lakeside activities.",
           distance: "2 km",
-          images: [],
+          images: ["/pokhara/phewalakeviewpoint.jpg"],
         },
         {
           name: "Tal Barahi Temple",
           description: "Famous lakeside temple dedicated to Goddess Barahi.",
           distance: "2.5 km",
-          images: [],
+          images: ["/pokhara/religious/talbarahi7.jpg"],
         },
         {
           name: "Pokhara City Center",
           description: "Shopping, cafes, and restaurants in downtown Pokhara.",
           distance: "1 km",
-          images: [],
+          images: ["/pokhara/pokharacitycenter.webp"],
         },
       ],
       facilities: {
@@ -557,14 +560,14 @@ async function main() {
           month: "September/October",
           description:
             "Nine-day festival honoring Goddess Durga with rituals, prayers, and special offerings. Devotees come from all over Nepal to participate in the celebrations.",
-          images: [],
+          images: ["/pokhara/navaratri.webp"],
         },
         {
           name: "Dashain",
           month: "September/October",
           description:
             "Major Hindu festival celebrating the victory of good over evil. The temple sees thousands of worshippers during this period.",
-          images: [],
+          images: ["/pokhara/dashain.webp"],
         },
       ],
       rituals: [
@@ -573,21 +576,14 @@ async function main() {
           description:
             "Daily morning ritual performed by temple priests with offerings of flowers and incense.",
           time: "05:30 AM – 07:00 AM",
-          images: [],
-        },
-        {
-          name: "Evening Aarti",
-          description:
-            "Evening prayer ceremony with chants, lamps, and offerings to the goddess.",
-          time: "06:30 PM – 07:30 PM",
-          images: [],
+          images: ["/pokhara/morningpooja.webp"],
         },
         {
           name: "Special Navaratri Pooja",
           description:
             "Elaborate nine-day rituals with music, offerings, and traditional dances.",
           time: "Navaratri (September/October)",
-          images: [],
+          images: ["/pokhara/navaratripooja.webp"],
         },
       ],
       images: [
@@ -666,13 +662,13 @@ async function main() {
           description:
             "A famous waterfall located right across from the cave entrance.",
           distance: "100 m",
-          images: [],
+          images: ["/pokhara/davisfall.webp"],
         },
         {
           name: "World Peace Pagoda",
           description: "A stunning Buddhist stupa overlooking Pokhara.",
           distance: "2 km",
-          images: [],
+          images: ["/pokhara/religious/peacepagoda1.jpg"],
         },
       ],
       facilities: {
@@ -688,7 +684,7 @@ async function main() {
           month: "February/March",
           description:
             "Thousands of devotees gather inside and outside the cave temple to worship Lord Shiva with offerings of milk and bel leaves.",
-          images: [],
+          images: ["/pokhara/mahashivaratri.jpg"],
         },
       ],
       rituals: [
@@ -697,17 +693,21 @@ async function main() {
           description:
             "Priests perform daily worship ceremonies with lamps and chants.",
           time: "Morning & Evening",
-          images: [],
-        },
-        {
-          name: "Maha Shivaratri Pooja",
-          description:
-            "All-night rituals with thousands of devotees during Shivaratri.",
-          time: "Annual Festival",
-          images: [],
+          images: ["/pokhara/shivaaarati.webp"],
         },
       ],
-      images: [],
+      images: [
+        "/pokhara/religious/gupteshowr1.jpg",
+        "/pokhara/religious/gupteshowr2.jpg",
+        "/pokhara/religious/gupteshowr3.jpg",
+        "/pokhara/religious/gupteshowr4.jpg",
+        "/pokhara/religious/gupteshowr5.jpg",
+        "/pokhara/religious/gupteshowr6.jpg",
+        "/pokhara/religious/gupteshowr7.jpg",
+        "/pokhara/religious/gupteshowr8.jpg",
+        "/pokhara/religious/gupteshowr9.jpg",
+        "/pokhara/religious/gupteshowr10.jpg",
+      ],
       contactInfo: {
         phone: "+977-61-555444",
         email: null,
@@ -764,13 +764,13 @@ async function main() {
           name: "Mahendra Cave",
           description: "A popular limestone cave with natural formations.",
           distance: "3 km",
-          images: [],
+          images: ["/pokhara/religious/mahendra2.jpg"],
         },
         {
           name: "Seti River Gorge",
           description: "A deep gorge carved by the Seti River.",
           distance: "2 km",
-          images: [],
+          images: ["/pokhara/setiriver.jpg"],
         },
       ],
       facilities: {
@@ -785,7 +785,7 @@ async function main() {
           month: "February/March",
           description:
             "Celebrated with chanting, dances, and special offerings to mark the Tibetan New Year.",
-          images: [],
+          images: ["/pokhara/loshar.webp"],
         },
       ],
       rituals: [
@@ -793,17 +793,26 @@ async function main() {
           name: "Morning Chanting",
           description: "Monks perform daily prayers and chanting ceremonies.",
           time: "06:00 AM – 07:00 AM",
-          images: [],
+          images: ["/pokhara/morningpooja.webp"],
         },
         {
           name: "Evening Meditation",
           description:
             "Visitors can join silent meditation sessions with monks.",
           time: "04:30 PM – 05:00 PM",
-          images: [],
+          images: ["/pokhara/eveningmeditation.jpg"],
         },
       ],
-      images: [],
+      images: [
+        "/pokhara/religious/matepani1.jpg",
+        "/pokhara/religious/matepani2.jpg",
+        "/pokhara/religious/matepani3.jpg",
+        "/pokhara/religious/matepani4.jpg",
+        "/pokhara/religious/matepani5.jpg",
+        "/pokhara/religious/matepani6.jpg",
+        "/pokhara/religious/matepani7.jpg",
+        "/pokhara/religious/matepani8.jpg",
+      ],
       contactInfo: {
         phone: "+977-61-555555",
         email: null,
@@ -859,7 +868,7 @@ async function main() {
           name: "Seti River Gorge",
           description: "Natural gorge with viewpoints around Pokhara.",
           distance: "1 km",
-          images: [],
+          images: ["/pokhara/setiriver.jpg"],
         },
       ],
       facilities: {
@@ -874,7 +883,7 @@ async function main() {
           month: "September/October",
           description:
             "Nine nights of devotion to Goddess Durga, celebrated with rituals, dances, and offerings.",
-          images: [],
+          images: ["/pokhara/navaratri.webp"],
         },
       ],
       rituals: [
@@ -882,16 +891,24 @@ async function main() {
           name: "Morning Aarti",
           description: "Daily worship with flowers, incense, and chants.",
           time: "06:30 AM",
-          images: [],
+          images: ["/pokhara/morningpooja.webp"],
         },
         {
           name: "Special Navaratri Pooja",
           description: "Nine-day special prayers and offerings to the goddess.",
           time: "Annual (Navaratri)",
-          images: [],
+          images: ["/pokhara/navaratripooja.jpg"],
         },
       ],
-      images: [],
+      images: [
+        "/pokhara/religious/bhadrakali1.jpg",
+        "/pokhara/religious/bhadrakali2.jpg",
+        "/pokhara/religious/bhadrakali3.jpg",
+        "/pokhara/religious/bhadrakali4.jpg",
+        "/pokhara/religious/bhadrakali5.jpg",
+        "/pokhara/religious/bhadrakali6.jpg",
+        "/pokhara/religious/bhadrakali7.jpg",
+      ],
       contactInfo: {
         phone: "+977-61-555666",
         email: null,
@@ -916,93 +933,6 @@ async function main() {
         {
           rule: "No Loud Noise",
           description: "Maintain silence inside sanctum.",
-        },
-      ],
-      reviews: [],
-      rating: null,
-      placeId: null,
-    },
-
-    {
-      name: "Sitaldevi Temple",
-      slug: "sitaldevi-temple",
-      description:
-        "Sitaldevi Temple is an ancient Hindu shrine located in Pokhara, dedicated to Goddess Durga in her Sitaldevi form. It is one of the oldest temples in the city.",
-      location: "Pokhara, Gandaki Province",
-      history:
-        "The temple is said to date back several centuries and has long been a center of devotion for local communities. It is believed to hold great spiritual power for devotees seeking protection and blessings.",
-      significance:
-        "Sitaldevi Temple is a major religious site for the people of Pokhara, particularly significant during Dashain when thousands of devotees gather.",
-      openingHours: "05:00 AM - 08:00 PM",
-      entryFee: {
-        internal: "Free",
-        external: "Free",
-        notes: "Open to all devotees.",
-      },
-      dressCode: "Traditional attire preferred. Modest clothing required.",
-      photography: "Photography not allowed inside sanctum.",
-      bestTimeToVisit: "Dashain festival or early mornings.",
-      nearbyAttractions: [
-        {
-          name: "Bindhyabasini Temple",
-          description: "Another important Durga temple located in Pokhara.",
-          distance: "2 km",
-          images: [],
-        },
-      ],
-      facilities: {
-        parking: true,
-        restrooms: true,
-        shops: true,
-        guide: false,
-      },
-      festivals: [
-        {
-          name: "Dashain",
-          month: "September/October",
-          description:
-            "Major festival with thousands of devotees gathering to offer prayers and sacrifices.",
-          images: [],
-        },
-      ],
-      rituals: [
-        {
-          name: "Daily Morning Pooja",
-          description: "Temple priests perform daily prayers to Goddess Durga.",
-          time: "05:00 AM – 07:00 AM",
-          images: [],
-        },
-        {
-          name: "Dashain Special Rituals",
-          description:
-            "Animal sacrifices and offerings performed during Dashain.",
-          time: "Annual (Dashain)",
-          images: [],
-        },
-      ],
-      images: [],
-      contactInfo: {
-        phone: "+977-61-555777",
-        email: null,
-        website: null,
-        address: "Sitaldevi, Pokhara, Nepal",
-      },
-      accessibility: {
-        wheelchair: false,
-        stairsOnly: true,
-        audioGuide: false,
-        ramps: false,
-      },
-      safetyGuidelines: [
-        {
-          rule: "Respect Rituals",
-          description:
-            "Dashain rituals may involve animal sacrifice; be respectful.",
-        },
-        { rule: "Remove Shoes", description: "Shoes must be left outside." },
-        {
-          rule: "Maintain Cleanliness",
-          description: "Dispose of offerings responsibly.",
         },
       ],
       reviews: [],
@@ -1039,21 +969,21 @@ async function main() {
           name: "Bat Cave (Chamere Gufa)",
           description: "Another limestone cave nearby, known for its bats.",
           distance: "1 km",
-          images: [],
+          images: ["/pokhara/batcave.webp"],
         },
         {
           name: "Gupteshwor Mahadev Cave",
           description:
             "A sacred cave dedicated to Lord Shiva, featuring a waterfall inside.",
           distance: "5 km",
-          images: [],
+          images: ["/pokhara/religious/gupteshowr1.jpg"],
         },
         {
           name: "Bindhyabasini Temple",
           description:
             "An important Durga temple situated on a hilltop overlooking Pokhara.",
           distance: "3 km",
-          images: [],
+          images: ["/pokhara/religious/bindhyabasini1.jpg"],
         },
       ],
       facilities: {
@@ -1069,14 +999,14 @@ async function main() {
           month: "February/March",
           description:
             "Thousands of devotees gather at Mahendra Gufa to worship Lord Shiva with offerings, prayers, and all-night chanting near the Shivalinga.",
-          images: [],
+          images: ["/pokhara/mahashivaratri.jpg"],
         },
         {
           name: "Teej",
           month: "August/September",
           description:
             "Women celebrate Teej by offering prayers to Lord Shiva, performing rituals, and singing devotional songs inside and near the cave.",
-          images: [],
+          images: ["/pokhara/teej.webp"],
         },
       ],
       rituals: [
@@ -1085,17 +1015,26 @@ async function main() {
           description:
             "Devotees offer water, bel leaves, incense, and oil lamps to the Shivalinga every morning and evening.",
           time: "05:00 AM – 07:00 AM, 05:00 PM – 07:00 PM",
-          images: [],
+          images: ["/pokhara/shivaaarati.webp"],
         },
         {
           name: "Festival Pujas",
           description:
             "On special occasions like Maha Shivaratri, priests lead extended rituals with chants, lamp-lighting, and group blessings.",
           time: "Annual (Maha Shivaratri, Teej)",
-          images: [],
+          images: ["/pokhara/specialceremonies.jpg"],
         },
       ],
-      images: [],
+      images: [
+        "/pokhara/religious/mahendra1.jpg",
+        "/pokhara/religious/mahendra2.jpg",
+        "/pokhara/religious/mahendra3.jpg",
+        "/pokhara/religious/mahendra4.jpg",
+        "/pokhara/religious/mahendra5.jpg",
+        "/pokhara/religious/mahendra6.jpg",
+        "/pokhara/religious/mahendra7.png",
+        "/pokhara/religious/mahendra8.jpg",
+      ],
       contactInfo: {
         phone: "+977-61-552333",
         email: "info@pokharatourism.org",
