@@ -1,8 +1,10 @@
 "use client";
 import BlogsSection from "@/components/homepage/blogs";
+import TrendingCafes from "@/components/homepage/cafes";
 import FAQs from "@/components/homepage/faq";
 import HomeHero from "@/components/homepage/homehero";
 import HomeNavbar from "@/components/homepage/homenavbar";
+import TrendingItineraries from "@/components/homepage/itineraries";
 import TrendingActivities from "@/components/homepage/popularactivities";
 import PopularPlaces from "@/components/homepage/popularplaces";
 import ReligiousPlaces from "@/components/homepage/religiousplace";
@@ -17,12 +19,14 @@ export default function Home() {
 
   return (
     <main>
-      <HomeNavbar isSearchSticky={isSticky} />
+      <HomeNavbar />
       <HomeHero onStickyChange={setIsSticky} />
       <PopularPlaces/>
       <TopAccommodations/>
       <TrendingActivities/>
+      <TrendingItineraries/>
       <ReligiousPlaces/>
+      <TrendingCafes/>
       <BlogsSection/>
       <FAQs/>
       <FooterSection/>

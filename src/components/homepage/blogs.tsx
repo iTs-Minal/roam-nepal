@@ -22,7 +22,7 @@ export default function BlogsSection() {
   }, []);
 
   return (
-    <section className="px-4 sm:px-6 lg:px-12 py-16 bg-white">
+    <section className="px-4 sm:px-6 lg:px-12 py-10 bg-white">
       {/* Section Header */}
       <div className="text-center mb-12 max-w-2xl mx-auto">
         <h2 className="text-4xl font-extrabold text-gray-800">Popular Blogs</h2>

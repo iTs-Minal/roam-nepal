@@ -32,10 +32,12 @@ export default function TrendingActivities() {
   
 
   return (
-    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-10 bg-neutral-100">
+    <section className="px-4 sm:px-6 lg:px-12 py-10 mt-8 bg-white">
       {/* Header */}
       <div className="text-center mb-12 max-w-2xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-gray-800">Trending Activities</h2>
+        <h2 className="text-4xl font-extrabold text-gray-800">Trending Activities
+          <span className="block w-30 h-1 bg-blue-500 mx-auto mt-2 rounded"></span>
+        </h2>
         <p className="mt-4 text-lg text-gray-600">
           Explore the most exciting things to do in Nepal’s top destinations.
         </p>
@@ -78,7 +80,7 @@ function ActivityCard({ activity }: { activity: Activity }) {
         {/* Image Carousel */}
         <div className="relative w-full h-56 overflow-hidden">
           <Image
-            src={activity.images[currentImage]}
+            src={activity.images[currentImage]|| "/placeholder.webp"}
             alt={activity.name}
             fill
             className="object-cover"
@@ -114,11 +116,11 @@ function ActivityCard({ activity }: { activity: Activity }) {
 
           {/* Image Dots */}
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-            {activity.images.map((_, idx) => (
+            {activity.images.slice(0,4).map((_, idx) => (
               <span
                 key={idx}
                 className={`w-2 h-2 rounded-full border border-white ${
-                  idx === currentImage ? "bg-white" : "bg-transparent"
+                  idx === currentImage % 4? "bg-white" : "bg-transparent"
                 }`}
               />
             ))}

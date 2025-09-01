@@ -24,11 +24,12 @@ export default function PopularPlaces() {
   }, []);
 
   return (
-    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-10 bg-gray-50">
+    <section className="px-4 sm:px-6 lg:px-12 py-10 mt-8 bg-white">
       {/* Header and Description */}
       <div className="text-center mb-12 max-w-2xl mx-auto">
         <h2 className="text-4xl font-extrabold text-gray-800">
           Popular Places
+          <span className="block w-30 h-1 bg-red-500 mx-auto mt-2 rounded"></span>
         </h2>
         <p className="mt-4 text-lg text-gray-600">
           Discover the most loved destinations across Nepal. Each place has its
@@ -37,7 +38,7 @@ export default function PopularPlaces() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {places.map((place) => (
-          <Link href={`/place/${place.slug}`} key={place.id}>
+          <Link href={`/places/${place.slug}`} key={place.id}>
             <div className="relative rounded-lg overflow-hidden group shadow-lg hover:shadow-xl transition duration-300">
               {/* Image */}
               <Image

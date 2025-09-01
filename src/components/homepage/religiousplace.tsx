@@ -33,10 +33,12 @@ const [religiousSites, setReligiousSites] = useState<ReligiousSite[]>([]);
 
 
   return (
-    <section className="px-4 sm:px-6 lg:px-12 py-16 mt-10 bg-gray-100">
+    <section className="px-4 sm:px-6 lg:px-12 py-10 mt-8 bg-white">
       {/* Section Header */}
       <div className="text-center mb-12 max-w-2xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-gray-800">Religious Places</h2>
+        <h2 className="text-4xl font-extrabold text-gray-800">Religious Places
+          <span className="block w-30 h-1 bg-orange-500 mx-auto mt-2 rounded"></span>
+        </h2>
         <p className="mt-4 text-lg text-gray-600">
           Explore Nepal’s sacred and historic spiritual destinations.
         </p>
@@ -77,7 +79,7 @@ function ReligiousCard({ site }: { site: ReligiousSite }) {
         {/* Image Carousel */}
         <div className="relative w-full h-56 overflow-hidden">
           <Image
-            src={site.images[currentImage]}
+            src={site.images[currentImage]|| "/placeholder.webp"}
             alt={site.name}
             fill
             className="object-cover"
@@ -113,11 +115,11 @@ function ReligiousCard({ site }: { site: ReligiousSite }) {
 
           {/* Dots */}
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-            {site.images.map((_, idx) => (
+            {site.images.slice(0,4).map((_, idx) => (
               <span
                 key={idx}
                 className={`w-2 h-2 rounded-full border border-white ${
-                  idx === currentImage ? "bg-white" : "bg-transparent"
+                  idx === currentImage % 4? "bg-white" : "bg-transparent"
                 }`}
               />
             ))}
@@ -126,7 +128,7 @@ function ReligiousCard({ site }: { site: ReligiousSite }) {
 
         {/* Site Info */}
         <div className="pt-4 px-2 pb-2 space-y-1">
-          <h3 className="text-base font-semibold text-gray-800">{site.name}</h3>
+          <h3 className="text-base font-semibold text-gray-800 truncate">{site.name}</h3>
           <p className="text-sm text-blue-600">{site.place.name}</p>
 
           <div className="flex items-center mt-1 text-sm text-gray-700">
