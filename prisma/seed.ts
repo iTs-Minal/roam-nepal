@@ -299,6 +299,8 @@ async function main() {
       description:
         "The World Peace Pagoda, also known as Shanti Stupa, is a stunning white-domed Buddhist monument situated on a hilltop overlooking Phewa Lake and Pokhara city. It symbolizes peace and harmony.",
       location: "Pokhara, Gandaki Province",
+      latitude: 28.2295,
+      longitude: 83.9486,
       history:
         "Built by Buddhist monks of the Nipponzan-Myōhōji order from Japan, the stupa was constructed in 1999 as part of a global initiative to promote peace.",
       significance:
@@ -403,6 +405,8 @@ async function main() {
       description:
         "Tal Barahi Temple, located on a small island in Phewa Lake, is one of Pokhara’s most iconic landmarks. Dedicated to Goddess Barahi (a manifestation of Durga), it is a hub for religious rituals and a major tourist attraction.",
       location: "Pokhara, Gandaki Province",
+      latitude: 28.2103,
+      longitude: 83.9583,
       history:
         "The temple is believed to have been constructed in the 18th century by King Kulmandan Shah. It has been a center of worship and pilgrimage for centuries, with a strong connection to the Malla and Shah dynasties.",
       significance:
@@ -512,6 +516,8 @@ async function main() {
       description:
         "Bindhyabasini Temple is an ancient Hindu temple dedicated to Goddess Durga, located on a hilltop in the heart of Pokhara. It is a prominent spiritual and cultural landmark, offering panoramic views of the city and surrounding mountains.",
       location: "Pokhara, Gandaki Province",
+      latitude: 28.2434,
+      longitude: 83.9956,
       history:
         "Believed to be one of the oldest temples in Pokhara, Bindhyabasini Temple has been a center of worship for centuries. It has survived numerous renovations and continues to attract devotees and tourists alike.",
       significance:
@@ -643,6 +649,8 @@ async function main() {
       description:
         "Gupteshwor Mahadev Cave is a sacred underground cave temple dedicated to Lord Shiva. It is located near Davis Falls and is one of the most mysterious spiritual sites in Pokhara.",
       location: "Pokhara, Gandaki Province",
+      latitude: 28.1847,
+      longitude: 83.9629,
       history:
         "The cave has been revered for centuries as a hidden shrine of Lord Shiva. The temple was established in the 1990s to allow pilgrims access to the underground sanctum.",
       significance:
@@ -746,6 +754,8 @@ async function main() {
       description:
         "Matepani Gumba is a Tibetan-style Buddhist monastery located on a hilltop in Pokhara. It is renowned for its vibrant murals, peaceful surroundings, and panoramic views of the valley.",
       location: "Pokhara, Gandaki Province",
+      latitude: 28.2407,
+      longitude: 84.0013,
       history:
         "Built in 1960 by Tibetan refugees, Matepani Gumba has been an important center of Mahayana Buddhist teachings and cultural preservation.",
       significance:
@@ -850,6 +860,8 @@ async function main() {
       description:
         "Bhadrakali Temple is a revered Hindu temple dedicated to Goddess Bhadrakali, located on a small hill in east Pokhara. It offers a tranquil environment and panoramic views of the city.",
       location: "Pokhara, Gandaki Province",
+      latitude: 28.2136,
+      longitude: 83.9927,
       history:
         "The temple is believed to have been built in the 19th century. It has long been an important site for devotees of Goddess Bhadrakali, symbolizing protection and strength.",
       significance:
@@ -946,6 +958,8 @@ async function main() {
       description:
         "Mahendra Gufa (Mahendra Cave) is a natural limestone cave in Pokhara, known for its sacred Shivalinga and fascinating rock formations. It is a popular site for both devotees of Lord Shiva and visitors seeking to experience its cool and mystical atmosphere.",
       location: "Batulechaur, Pokhara, Gandaki Province",
+      latitude: 28.2771,
+      longitude: 84.0040,
       history:
         "The cave was officially discovered in the late 1950s and named after King Mahendra Bir Bikram Shah Dev. It has long been visited by devotees who believe the cave was once a meditation site for sages. Over time, it has also become a popular tourist attraction due to its unique limestone structures and underground sanctum.",
       significance:
@@ -1075,76 +1089,192 @@ async function main() {
     },
   ];
 
-  const pokharaCafes = [
-    {
-      name: "Moondance Café",
-      slug: "moondance-cafe",
-      description:
-        "Lakeside café famous for steaks, pastries, and a relaxed vibe.",
-      images: [""],
-      latitude: 28.21,
-      longitude: 83.96,
-      openingTime: "08:00 AM",
-      closingTime: "10:00 PM",
-      specialties: ["Steaks", "Pastries", "Coffee", "Smoothies"],
-      ambiance: ["Lakeside", "Outdoor seating", "Cozy"],
-      placeId: null,
+const pokharaCafes = [
+  {
+    name: "Moondance Café",
+    slug: "moondance-cafe",
+    description:
+      "Lakeside café famous for steaks, pastries, and a relaxed vibe. Perfect for brunch, coffee, and sunset views.",
+    images: [
+        "/pokhara/cafes/moondance1.jpg",
+        "/pokhara/cafes/moondance2.webp",
+        "/pokhara/cafes/moondance3.jpg",
+        "/pokhara/cafes/moondance4.webp",
+        "/pokhara/cafes/moondance5.jpeg",
+    ],
+    latitude: 28.209,
+    longitude: 83.964,
+    openingTime: "08:00 AM",
+    closingTime: "10:00 PM",
+    specialties: ["Steaks", "Pastries", "Coffee", "Smoothies", "Sandwiches"],
+    ambiance: ["Lakeside", "Outdoor seating", "Cozy", "Live Music", "Family Friendly"],
+    menu: [
+      { name: "Cappuccino", description: "Rich espresso with milk foam", price: 450, category: "Beverage", image: "/pokhara/cafes/foods/cappucino.jpeg"},
+      { name: "Blueberry Muffin", description: "Freshly baked muffin with real blueberries", price: 300, category: "Dessert", image: "/pokhara/cafes/foods/blueberrymuffins.jpg" },
+      { name: "Chocolate Cake Slice", description: "Decadent chocolate cake with ganache", price: 400, category: "Dessert", image: "/pokhara/cafes/foods/chocolatecake.webp" },
+      { name: "Steak Sandwich", description: "Grilled steak with vegetables and sauce", price: 900, category: "Snack", image: "/pokhara/cafes/foods/steakswandwich.webp" },
+      { name: "Fruit Smoothie", description: "Fresh seasonal fruits blended", price: 450, category: "Beverage", image: "/pokhara/cafes/foods/smoothie.webp" }
+    ],
+    facilities: [
+      { name: "WiFi", available: true },
+      { name: "Parking", available: true },
+      { name: "Outdoor Seating", available: true },
+      { name: "Pet Friendly", available: true },
+      { name: "Live Music", available: true },
+      { name: "Wheelchair Accessible", available: false },
+      { name: "Air Conditioning", available: true },
+    ],
+    contactInfo: {
+      phone: "+977-61-555111",
+      email: "moondance@example.com",
+      website: "https://moondancecafe.com",
+      social: { instagram: "https://instagram.com/moondancecafe", facebook: "https://facebook.com/moondancecafe" },
+      address: "Lakeside, Pokhara, Nepal",
     },
-    {
-      name: "OR2K Pokhara",
-      slug: "or2k-pokhara",
-      description: "Vibrant vegetarian restaurant with Middle Eastern cuisine.",
-      images: [""],
-      latitude: 28.21,
-      longitude: 83.96,
-      openingTime: "09:00 AM",
-      closingTime: "11:00 PM",
-      specialties: ["Falafel", "Hummus", "Shawarma", "Fresh juices"],
-      ambiance: ["Rooftop", "Artistic vibe", "Casual dining"],
-      placeId: null,
+    nearbyAttractions: [
+      { name: "Phewa Lake", distance: "200m", image: "" },
+      { name: "World Peace Pagoda", distance: "2km", image: "" }
+    ],
+    reviews: [],
+    rating: null,
+    placeId: null,
+  },
+
+  {
+    name: "OR2K Pokhara",
+    slug: "or2k-pokhara",
+    description:
+      "Vibrant vegetarian café offering Middle Eastern dishes with a bohemian rooftop vibe.",
+    images: [
+      "/pokhara/cafes/or2k1.jpg",
+      "/pokhara/cafes/or2k2.jpg",
+      "/pokhara/cafes/or2k3.webp",
+      "/pokhara/cafes/or2k4.webp",
+      "/pokhara/cafes/or2k5.jpeg",
+    ],
+    latitude: 28.210,
+    longitude: 83.965,
+    openingTime: "09:00 AM",
+    closingTime: "11:00 PM",
+    specialties: ["Falafel", "Hummus", "Shawarma", "Fresh Juices", "Salads"],
+    ambiance: ["Rooftop", "Artistic vibe", "Casual dining", "Colorful decor", "Live music on weekends"],
+    menu: [
+      { name: "Falafel Plate", description: "Crispy falafel served with tahini", price: 500, category: "Snack", image: "/pokhara/cafes/foods/falafel.webp" },
+      { name: "Hummus Trio", description: "Classic, roasted red pepper, and avocado hummus", price: 550, category: "Snack", image: "/pokhara/cafes/foods/humustrio.webp" },
+      { name: "Vegetarian Shawarma", description: "Grilled veggie wrap with garlic sauce", price: 600, category: "Snack", image: "/pokhara/cafes/foods/vegeteriansharwma.webp" },
+      { name: "Fresh Orange Juice", description: "Cold pressed fresh juice", price: 350, category: "Beverage", image: "/pokhara/cafes/foods/freshorangejuice.webp" },
+    ],
+    facilities: [
+      { name: "WiFi", available: true },
+      { name: "Rooftop Seating", available: true },
+      { name: "Pet Friendly", available: false },
+      { name: "Wheelchair Accessible", available: false },
+      { name: "Live Music", available: true },
+    ],
+    contactInfo: {
+      phone: "+977-61-555222",
+      email: "or2k@example.com",
+      website: "https://or2k.com",
+      social: { instagram: "https://instagram.com/or2kpokhara", facebook: "https://facebook.com/or2kpokhara" },
+      address: "Lakeside, Pokhara, Nepal",
     },
-    {
-      name: "Little Windows Café",
-      slug: "little-windows-cafe",
-      description:
-        "Cozy café with lakeside views, perfect for coffee and brunch.",
-      images: [""],
-      latitude: 28.208,
-      longitude: 83.97,
-      openingTime: "07:00 AM",
-      closingTime: "09:00 PM",
-      specialties: ["Coffee", "Sandwiches", "Pastries", "Smoothies"],
-      ambiance: ["Lakeside", "Quiet", "Casual"],
-      placeId: null,
+    nearbyAttractions: [
+      { name: "Fewa Lake", distance: "300m", image: "" },
+      { name: "Bindhyabasini Temple", distance: "2.5km", image: "" }
+    ],
+    reviews: [],
+    rating: null,
+    placeId: null,
+  },
+
+  {
+    name: "Little Windows Café",
+    slug: "little-windows-cafe",
+    description:
+      "Cozy café with lakeside views. Famous for brunch, coffee, and light meals.",
+    images: [
+      "/pokhara/cafes/littlewindows.jpg",
+      "/pokhara/cafes/littlewindows1.jpg",
+      "/pokhara/cafes/littlewindows2.jpg",
+      "/pokhara/cafes/littlewindows3.jpg",
+      "/pokhara/cafes/littlewindows4.jpg",
+    ],
+    latitude: 28.208,
+    longitude: 83.967,
+    openingTime: "07:00 AM",
+    closingTime: "09:00 PM",
+    specialties: ["Coffee", "Sandwiches", "Pastries", "Smoothies", "Breakfast items"],
+    ambiance: ["Lakeside", "Quiet", "Casual", "Family Friendly"],
+    menu: [
+      { name: "Latte", description: "Smooth espresso with milk", price: 450, category: "Beverage", image: "/pokhara/cafes/foods/latte.webp" },
+      { name: "Club Sandwich", description: "Grilled sandwich with fresh veggies", price: 550, category: "Snack", image: "/pokhara/cafes/foods/clubsandwich.webp" },
+      { name: "Banana Pancake", description: "Fluffy pancakes with caramelized bananas", price: 500, category: "Dessert", image: "/pokhara/cafes/foods/bananapancakes.jpg" },
+    ],
+    facilities: [
+      { name: "WiFi", available: true },
+      { name: "Outdoor Seating", available: true },
+      { name: "Wheelchair Accessible", available: false },
+    ],
+    contactInfo: {
+      phone: "+977-61-555333",
+      email: "littlewindows@example.com",
+      website: null,
+      social: { instagram: "" },
+      address: "Lakeside, Pokhara, Nepal",
     },
-    {
-      name: "Café Concerto",
-      slug: "cafe-concerto",
-      description: "Modern café with a wide range of beverages and desserts.",
-      images: [""],
-      latitude: 28.209,
-      longitude: 83.965,
-      openingTime: "08:00 AM",
-      closingTime: "10:00 PM",
-      specialties: ["Espresso", "Cakes", "Smoothies", "Pastries"],
-      ambiance: ["Indoor seating", "Artistic decor", "Cozy"],
-      placeId: null,
+    nearbyAttractions: [
+      { name: "Phewa Lake", distance: "150m", image: "" }
+    ],
+    reviews: [],
+    rating: null,
+    placeId: null,
+  },
+
+  {
+    name: "Café Concerto",
+    slug: "cafe-concerto",
+    description:
+      "Modern café with a wide range of beverages and desserts. Great for coffee lovers and students.",
+    images: [
+        "/pokhara/cafes/cafeconcerto1.webp",
+        "/pokhara/cafes/cafeconcerto2.webp",
+        "/pokhara/cafes/cafeconcerto3.jpg",
+        "/pokhara/cafes/cafeconcerto4.jpg",
+        "/pokhara/cafes/cafeconcerto5.jpg",
+    ],
+    latitude: 28.209,
+    longitude: 83.965,
+    openingTime: "08:00 AM",
+    closingTime: "10:00 PM",
+    specialties: ["Espresso", "Cakes", "Smoothies", "Pastries", "Sandwiches"],
+    ambiance: ["Indoor seating", "Artistic decor", "Cozy", "Quiet"],
+    menu: [
+      { name: "Espresso", description: "Strong coffee shot", price: 400, category: "Beverage", image: "/pokhara/cafes/foods/espresso.webp" },
+      { name: "Chocolate Brownie", description: "Rich chocolate brownie", price: 350, category: "Dessert", image: "/pokhara/cafes/foods/chocolatebrownie.webp" },
+      { name: "Smoothie Bowl", description: "Fresh fruit bowl with smoothie base", price: 500, category: "Beverage", image: "/pokhara/cafes/foods/smoothiebowl.webp" },
+    ],
+    facilities: [
+      { name: "WiFi", available: true },
+      { name: "Air Conditioning", available: true },
+      { name: "Quiet Space", available: true },
+      { name: "Wheelchair Accessible", available: false },
+    ],
+    contactInfo: {
+      phone: "+977-61-555444",
+      email: "concerto@example.com",
+      website: "https://cafeconcerto.com",
+      social: { instagram: "https://instagram.com/cafeconcerto" },
+      address: "New Road, Pokhara, Nepal",
     },
-    {
-      name: "Nyamo Café",
-      slug: "nyamo-cafe",
-      description:
-        "Small local café serving traditional Nepali snacks and tea.",
-      images: [""],
-      latitude: 28.207,
-      longitude: 83.962,
-      openingTime: "06:30 AM",
-      closingTime: "08:30 PM",
-      specialties: ["Nepali tea", "Momo", "Snacks", "Coffee"],
-      ambiance: ["Local vibe", "Cozy", "Casual"],
-      placeId: null,
-    },
-  ];
+    nearbyAttractions: [
+      { name: "Davis Falls", distance: "500m", image: "" }
+    ],
+    reviews: [],
+    rating: null,
+    placeId: null,
+  },
+];
+
 
   const pokharaItineraries = [
     {

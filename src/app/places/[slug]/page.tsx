@@ -3,6 +3,7 @@ import CarouselSection from "@/components/ui/carousel-section";
 import { prisma } from "@/lib/prisma"; // make sure prisma client is exported here
 import FooterSection from "@/components/landingpage/footer";
 import HomeNavbar from "@/components/homepage/homenavbar";
+import dynamic from "next/dynamic";
 
 export default async function PlacePage(props: {
   params: Promise<{ slug: string }>;
@@ -21,94 +22,133 @@ export default async function PlacePage(props: {
     },
   });
 
+  const Map = dynamic(() => import("@/components/ui/map"));
+
   if (!place) {
     return <div>Place not found</div>;
   }
 
-return (
-  <div>
-    {/* Make sure navbar has fixed position */}
-    <HomeNavbar />
+  return (
+    <div>
+      {/* Make sure navbar has fixed position */}
+      <HomeNavbar />
 
-    {/* Hero Slider with top padding to avoid hidden by navbar */}
-    <div className="relative"> 
-      {/* Adjust pt-20 according to navbar height, e.g., 80px = pt-20 */}
-      <HeroSlider images={place.images} title={place.name} />
-    </div>
-
-    {/* About Section */}
-    <div className="max-w-6xl mx-auto mt-10 mb-20 px-4">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl sm:text-4xl font-lilita text-gray-900 relative inline-block">
-          About {place.name}
-          <span className="absolute left-1/2 -bottom-2 w-20 h-1 bg-yellow-400 rounded-full -translate-x-1/2"></span>
-        </h2>
-        <p className="mt-3 text-gray-600 text-sm sm:text-base max-w-2xl mx-auto leading-snug font-outfit">
-          {place.description}
-        </p>
+      {/* Hero Slider with top padding to avoid hidden by navbar */}
+      <div className="relative">
+        {/* Adjust pt-20 according to navbar height, e.g., 80px = pt-20 */}
+        <HeroSlider images={place.images} title={place.name} />
       </div>
 
-      <div className="space-y-10">
-        {place.history && (
-          <SectionBlock title="History">{place.history}</SectionBlock>
-        )}
-        {place.howToReach && (
-          <SectionBlock title="How to Reach">{place.howToReach}</SectionBlock>
-        )}
+      {/* About Section */}
+      <div className="max-w-6xl mx-auto mt-10 mb-20 px-4">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl sm:text-4xl font-lilita text-gray-900 relative inline-block">
+            About {place.name}
+            <span className="absolute left-1/2 -bottom-2 w-20 h-1 bg-yellow-400 rounded-full -translate-x-1/2"></span>
+          </h2>
+          <p className="mt-3 text-gray-600 text-sm sm:text-base max-w-2xl mx-auto leading-snug font-outfit">
+            {place.description}
+          </p>
+        </div>
 
-        <div className="flex flex-wrap gap-3">
-          {place.location && <Chip label="Location" value={place.location} />}
-          {place.bestTime && <Chip label="Best Time" value={place.bestTime} />}
-          {place.tips && <Chip label="Travel Tips" value={place.tips} />}
-          {place.highlights?.length > 0 && (
-            <Chip label="Highlights" value={place.highlights.join(", ")} />
+        <div className="space-y-10">
+          {place.history && (
+            <SectionBlock title="History">{place.history}</SectionBlock>
           )}
+          {place.howToReach && (
+            <SectionBlock title="How to Reach">{place.howToReach}</SectionBlock>
+          )}
+
+          <div className="flex flex-wrap gap-3">
+            {place.highlights?.length > 0 && (
+              <Chip label="Highlights" value={place.highlights.join(", ")} />
+            )}
+          </div>
         </div>
       </div>
+
+      {place.latitude && place.longitude && (
+        <section className="max-w-6xl mx-auto px-4 mt-10">
+          <div className="flex flex-col md:flex-row gap-6 items-start">
+            {/* Map */}
+            <div className="w-full md:w-2/3 rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+              <Map
+                latitude={place.latitude}
+                longitude={place.longitude}
+                title={place.name}
+              />
+            </div>
+
+            {/* Location Info */}
+            <div className="w-full md:w-1/3 flex flex-col justify-center">
+              <h2 className="relative text-3xl sm:text-4xl font-kanit font-bold text-blue-900 mb-4">
+                {place.name}
+                <span className="absolute left-10 -bottom-2 w-20 h-1 bg-yellow-400 rounded-full -translate-x-1/2"></span>
+              </h2>
+              <p className="text-gray-600 mb-4 font-outfit">
+                Explore the exact location of this place and nearby landmarks.
+              </p>
+
+              <div className="space-y-2">
+                <Chip label="Location" value={place.location} />
+                {place.bestTime && (
+                  <Chip label="Best Time" value={place.bestTime} />
+                )}
+                {place.tips && <Chip label="Travel Tips" value={place.tips} />}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Carousel Sections */}
+      <CarouselSection
+        title="Accommodations"
+        items={place.accommodations.map((acc) => ({
+          ...acc,
+          rating: acc.rating ?? undefined,
+          price: acc.price ?? undefined,
+        }))}
+        hrefPrefix="/accommodations"
+      />
+      <CarouselSection title="Cafes" items={place.cafes} hrefPrefix="/cafes" />
+      <CarouselSection
+        title="Top Activities"
+        items={place.activities}
+        hrefPrefix="/activities"
+      />
+      <CarouselSection
+        title="Itineraries"
+        items={place.itineraries}
+        hrefPrefix="/itineraries"
+      />
+      <CarouselSection
+        title="Religious Sites"
+        items={place.religiousSites}
+        hrefPrefix="/religious-sites"
+      />
+      <CarouselSection
+        title="Blogs"
+        items={place.blogs.map((blog) => ({
+          ...blog,
+          name: blog.title,
+        }))}
+        hrefPrefix="/blogs"
+      />
+
+      <FooterSection />
     </div>
-
-    {/* Carousel Sections */}
-    <CarouselSection
-      title="Accommodations"
-      items={place.accommodations.map((acc) => ({
-        ...acc,
-        rating: acc.rating ?? undefined,
-        price: acc.price ?? undefined,
-      }))}
-      hrefPrefix="/accommodations"
-    />
-    <CarouselSection title="Cafes" items={place.cafes} hrefPrefix="/cafes" />
-    <CarouselSection
-      title="Top Activities"
-      items={place.activities}
-      hrefPrefix="/activities"
-    />
-    <CarouselSection
-      title="Itineraries"
-      items={place.itineraries}
-      hrefPrefix="/itineraries"
-    />
-    <CarouselSection
-      title="Religious Sites"
-      items={place.religiousSites}
-      hrefPrefix="/religious-sites"
-    />
-    <CarouselSection
-      title="Blogs"
-      items={place.blogs.map((blog) => ({
-        ...blog,
-        name: blog.title,
-      }))}
-      hrefPrefix="/blogs"
-    />
-
-    <FooterSection />
-  </div>
-);
+  );
 }
 
 /* Section Block */
-function SectionBlock({ title, children }: { title: string; children: React.ReactNode }) {
+function SectionBlock({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <div>
       <h3 className="text-2xl font-kanit font-bold text-gray-900 relative inline-block pb-1">

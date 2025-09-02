@@ -77,6 +77,8 @@ model ReligiousSite {
   slug             String   @unique
   description      String
   location         String
+    latitude     Float?
+  longitude    Float?
   history          String?
   significance     String?
   openingHours     String?
@@ -116,9 +118,18 @@ model Cafe {
   closingTime  String?
   specialties  String[]
   ambiance     String[]
+  menu         Json?    // store menu items with name, price, image, category
+  facilities   Json?    // array of facilities
+  contactInfo  Json?    // phone, email, website, social
+  nearbyAttractions Json? // array with name, distance, image
   placeId      Int?
   place        Place?   @relation(fields: [placeId], references: [id])
+  reviews      Json? // user-submitted reviews
+  rating       Float?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
+
 
 model Itinerary {
   id          Int        @id @default(autoincrement())

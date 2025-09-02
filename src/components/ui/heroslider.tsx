@@ -23,7 +23,7 @@ export default function HeroSlider({
     setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
   return (
-    <div className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
+    <div className="relative w-full h-[90vh] md:h-[90vh] overflow-hidden">
       {/* All Images stacked */}
       <div className="w-full h-full relative z-0">
         {images.map((img, i) => (

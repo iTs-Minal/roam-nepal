@@ -78,7 +78,7 @@ function CafeCard({ cafe }: { cafe: Cafe }) {
   };
 
   return (
-    <Link href={`/activity/${cafe.slug}`}>
+    <Link href={`/cafes/${cafe.slug}`}>
       <div className="group relative rounded-xl overflow-hidden bg-white transition">
         {/* Image Carousel */}
         <div className="relative w-full h-56 overflow-hidden">
