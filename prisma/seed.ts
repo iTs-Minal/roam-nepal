@@ -1276,144 +1276,381 @@ const pokharaCafes = [
 ];
 
 
-  const pokharaItineraries = [
+const pokharaItineraries = [
     {
-      name: "2-Day Scenic Getaway in Pokhara",
-      title: "2-Day Scenic Getaway in Pokhara",
-      slug: "2-day-scenic-getaway-pokhara",
+      name: "Sunrise Peaks & Lakeside Nights",
+      title: "Pokhara: Sunrise Peaks & Lakeside Nights",
+      tagline: "Sarangkot dawn, Peace Pagoda glow, and Phewa’s mirror lake.",
+      slug: "pokhara-sunrise-peaks-lakeside-nights",
       description:
-        "Perfect for first-time visitors, this 2-day itinerary covers Pokhara’s highlights including Phewa Lake, World Peace Pagoda, and Sarangkot sunrise.",
-      images: [],
-      duration: 2,
-      highlights: [
-        "Boating on Phewa Lake",
-        "World Peace Pagoda sunset",
-        "Sarangkot sunrise view",
-        "Local cafes by the lakeside",
+        "A refined two-day escape for travelers who want the essentials done right. Catch the Annapurna range ignite at dawn from Sarangkot, glide across Phewa Lake, and wander the quiet trails to the World Peace Pagoda before a slow-burn evening on Lakeside.",
+      images: [
+          "/pokhara/itineraries/sunrisepeaks1.jpeg",
+          "/pokhara/itineraries/sunrisepeaks2.webp",
+          "/pokhara/itineraries/sunrisepeaks3.webp",
+          "/pokhara/itineraries/sunrisepeaks4.jpg",
+          "/pokhara/itineraries/sunrisepeaks5.webp",
       ],
-      days: [
-        {
-          day: 1,
-          activities: [
-            "Morning: Arrival and boating on Phewa Lake",
-            "Afternoon: Visit Davis Falls and Gupteshwor Mahadev Cave",
-            "Evening: Enjoy sunset from World Peace Pagoda",
-            "Dinner: Local cuisine at Moondance Restaurant",
-          ],
-        },
-        {
-          day: 2,
-          activities: [
-            "Early Morning: Sunrise at Sarangkot",
-            "Breakfast: Himalayan Java Café by the lake",
-            "Midday: Explore Bindhyabasini Temple",
-            "Afternoon: Free time for lakeside shopping and leisure",
-          ],
-        },
+      gallery: [
+        "/pokhara/itineraries/sunrisepeaks/lakeside1.jpeg",
+        "/pokhara/itineraries/sunrisepeaks/lakeside2.jpg",
+        "/pokhara/itineraries/sunrisepeaks/lakeside3.webp",
+        "/pokhara/itineraries/sunrisepeaks/lakeside4.jpg",
+        "/pokhara/itineraries/sunrisepeaks/lakeside5.jpg",
+        "/pokhara/itineraries/sunrisepeaks/lakeside6.jpg",
+      ],
+      durationDays: 2,
+      durationNights: 1,
+      difficulty: "Easy",
+      languages: ["English", "Nepali"],
+      highlights: [
+        "Sarangkot sunrise over Annapurna and Machhapuchhre",
+        "Boat glide across Phewa Lake to Tal Barahi",
+        "World Peace Pagoda ridge walk",
+        "Golden-hour Lakeside promenade"
+      ],
+      inclusions: [
+        "1 night hotel (Lakeside, double/twin)",
+        "Breakfast on Day 2",
+        "Private in-city transport",
+        "Local trip leader/guide"
+      ],
+      exclusions: [
+        "Lunches & Dinners",
+        "Entry fees & boating tickets",
+        "Travel insurance",
+        "Tips & personal expenses"
+      ],
+      meetingPoint: "Hotel lobby at Lakeside, Pokhara",
+      endPoint: "Lakeside, Pokhara",
+      pickupIncluded: true,
+      whatToBring: ["Comfortable walking shoes", "Light jacket", "Sunscreen", "Camera"],
+      safetyNotes: ["Early morning roads can be foggy; follow guide instructions.", "Stay hydrated during walks."],
+      basePrice: 6900,
+      currency: "NPR",
+      pricingTiers: [
+        { label: "Adult", price: 6900 },
+        { label: "Child (6–11)", price: 4800 }
+      ],
+      seasonalRates: [
+        { start: "2025-10-01", end: "2025-12-15", multiplier: 1.1 }
+      ],
+      availableMonths: ["Jan","Feb","Mar","Oct","Nov","Dec"],
+      minGroupSize: 1,
+      maxGroupSize: 20,
+      bookingCutoffHrs: 24,
+      cancellationPolicy: "Free cancellation up to 48 hours before start.",
+      faq: [
+        { q: "Is boating included?", a: "Tickets are not included; the guide assists with purchase on-site." },
+        { q: "Can we add paragliding?", a: "Yes as an add-on if slots are available; fees apply." }
       ],
       placeId: null,
+      days: {
+        create: [
+          {
+            dayNumber: 1,
+            title: "Lakeside Welcome & Phewa Calm",
+            summary: "Arrive, settle in, and take a gentle boat ride to Tal Barahi before a golden-hour lakeside walk.",
+            activities: ["Hotel check-in", "Boat to Tal Barahi Temple", "Lakeside market walk"],
+            meals: { breakfast: false, lunch: false, dinner: false },
+            accommodation: "3★ Lakeside hotel (private bath)",
+            transport: "Private car",
+            images: [],
+            mapPoints: []
+          },
+          {
+            dayNumber: 2,
+            title: "Sarangkot Dawn & Peace Pagoda Ridge",
+            summary: "Watch the range ignite at sunrise, then glide to the Peace Pagoda trail for sweeping valley views.",
+            activities: ["Pre-dawn drive to Sarangkot", "Sunrise viewpoint", "Breakfast", "Peace Pagoda ridge walk", "Drop-off"],
+            meals: { breakfast: true, lunch: false, dinner: false },
+            accommodation: null,
+            transport: "Private car",
+            images: [],
+            mapPoints: []
+          }
+        ]
+      },
+      departures: {
+        create: [
+          { date: new Date("2025-10-05T06:00:00+05:45"), startTime: "06:00", status: "OPEN", seatsTotal: 18, seatsAvailable: 18 },
+          { date: new Date("2025-11-12T06:00:00+05:45"), startTime: "06:00", status: "OPEN", seatsTotal: 18, seatsAvailable: 13 }
+        ]
+      }
     },
+
     {
-      name: "3-Day Adventure Itinerary in Pokhara",
-      title: "3-Day Adventure Itinerary in Pokhara",
-      slug: "3-day-adventure-itinerary-pokhara",
+      name: "Skyglide & Stone Caves",
+      title: "Pokhara Skyglide & Stone Caves: Adventure & Culture in Three Days",
+      tagline: "Paragliding thermals, zipline rush, and underground river echoes.",
+      slug: "pokhara-skyglide-stone-caves",
       description:
-        "For thrill-seekers, this 3-day adventure itinerary combines paragliding, ziplining, and trekking around Pokhara.",
+        "Three crisp days stitched with altitude and culture. Float with eagles over the valley, rip down a world-class zipline, then step into the cool hush of Gupteshwor Cave and the roar of Davis Falls. Evenings? Soft lights on Lakeside and unhurried food.",
       images: [],
-      duration: 3,
+      gallery: [],
+      durationDays: 3,
+      durationNights: 2,
+      difficulty: "Moderate",
+      languages: ["English", "Nepali"],
       highlights: [
-        "Paragliding from Sarangkot",
-        "World’s fastest Zipline",
-        "Peaceful hike to Australian Camp",
-        "Local food exploration",
+        "Paragliding from Sarangkot (tandem)",
+        "High-speed zipline panorama",
+        "Gupteshwor Cave & Davis Falls",
+        "International Mountain Museum"
       ],
-      days: [
-        {
-          day: 1,
-          activities: [
-            "Morning: Arrive and relax by the Lakeside",
-            "Afternoon: Boating on Phewa Lake",
-            "Evening: Sunset at World Peace Pagoda",
-          ],
-        },
-        {
-          day: 2,
-          activities: [
-            "Morning: Paragliding from Sarangkot",
-            "Afternoon: Ziplining adventure",
-            "Evening: Relax in a lakeside café with live music",
-          ],
-        },
-        {
-          day: 3,
-          activities: [
-            "Morning: Hike to Australian Camp",
-            "Lunch: Mountain view lunch at the camp",
-            "Afternoon: Return to Pokhara and shopping at Lakeside",
-          ],
-        },
+      inclusions: [
+        "2 nights hotel (Lakeside, double/twin)",
+        "Daily breakfast",
+        "Airport/hotel transfers",
+        "Guide for cultural sites"
+      ],
+      exclusions: [
+        "Adventure tickets (paragliding, zipline)",
+        "Lunches & dinners",
+        "Insurance & personal expenses"
+      ],
+      meetingPoint: "Pokhara Airport or Lakeside hotel",
+      endPoint: "Lakeside, Pokhara",
+      pickupIncluded: true,
+      whatToBring: ["Sport shoes", "Windbreaker", "Sunglasses"],
+      safetyNotes: ["Adventure ops weather-dependent; schedule may shift.", "Respect cave footing; it can be slippery."],
+      basePrice: 9800,
+      currency: "NPR",
+      pricingTiers: [
+        { label: "Adult", price: 9800 },
+        { label: "Child (6–11)", price: 7200 }
+      ],
+      seasonalRates: [
+        { start: "2025-03-01", end: "2025-05-30", multiplier: 1.2 }
+      ],
+      availableMonths: ["Mar","Apr","May","Sep","Oct","Nov"],
+      minGroupSize: 1,
+      maxGroupSize: 15,
+      bookingCutoffHrs: 24,
+      cancellationPolicy: "50% refund if cancelled 72 hours prior.",
+      faq: [
+        { q: "Is paragliding included?", a: "No. We pre-arrange slots on request; you pay the operator directly." },
+        { q: "Do I need experience?", a: "No. Tandem flights and zipline accept beginners." }
       ],
       placeId: null,
+      days: {
+        create: [
+          {
+            dayNumber: 1,
+            title: "Lakeside Warm-Up",
+            summary: "Touch down, shake off the transit, and ease into Lakeside vibes.",
+            activities: ["Airport pickup", "Hotel check-in", "Evening Lakeside walk"],
+            meals: { breakfast: false, lunch: false, dinner: false },
+            accommodation: "3★ Lakeside hotel",
+            transport: "Private car",
+            images: []
+          },
+          {
+            dayNumber: 2,
+            title: "Sky Day",
+            summary: "Paragliding flight and zipline surge with valley-wide views.",
+            activities: ["Paragliding from Sarangkot", "Zipline session", "Free time for café crawl"],
+            meals: { breakfast: true, lunch: false, dinner: false },
+            accommodation: "3★ Lakeside hotel",
+            transport: "Private car",
+            images: []
+          },
+          {
+            dayNumber: 3,
+            title: "Stone & Story",
+            summary: "Caves, cascades, and a museum that frames the mountains’ story.",
+            activities: ["Gupteshwor Cave", "Davis Falls", "International Mountain Museum", "Departure"],
+            meals: { breakfast: true, lunch: false, dinner: false },
+            accommodation: null,
+            transport: "Private car",
+            images: []
+          }
+        ]
+      },
+      departures: {
+        create: [
+          { date: new Date("2025-03-15T08:00:00+05:45"), startTime: "08:00", status: "OPEN", seatsTotal: 14, seatsAvailable: 10 },
+          { date: new Date("2025-04-20T08:00:00+05:45"), startTime: "08:00", status: "OPEN", seatsTotal: 14, seatsAvailable: 8 }
+        ]
+      }
     },
+
     {
-      name: "5-Day Relaxed Family Trip in Pokhara",
-      title: "5-Day Relaxed Family Trip in Pokhara",
-      slug: "5-day-relaxed-family-trip-pokhara",
+      name: "Ridge Trails & Teahouse Evenings",
+      title: "Ridge Trails & Teahouse Evenings: Australian Camp Short Trek",
+      tagline: "A gentle ridge walk with wide Himalayan windows.",
+      slug: "pokhara-ridge-trails-teahouse-evenings",
       description:
-        "A slow-paced 5-day family itinerary covering natural wonders, temples, adventure activities, and relaxed evenings by the lake.",
+        "Four unhurried days. A soft trek to Australian Camp with terrace views, teahouse warmth, and a cultural night back in Pokhara. Built for first-time trekkers and photo-lovers who want the mountain feel without the grind.",
       images: [],
-      duration: 5,
+      gallery: [],
+      durationDays: 4,
+      durationNights: 3,
+      difficulty: "Moderate",
+      languages: ["English", "Nepali"],
       highlights: [
-        "Phewa Lake boating",
-        "Sarangkot sunrise",
-        "International Mountain Museum",
-        "Paragliding option",
-        "Cultural temples and caves",
+        "Short trek Kande → Australian Camp",
+        "Teahouse sunset & dawn light",
+        "Cultural show back in Pokhara",
+        "Easy trails, big views"
       ],
-      days: [
-        {
-          day: 1,
-          activities: [
-            "Arrival and evening lakeside walk",
-            "Dinner at Temple Tree Resort",
-          ],
-        },
-        {
-          day: 2,
-          activities: [
-            "Morning: Sarangkot sunrise",
-            "Midday: Visit Davis Falls and Gupteshwor Mahadev Cave",
-            "Evening: Stroll at Lakeside Bazaar",
-          ],
-        },
-        {
-          day: 3,
-          activities: [
-            "Morning: International Mountain Museum visit",
-            "Afternoon: Short hike to World Peace Pagoda",
-            "Evening: Boating under starlight on Phewa Lake",
-          ],
-        },
-        {
-          day: 4,
-          activities: [
-            "Morning: Optional paragliding or zipline",
-            "Afternoon: Relax at Himalayan Java Café",
-            "Evening: Cultural dance show and dinner",
-          ],
-        },
-        {
-          day: 5,
-          activities: [
-            "Morning: Bindhyabasini Temple",
-            "Brunch: Roadhouse Café",
-            "Departure",
-          ],
-        },
+      inclusions: [
+        "3 nights (2× hotel, 1× teahouse)",
+        "Daily breakfast",
+        "Private transfers to/from trailhead",
+        "Trekking guide"
+      ],
+      exclusions: [
+        "Lunches & dinners",
+        "Permits if applicable",
+        "Personal trekking gear"
+      ],
+      meetingPoint: "Lakeside hotel lobby",
+      endPoint: "Lakeside, Pokhara",
+      pickupIncluded: true,
+      whatToBring: ["Trekking shoes", "Light fleece", "Rain layer (seasonal)"],
+      safetyNotes: ["Trail can be slick after rain; use trekking poles if needed."],
+      basePrice: 13900,
+      currency: "NPR",
+      pricingTiers: [
+        { label: "Adult", price: 13900 },
+        { label: "Child (6–11)", price: 10400 }
+      ],
+      seasonalRates: [
+        { start: "2025-09-01", end: "2025-11-30", multiplier: 1.2 }
+      ],
+      availableMonths: ["Feb","Mar","Apr","Oct","Nov"],
+      minGroupSize: 2,
+      maxGroupSize: 12,
+      bookingCutoffHrs: 48,
+      cancellationPolicy: "Non-refundable within 7 days of departure.",
+      faq: [
+        { q: "Beginner friendly?", a: "Yes, daily walking 2–4 hours with gentle gradients." }
       ],
       placeId: null,
+      days: {
+        create: [
+          {
+            dayNumber: 1,
+            title: "Arrive & Unwind",
+            summary: "Settle by the lake and prep for the ridge walk.",
+            activities: ["Check-in", "Gear check", "Optional boating"],
+            meals: { breakfast: false, lunch: false, dinner: false },
+            accommodation: "3★ Lakeside hotel",
+            transport: "Private car",
+            images: []
+          },
+          {
+            dayNumber: 2,
+            title: "Kande to Australian Camp",
+            summary: "Drive to Kande and walk the ridge to Australian Camp.",
+            activities: ["Drive to Kande (1 hr)", "Trek 2–3 hrs", "Teahouse sunset"],
+            meals: { breakfast: true, lunch: false, dinner: false },
+            accommodation: "Teahouse (private room where available)",
+            transport: "Private jeep",
+            images: []
+          },
+          {
+            dayNumber: 3,
+            title: "Descend & Culture Night",
+            summary: "Walk back to Kande, return to Pokhara for a culture show.",
+            activities: ["Trek back 2 hrs", "Drive to Pokhara", "Cultural show & dinner (own expense)"],
+            meals: { breakfast: true, lunch: false, dinner: false },
+            accommodation: "3★ Lakeside hotel",
+            transport: "Private jeep",
+            images: []
+          },
+          {
+            dayNumber: 4,
+            title: "Slow Morning & Depart",
+            summary: "Free time for coffee and lake air before check-out.",
+            activities: ["Breakfast", "Shopping", "Departure"],
+            meals: { breakfast: true, lunch: false, dinner: false },
+            accommodation: null,
+            transport: "Private car",
+            images: []
+          }
+        ]
+      },
+      departures: {
+        create: [
+          { date: new Date("2025-10-10T07:00:00+05:45"), startTime: "07:00", status: "OPEN", seatsTotal: 12, seatsAvailable: 12 },
+          { date: new Date("2025-11-15T07:00:00+05:45"), startTime: "07:00", status: "OPEN", seatsTotal: 12, seatsAvailable: 9 }
+        ]
+      }
     },
+
+    {
+      name: "Lakes, Falls & Pagoda Glow",
+      title: "Lakes, Falls & Pagoda Glow: Pokhara Essentials in a Day",
+      tagline: "A compact day with all-killer-no-filler stops.",
+      slug: "pokhara-lakes-falls-pagoda-glow",
+      description:
+        "Short on time, big on coverage. Glide on Phewa, tap Tal Barahi, feel the spray at Davis Falls, and climb to the Peace Pagoda ridge for that honeyed afternoon light. Perfect as a smart day-tour bolt-on.",
+      images: [],
+      gallery: [],
+      durationDays: 1,
+      durationNights: 0,
+      difficulty: "Easy",
+      languages: ["English", "Nepali"],
+      highlights: [
+        "Phewa Lake boat ride",
+        "Tal Barahi Temple",
+        "Davis Falls & Gupteshwor Cave",
+        "World Peace Pagoda"
+      ],
+      inclusions: [
+        "Private vehicle & driver",
+        "Local guide",
+        "Bottled water"
+      ],
+      exclusions: [
+        "Entry & boat tickets",
+        "Meals",
+        "Insurance"
+      ],
+      meetingPoint: "Lakeside hotels or designated pickup points",
+      endPoint: "Lakeside, Pokhara",
+      pickupIncluded: true,
+      whatToBring: ["Cap/hat", "Sunscreen", "Comfortable sandals/shoes"],
+      safetyNotes: ["Stairs at Pagoda and Temple; take it steady."],
+      basePrice: 4200,
+      currency: "NPR",
+      pricingTiers: [
+        { label: "Adult", price: 4200 },
+        { label: "Child (6–11)", price: 3000 }
+      ],
+      seasonalRates: [],
+      availableMonths: ["All Year"],
+      minGroupSize: 1,
+      maxGroupSize: 20,
+      bookingCutoffHrs: 12,
+      cancellationPolicy: "Free cancellation up to 24 hours before start.",
+      faq: [],
+      placeId: null,
+      days: {
+        create: [
+          {
+            dayNumber: 1,
+            title: "Essentials Circuit",
+            summary: "Hit the core sights in a single clean loop.",
+            activities: ["Pickup", "Phewa boat & Tal Barahi", "Davis Falls", "Gupteshwor Cave", "Peace Pagoda ridge", "Drop-off"],
+            meals: { breakfast: false, lunch: false, dinner: false },
+            accommodation: null,
+            transport: "Private car",
+            images: []
+          }
+        ]
+      },
+      departures: {
+        create: [
+          { date: new Date("2025-09-20T08:30:00+05:45"), startTime: "08:30", status: "OPEN", seatsTotal: 20, seatsAvailable: 20, priceOverride: 4500 },
+          { date: new Date("2025-10-05T08:30:00+05:45"), startTime: "08:30", status: "OPEN", seatsTotal: 20, seatsAvailable: 16 }
+        ]
+      }
+    }
   ];
+
 
   // Upsert Pokhara
   const pokhara = await upsertPlace(pokharaData);

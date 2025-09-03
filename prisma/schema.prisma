@@ -131,19 +131,94 @@ model Cafe {
 }
 
 
+// --- Itinerary: richer marketing, structure, and policy fields
 model Itinerary {
-  id          Int        @id @default(autoincrement())
-  name        String
-  title       String
-  slug        String     @unique
-  description String
-  images      String[]
-  duration    Int?
-  highlights  String[]
-  days        Json
-  placeId     Int?
-  place       Place?     @relation(fields: [placeId], references: [id])
+  id               Int       @id @default(autoincrement())
+  name             String            // internal name
+  title            String            // marketing title (big hero)
+  tagline          String?           // short hook under title
+  slug             String    @unique
+  description      String            // long overview
+  images           String[]          // hero carousel / gallery
+  gallery          String[]          // extra gallery slots
+  durationDays     Int
+  durationNights   Int
+  difficulty       String?
+  languages        String[]
+  highlights       String[]
+  inclusions       String[]
+  exclusions       String[]
+
+  // Practical details
+  meetingPoint     String?
+  endPoint         String?
+  pickupIncluded   Boolean  @default(false)
+  whatToBring      String[] // e.g. ["Sunscreen", "Comfortable shoes"]
+  safetyNotes      String[]
+
+  // Pricing
+  basePrice        Float
+  currency         String   @default("NPR")
+  pricingTiers     Json?    // [{label:"Adult", price:12000}, {label:"Child", price:8500}]
+  seasonalRates    Json?    // [{start:"2025-10-01",end:"2025-11-30",multiplier:1.15}]
+
+  // Availability (high-level marketing; actual bookable = Departures)
+  availableMonths  String[]
+
+  // Rules / policies
+  minGroupSize     Int?     @default(1)
+  maxGroupSize     Int?     @default(24)
+  bookingCutoffHrs Int?     @default(24) // cannot book within X hours of start
+  cancellationPolicy String?
+  faq              Json?    // [{q,a}]
+
+  // Relations
+  days             ItineraryDay[]
+  departures       Departure[]
+  placeId          Int?
+  place            Place?   @relation(fields: [placeId], references: [id])
+
+  rating           Float?
+  reviews          Json?
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
+
+model ItineraryDay {
+  id            Int       @id @default(autoincrement())
+  dayNumber     Int
+  title         String
+  summary       String
+  activities    String[]    // bullet list
+  meals         Json?       // {breakfast:true,lunch:false,dinner:false}
+  accommodation String?
+  transport     String?
+  images        String[]    // day-specific images for the timeline
+  mapPoints     Json?       // [{lat,lng,label}]
+
+  itineraryId   Int
+  itinerary     Itinerary   @relation(fields: [itineraryId], references: [id])
+}
+
+// Bookable instances only — calendar uses these
+model Departure {
+  id              Int       @id @default(autoincrement())
+  date            DateTime  // start date
+  startTime       String?   // "06:00", "08:30"
+  status          String    @default("OPEN") // OPEN/FULL/CLOSED/CANCELLED
+  seatsTotal      Int
+  seatsAvailable  Int
+  priceOverride   Float?    // if set, use this instead of basePrice * seasonal
+  notes           String?
+  isInstantConfirm Boolean  @default(true)
+
+  itineraryId     Int
+  itinerary       Itinerary @relation(fields: [itineraryId], references: [id])
+
+  createdAt       DateTime  @default(now())
+}
+
 
 
 model Blog {

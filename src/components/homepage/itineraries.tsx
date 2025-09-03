@@ -76,7 +76,7 @@ function ItineraryCard({ itinerary }: { itinerary: Itinerary }) {
   };
 
   return (
-    <Link href={`/activity/${itinerary.slug}`}>
+    <Link href={`/itineraries/${itinerary.slug}`}>
       <div className="group relative rounded-xl overflow-hidden bg-white transition">
         {/* Image Carousel */}
         <div className="relative w-full h-56 overflow-hidden">

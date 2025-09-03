@@ -9,12 +9,10 @@ import FooterSection from "@/components/landingpage/footer";
 
 const Map = dynamic(() => import("@/components/ui/map"));
 
-export default async function CafePage({
-  params,
-}: {
-  params: { slug: string };
+export default async function CafePage(props: {
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await props.params; // ✅ Await params
 
   const cafe = await prisma.cafe.findUnique({ where: { slug } });
   if (!cafe) return <div>Cafe not found</div>;
@@ -49,7 +47,7 @@ export default async function CafePage({
                   />
                 ))}
               </div>
-              <span className="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full flex items-center gap-1 text-sm">
+              <span className="bg-neutral-100 bg-opacity-20 text-black px-3 py-1 rounded-full flex items-center gap-1 text-sm">
                 <FaClock /> {cafe.openingTime} - {cafe.closingTime}
               </span>
             </div>
