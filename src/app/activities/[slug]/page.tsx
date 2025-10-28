@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { FaMapMarkerAlt} from "react-icons/fa";
+import { FaMapMarkerAlt, FaClock, FaStar } from "react-icons/fa";
 import ReviewSection from "@/components/ui/review";
 import HomeNavbar from "@/components/homepage/homenavbar";
 import FooterSection from "@/components/landingpage/footer";

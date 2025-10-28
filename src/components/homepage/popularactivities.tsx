@@ -75,7 +75,7 @@ function ActivityCard({ activity }: { activity: Activity }) {
   };
 
   return (
-    <Link href={`/activity/${activity.slug}`}>
+    <Link href={`/activities/${activity.slug}`}>
       <div className="group relative rounded-xl overflow-hidden bg-white transition">
         {/* Image Carousel */}
         <div className="relative w-full h-56 overflow-hidden">

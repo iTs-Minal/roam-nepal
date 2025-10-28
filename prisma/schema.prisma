@@ -13,46 +13,193 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Place {
-  id          Int   @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   name        String
   slug        String   @unique
-  description String   // Short summary for "About" section
-  history     String?  // Longer background/history
-  bestTime    String?  // e.g. "October - March"
-  location    String?  // City/District/Province
+  description String // Short summary for "About" section
+  history     String? // Longer background/history
+  bestTime    String? // e.g. "October - March"
+  location    String? // City/District/Province
   latitude    Float?
   longitude   Float?
   highlights  String[] // ["Adventure Sports", "Lakeside Walks", "Temples"]
-  tips        String?  // Travel tips
-  howToReach  String?  // Transport guide
+  tips        String? // Travel tips
+  howToReach  String? // Transport guide
   images      String[]
 
   // Relations
-  activities      Activity[]
-  accommodations  Accommodation[]
-  cafes           Cafe[]
-  itineraries     Itinerary[]
-  religiousSites  ReligiousSite[]
-  blogs           Blog[]
+  activities     Activity[]
+  accommodations Accommodation[]
+  cafes          Cafe[]
+  itineraries    Itinerary[]
+  religiousSites ReligiousSite[]
+  blogs          Blog[]
 }
-
 
 model Activity {
   id          Int      @id @default(autoincrement())
   name        String
   slug        String   @unique
-  description String
+  description String // Long overview
+  shortIntro  String? // Short 1–2 sentence summary
   images      String[]
+  gallery     String[]
+  videoUrl    String? // Optional YouTube or embed link
   latitude    Float?
   longitude   Float?
-  difficulty  String?
-  duration    String?
-  highlights  String[]
-  bookingInfo String?
+
+  difficulty    String? // Easy, Moderate, Hard
+  duration      String? // e.g. "30 minutes flight", "Half-day", etc.
+  bestSeason    String? // e.g. "October–April"
+  altitudeRange String? // e.g. "1,400m – 2,100m"
+  ageLimit      String? // e.g. "Minimum 10 years"
+
+  highlights   String[] // Key features of the activity
+  inclusions   String[] // Included in the activity
+  exclusions   String[] // Not included
+  safetyNotes  String[] // Safety or precaution info
+  equipment    String[] // Required or provided equipment
+  requirements String[] // Fitness, documents, age, etc.
+  faq          Json? // [{question, answer}]
+  reviews      Json? // [{user, rating, comment, date}]
+  rating       Float?
+
+  bookingInfo        String?
+  basePrice          Float?
+  currency           String  @default("NPR")
+  priceTiers         Json? // [{label:"Adult", price:8000}, {label:"Child", price:5000}]
+  cancellationPolicy String?
+
+  // Relations
+  itineraries Itinerary[] @relation("ActivityItineraries") // Each activity can have multiple itineraries
   placeId     Int?
-  place       Place?   @relation(fields: [placeId], references: [id])
+  place       Place?      @relation(fields: [placeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Itinerary {
+  id                 Int      @id @default(autoincrement())
+  name               String
+  title              String
+  tagline            String?
+  slug               String   @unique
+  description        String
+  images             String[]
+  gallery            String[]
+  durationDays       Int
+  durationNights     Int
+  difficulty         String?
+  languages          String[]
+  highlights         String[]
+  inclusions         String[]
+  exclusions         String[]
+  meetingPoint       String?
+  endPoint           String?
+  pickupIncluded     Boolean  @default(false)
+  whatToBring        String[]
+  safetyNotes        String[]
+  basePrice          Float
+  currency           String   @default("NPR")
+  pricingTiers       Json?
+  seasonalRates      Json?
+  availableMonths    String[]
+  minGroupSize       Int?     @default(1)
+  maxGroupSize       Int?     @default(24)
+  bookingCutoffHrs   Int?     @default(24)
+  cancellationPolicy String?
+  faq                Json?
+  rating             Float?
+  reviews            Json?
+
+  // Relations
+  days       ItineraryDay[]
+  departures Departure[]
+  placeId    Int?
+  place      Place?         @relation(fields: [placeId], references: [id])
+  activities Activity[]     @relation("ActivityItineraries")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ItineraryDay {
+  id            Int      @id @default(autoincrement())
+  dayNumber     Int
+  title         String
+  summary       String
+  activities    String[]
+  meals         Json?
+  accommodation String?
+  transport     String?
+  images        String[]
+  mapPoints     Json?
+
+  itineraryId Int
+  itinerary   Itinerary @relation(fields: [itineraryId], references: [id])
+}
+
+model Departure {
+  id               Int      @id @default(autoincrement())
+  date             DateTime
+  startTime        String?
+  status           String   @default("OPEN") // OPEN / FULL / CLOSED / CANCELLED
+  seatsTotal       Int
+  seatsAvailable   Int
+  priceOverride    Float?
+  notes            String?
+  isInstantConfirm Boolean  @default(true)
+
+  itineraryId Int
+  itinerary   Itinerary @relation(fields: [itineraryId], references: [id])
+
+  bookings Booking[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Booking {
+  id                 Int     @id @default(autoincrement())
+  bookingCode        String  @unique
+  userName           String
+  userEmail          String
+  userPhone          String?
+  travelersCount     Int     @default(1)
+  totalPrice         Float
+  currency           String  @default("NPR")
+  status             String  @default("PENDING") // PENDING / CONFIRMED / CANCELLED / COMPLETED
+  paymentStatus      String  @default("UNPAID") // UNPAID / PAID / REFUNDED
+  paymentMethod      String? // e.g. "Khalti", "Esewa", "Card"
+  paymentDetails     Json? // store txn id, timestamps, etc.
+  notes              String?
+  specialRequests    String?
+  cancellationReason String?
+
+  departureId Int
+  departure   Departure @relation(fields: [departureId], references: [id])
+
+  travelers Traveler[] // detailed travelers under one booking
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Traveler {
+  id               Int     @id @default(autoincrement())
+  fullName         String
+  age              Int?
+  gender           String?
+  nationality      String?
+  passportNo       String?
+  dietaryNeeds     String?
+  medicalNotes     String?
+  emergencyContact Json? // { name, phone, relation }
+
+  bookingId Int
+  booking   Booking @relation(fields: [bookingId], references: [id])
 }
 
 model Accommodation {
@@ -72,154 +219,61 @@ model Accommodation {
 }
 
 model ReligiousSite {
-  id               Int   @id @default(autoincrement())
-  name             String
-  slug             String   @unique
-  description      String
-  location         String
-    latitude     Float?
-  longitude    Float?
-  history          String?
-  significance     String?
-  openingHours     String?
-  entryFee         Json?    // { internal, external, notes }
-  dressCode        String?
-  photography      String?
-  bestTimeToVisit  String?
-  nearbyAttractions Json?   // [{ name, description, distance, images[] }]
-  facilities       Json?    // { parking, restrooms, guide, shops, ... }
-  festivals        Json?    // [{ name, month, description, images[] }]
-  rituals          Json?    // [{ name, description, time, images[] }]
-  images           String[]
-  contactInfo      Json?    // { phone, email, website, address }
-  accessibility    Json?    // { wheelchair, stairsOnly, audioGuide, ramps }
-  safetyGuidelines Json?    // [{ rule, description }]
-  reviews          Json?    // [{ user, rating, comment, date }]
-  rating           Float?   // Average rating
+  id                Int      @id @default(autoincrement())
+  name              String
+  slug              String   @unique
+  description       String
+  location          String
+  latitude          Float?
+  longitude         Float?
+  history           String?
+  significance      String?
+  openingHours      String?
+  entryFee          Json? // { internal, external, notes }
+  dressCode         String?
+  photography       String?
+  bestTimeToVisit   String?
+  nearbyAttractions Json? // [{ name, description, distance, images[] }]
+  facilities        Json? // { parking, restrooms, guide, shops, ... }
+  festivals         Json? // [{ name, month, description, images[] }]
+  rituals           Json? // [{ name, description, time, images[] }]
+  images            String[]
+  contactInfo       Json? // { phone, email, website, address }
+  accessibility     Json? // { wheelchair, stairsOnly, audioGuide, ramps }
+  safetyGuidelines  Json? // [{ rule, description }]
+  reviews           Json? // [{ user, rating, comment, date }]
+  rating            Float? // Average rating
 
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  place   Place?   @relation(fields: [placeId], references: [id])
+  place   Place? @relation(fields: [placeId], references: [id])
   placeId Int?
 }
 
-
-
 model Cafe {
-  id           Int      @id @default(autoincrement())
-  name         String
-  slug         String   @unique
-  description  String
-  images       String[]
-  latitude     Float?
-  longitude    Float?
-  openingTime  String?
-  closingTime  String?
-  specialties  String[]
-  ambiance     String[]
-  menu         Json?    // store menu items with name, price, image, category
-  facilities   Json?    // array of facilities
-  contactInfo  Json?    // phone, email, website, social
+  id                Int      @id @default(autoincrement())
+  name              String
+  slug              String   @unique
+  description       String
+  images            String[]
+  latitude          Float?
+  longitude         Float?
+  openingTime       String?
+  closingTime       String?
+  specialties       String[]
+  ambiance          String[]
+  menu              Json? // store menu items with name, price, image, category
+  facilities        Json? // array of facilities
+  contactInfo       Json? // phone, email, website, social
   nearbyAttractions Json? // array with name, distance, image
-  placeId      Int?
-  place        Place?   @relation(fields: [placeId], references: [id])
-  reviews      Json? // user-submitted reviews
-  rating       Float?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  placeId           Int?
+  place             Place?   @relation(fields: [placeId], references: [id])
+  reviews           Json? // user-submitted reviews
+  rating            Float?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 }
-
-
-// --- Itinerary: richer marketing, structure, and policy fields
-model Itinerary {
-  id               Int       @id @default(autoincrement())
-  name             String            // internal name
-  title            String            // marketing title (big hero)
-  tagline          String?           // short hook under title
-  slug             String    @unique
-  description      String            // long overview
-  images           String[]          // hero carousel / gallery
-  gallery          String[]          // extra gallery slots
-  durationDays     Int
-  durationNights   Int
-  difficulty       String?
-  languages        String[]
-  highlights       String[]
-  inclusions       String[]
-  exclusions       String[]
-
-  // Practical details
-  meetingPoint     String?
-  endPoint         String?
-  pickupIncluded   Boolean  @default(false)
-  whatToBring      String[] // e.g. ["Sunscreen", "Comfortable shoes"]
-  safetyNotes      String[]
-
-  // Pricing
-  basePrice        Float
-  currency         String   @default("NPR")
-  pricingTiers     Json?    // [{label:"Adult", price:12000}, {label:"Child", price:8500}]
-  seasonalRates    Json?    // [{start:"2025-10-01",end:"2025-11-30",multiplier:1.15}]
-
-  // Availability (high-level marketing; actual bookable = Departures)
-  availableMonths  String[]
-
-  // Rules / policies
-  minGroupSize     Int?     @default(1)
-  maxGroupSize     Int?     @default(24)
-  bookingCutoffHrs Int?     @default(24) // cannot book within X hours of start
-  cancellationPolicy String?
-  faq              Json?    // [{q,a}]
-
-  // Relations
-  days             ItineraryDay[]
-  departures       Departure[]
-  placeId          Int?
-  place            Place?   @relation(fields: [placeId], references: [id])
-
-  rating           Float?
-  reviews          Json?
-
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-}
-
-model ItineraryDay {
-  id            Int       @id @default(autoincrement())
-  dayNumber     Int
-  title         String
-  summary       String
-  activities    String[]    // bullet list
-  meals         Json?       // {breakfast:true,lunch:false,dinner:false}
-  accommodation String?
-  transport     String?
-  images        String[]    // day-specific images for the timeline
-  mapPoints     Json?       // [{lat,lng,label}]
-
-  itineraryId   Int
-  itinerary     Itinerary   @relation(fields: [itineraryId], references: [id])
-}
-
-// Bookable instances only — calendar uses these
-model Departure {
-  id              Int       @id @default(autoincrement())
-  date            DateTime  // start date
-  startTime       String?   // "06:00", "08:30"
-  status          String    @default("OPEN") // OPEN/FULL/CLOSED/CANCELLED
-  seatsTotal      Int
-  seatsAvailable  Int
-  priceOverride   Float?    // if set, use this instead of basePrice * seasonal
-  notes           String?
-  isInstantConfirm Boolean  @default(true)
-
-  itineraryId     Int
-  itinerary       Itinerary @relation(fields: [itineraryId], references: [id])
-
-  createdAt       DateTime  @default(now())
-}
-
-
 
 model Blog {
   id        Int      @id @default(autoincrement())
@@ -231,8 +285,6 @@ model Blog {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  placeId   Int?
-  place     Place?    @relation(fields: [placeId], references: [id])
+  placeId Int?
+  place   Place? @relation(fields: [placeId], references: [id])
 }
-
-

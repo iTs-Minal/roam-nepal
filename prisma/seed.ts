@@ -9,6 +9,7 @@ type PlaceData = {
   images: string[];
   latitude: number;
   longitude: number;
+  placeId?: number;
 };
 
 type NestedDataItem = {
@@ -19,7 +20,7 @@ type NestedDataItem = {
   latitude?: number;
   longitude?: number;
   price?: number;
-  placeId: number | null;
+  placeId?: number | null;
 };
 
 // Helper for upserting places
@@ -105,115 +106,180 @@ async function main() {
 
   const pokharaActivities = [
     {
+      id: 1,
       name: "Paragliding",
       slug: "paragliding",
-      description: "Tandem paragliding above Phewa Lake with Annapurna views.",
+      description: "Tandem paragliding above Phewa Lake with Annapurna views. Experience thrilling flights with certified pilots and enjoy breathtaking aerial photography opportunities.",
+      shortIntro: "Soar above Pokhara’s Phewa Lake for spectacular Himalayan views.",
       images: [
         "/pokhara/activities/paragliding1.jpg",
         "/pokhara/activities/paragliding2.webp",
-        "/pokhara/activities/paragliding3.webp",
-        "/pokhara/activities/paragliding4.webp",
-        "/pokhara/activities/paragliding5.webp",
-        "/pokhara/activities/paragliding6.jpeg",
+        "/pokhara/activities/paragliding3.webp"
       ],
+      gallery: [
+        "/pokhara/activities/paragliding_gallery1.webp",
+        "/pokhara/activities/paragliding_gallery2.webp"
+      ],
+      videoUrl: "https://www.youtube.com/embed/xyz123",
       latitude: 28.2345,
       longitude: 83.9821,
       difficulty: "Medium",
       duration: "30–60 mins",
-      highlights: [
-        "Aerial view of Phewa Lake",
-        "Sunset flights available",
-        "Certified instructors",
-      ],
-      bookingInfo: "Booking available on-site and online",
+      bestSeason: "October–April",
+      altitudeRange: "1,400m – 2,100m",
+      ageLimit: "10+ years",
+      highlights: ["Tandem flight", "Sunset flights", "Aerial views of Phewa Lake"],
+      inclusions: ["Tandem flight", "Safety gear", "Insurance"],
+      exclusions: ["Meals", "Video/photo package"],
+      safetyNotes: ["Weather-dependent", "Follow pilot instructions"],
+      equipment: ["Harness", "Helmet", "Reserve parachute"],
+      requirements: ["Basic fitness", "Signed waiver", "Minimum age 10"],
+      faq: [{ question: "Can I fly solo?", answer: "No, tandem only with pilot." }],
+      bookingInfo: "Book online or on-site",
+      basePrice: 8500,
+      currency: "NPR",
+      priceTiers: [{ label: "Standard", price: 8500 }, { label: "Premium (GoPro)", price: 10500 }],
+      cancellationPolicy: "Full refund up to 24 hours before the flight.",
       placeId: null,
     },
     {
-      name: "Boating on Phewa Lake",
-      slug: "phewa-lake-boating",
-      description: "Relaxing wooden boat ride across the scenic Phewa Lake.",
+      id: 2,
+      name: "Boating in Phewa Lake",
+      slug: "boating-phewa-lake",
+      description: "Relaxing boat trips across Pokhara’s serene Phewa Lake with views of the Annapurna range and Tal Barahi temple on the lake island.",
+      shortIntro: "Enjoy calm waters and scenic mountain views on a boat ride.",
       images: [
-        "/pokhara/activities/boating-phewa1.webp",
-        "/pokhara/activities/boating-phewa2.webp",
-        "/pokhara/activities/boating-phewa3.webp",
-        "/pokhara/activities/boating-phewa4.jpeg",
-        "/pokhara/activities/boating-phewa5.jpeg",
+        "/pokhara/activities/boating1.jpg",
+        "/pokhara/activities/boating2.webp"
       ],
-      latitude: 28.2085,
-      longitude: 83.964,
+      gallery: [
+        "/pokhara/activities/boating_gallery1.webp",
+        "/pokhara/activities/boating_gallery2.webp"
+      ],
+      videoUrl: "https://www.youtube.com/embed/abc456",
+      latitude: 28.2096,
+      longitude: 83.9558,
       difficulty: "Easy",
-      duration: "1–2 hours",
-      highlights: ["Island views", "Barahi Temple access", "Sunset boating"],
-      bookingInfo: "Ticket counter at lakeside",
+      duration: "30 mins – Half-day",
+      bestSeason: "September–May",
+      highlights: ["Sunset boating", "Photography opportunities", "Temple visit"],
+      inclusions: ["Boat rental", "Life jackets"],
+      exclusions: ["Meals", "Tips"],
+      safetyNotes: ["Follow boat operator instructions", "Life jackets must be worn"],
+      equipment: ["Life jacket"],
+      requirements: ["Able to swim recommended", "Comfortable clothing"],
+      faq: [{ question: "Can I take my camera?", answer: "Yes, waterproof cases recommended." }],
+      bookingInfo: "Tickets available on-site or online",
+      basePrice: 1200,
+      currency: "NPR",
+      priceTiers: [{ label: "Adult", price: 1200 }, { label: "Child", price: 800 }],
+      cancellationPolicy: "Full refund if canceled 12 hours before departure.",
       placeId: null,
     },
     {
-      name: "Ultra-light Flight",
-      slug: "ultra-light-flight",
-      description:
-        "Soar high above Pokhara Valley and see panoramic Himalayan views.",
-      images: [""],
-      latitude: 28.22,
-      longitude: 83.97,
-      difficulty: "Medium",
-      duration: "20–40 mins",
-      highlights: [
-        "Himalayan panorama",
-        "Flight safety briefing",
-        "Photography allowed",
+      id: 3,
+      name: "Sarangkot Sunrise View",
+      slug: "sarangkot-sunrise",
+      description: "Experience the magical sunrise over Annapurna and Machhapuchhre peaks from Sarangkot hilltop, with short hikes and photo opportunities.",
+      shortIntro: "Witness Pokhara’s most iconic sunrise view.",
+      images: [
+        "/pokhara/activities/sarangkot1.jpg",
+        "/pokhara/activities/sarangkot2.webp"
       ],
-      bookingInfo: "Pre-booking recommended",
-      placeId: null,
-    },
-    {
-      name: "Sarangkot Sunrise Hike",
-      slug: "sarangkot-sunrise-hike",
-      description:
-        "Early morning hike to Sarangkot for a stunning sunrise over the Annapurna range.",
-      images: [""],
-      latitude: 28.223,
-      longitude: 83.94,
-      difficulty: "Medium",
+      gallery: [
+        "/pokhara/activities/sarangkot_gallery1.jpg",
+        "/pokhara/activities/sarangkot_gallery2.webp"
+      ],
+      videoUrl: "https://www.youtube.com/embed/sunrise789",
+      latitude: 28.2093,
+      longitude: 83.9626,
+      difficulty: "Easy",
       duration: "2–3 hours",
-      highlights: [
-        "Sunrise view",
-        "Photography spots",
-        "Local village experience",
-      ],
-      bookingInfo: "Guided tours available",
+      bestSeason: "September–March",
+      highlights: ["Sunrise over Annapurna", "Short hill hike", "Photography spots"],
+      inclusions: ["Guide", "Morning tea/coffee"],
+      exclusions: ["Breakfast", "Transport from hotel (unless arranged)"],
+      safetyNotes: ["Early morning cold; wear warm clothing", "Steep paths in parts"],
+      equipment: ["Hiking shoes", "Warm jacket"],
+      requirements: ["Able to walk 2–3 km uphill"],
+      faq: [{ question: "Can we drive up?", answer: "Yes, but early morning traffic may delay you." }],
+      bookingInfo: "Guided tours available online",
+      basePrice: 2000,
+      currency: "NPR",
+      priceTiers: [{ label: "Adult", price: 2000 }, { label: "Child", price: 1200 }],
+      cancellationPolicy: "Full refund if canceled 24 hours prior.",
       placeId: null,
     },
     {
-      name: "Gupteshwor Cave Exploration",
-      slug: "gupteshwor-cave",
-      description: "Explore the sacred cave temple and underground waterfall.",
-      images: [""],
-      latitude: 28.218,
-      longitude: 83.967,
-      difficulty: "Easy",
-      duration: "1 hour",
-      highlights: [
-        "Shiva Lingam",
-        "Waterfall inside cave",
-        "Spiritual experience",
+      id: 4,
+      name: "Ultra Light Flight",
+      slug: "ultralight-flight",
+      description: "Fly over Pokhara in an ultralight aircraft for a bird’s-eye view of lakes, hills, and the Annapurna range. Great for photographers and thrill-seekers.",
+      shortIntro: "Experience Pokhara from the sky in an ultralight aircraft.",
+      images: [
+        "/pokhara/activities/ultralight1.jpg",
+        "/pokhara/activities/ultralight2.webp"
       ],
-      bookingInfo: "Free entry, donations accepted",
+      gallery: [
+        "/pokhara/activities/ultralight_gallery1.jpg",
+        "/pokhara/activities/ultralight_gallery2.webp"
+      ],
+      videoUrl: "https://www.youtube.com/embed/ultra123",
+      latitude: 28.2436,
+      longitude: 83.9834,
+      difficulty: "Medium",
+      duration: "20–45 mins",
+      bestSeason: "October–April",
+      highlights: ["Aerial photography", "View Annapurna", "Experienced pilot"],
+      inclusions: ["Flight with pilot", "Safety briefing", "Insurance"],
+      exclusions: ["Meals", "Video package"],
+      safetyNotes: ["Weather-dependent", "Follow pilot instructions"],
+      equipment: ["Helmet", "Safety harness"],
+      requirements: ["Minimum age 12", "No fear of heights"],
+      faq: [{ question: "Is it safe?", answer: "Yes, ultralight flights are operated by certified pilots." }],
+      bookingInfo: "Book online or on-site",
+      basePrice: 12000,
+      currency: "NPR",
+      priceTiers: [{ label: "Standard", price: 12000 }, { label: "Premium (Photos)", price: 15000 }],
+      cancellationPolicy: "Full refund if canceled 24 hrs prior.",
       placeId: null,
     },
     {
-      name: "Trekking around Annapurna Base",
-      slug: "annapurna-base-trek",
-      description:
-        "Start point for Annapurna Base Camp trekking with scenic landscapes.",
-      images: [""],
-      latitude: 28.213,
-      longitude: 83.981,
-      difficulty: "Hard",
-      duration: "Multiple days",
-      highlights: ["Mountain views", "Local culture", "Adventure experience"],
-      bookingInfo: "Trekking agencies available",
-      placeId: null,
-    },
+      id: 5,
+      name: "Trekking Around Annapurna Base",
+      slug: "trekking-annapurna",
+      description: "Moderate trekking trails around the Annapurna base with spectacular mountain views, village visits, and cultural immersion. Options for 2–4 day treks.",
+      shortIntro: "Explore the Annapurna foothills and villages on scenic trails.",
+      images: [
+        "/pokhara/activities/trekking1.jpg",
+        "/pokhara/activities/trekking2.webp"
+      ],
+      gallery: [
+        "/pokhara/activities/trekking_gallery1.jpg",
+        "/pokhara/activities/trekking_gallery2.webp"
+      ],
+      videoUrl: "https://www.youtube.com/embed/trek123",
+      latitude: 28.2300,
+      longitude: 83.9870,
+      difficulty: "Medium/Hard",
+      duration: "2–4 days",
+      bestSeason: "September–December, February–April",
+      altitudeRange: "800m – 2,700m",
+      ageLimit: "12+ years",
+      highlights: ["Mountain vistas", "Village visits", "Sunrise at Sarangkot"],
+      inclusions: ["Guide", "Accommodation", "Breakfast", "Transport to trailhead"],
+      exclusions: ["Lunch & Dinner", "Travel insurance"],
+      safetyNotes: ["Moderate fitness required", "Weather can change rapidly"],
+      equipment: ["Trekking shoes", "Backpack", "Warm clothes"],
+      requirements: ["Good physical health", "Trekking experience recommended"],
+      faq: [{ question: "Can beginners do it?", answer: "Yes, with guide support and moderate pace." }],
+      bookingInfo: "Book online with departure dates",
+      basePrice: 18000,
+      currency: "NPR",
+      priceTiers: [{ label: "Adult", price: 18000 }, { label: "Child", price: 12000 }],
+      cancellationPolicy: "Free cancellation 48 hrs prior.",
+      placeId: null
+    }
   ];
 
   const pokharaAccommodations = [
@@ -1089,566 +1155,862 @@ async function main() {
     },
   ];
 
-const pokharaCafes = [
-  {
-    name: "Moondance Café",
-    slug: "moondance-cafe",
-    description:
-      "Lakeside café famous for steaks, pastries, and a relaxed vibe. Perfect for brunch, coffee, and sunset views.",
-    images: [
+  const pokharaCafes = [
+    {
+      name: "Moondance Café",
+      slug: "moondance-cafe",
+      description:
+        "Lakeside café famous for steaks, pastries, and a relaxed vibe. Perfect for brunch, coffee, and sunset views.",
+      images: [
         "/pokhara/cafes/moondance1.jpg",
         "/pokhara/cafes/moondance2.webp",
         "/pokhara/cafes/moondance3.jpg",
         "/pokhara/cafes/moondance4.webp",
         "/pokhara/cafes/moondance5.jpeg",
-    ],
-    latitude: 28.209,
-    longitude: 83.964,
-    openingTime: "08:00 AM",
-    closingTime: "10:00 PM",
-    specialties: ["Steaks", "Pastries", "Coffee", "Smoothies", "Sandwiches"],
-    ambiance: ["Lakeside", "Outdoor seating", "Cozy", "Live Music", "Family Friendly"],
-    menu: [
-      { name: "Cappuccino", description: "Rich espresso with milk foam", price: 450, category: "Beverage", image: "/pokhara/cafes/foods/cappucino.jpeg"},
-      { name: "Blueberry Muffin", description: "Freshly baked muffin with real blueberries", price: 300, category: "Dessert", image: "/pokhara/cafes/foods/blueberrymuffins.jpg" },
-      { name: "Chocolate Cake Slice", description: "Decadent chocolate cake with ganache", price: 400, category: "Dessert", image: "/pokhara/cafes/foods/chocolatecake.webp" },
-      { name: "Steak Sandwich", description: "Grilled steak with vegetables and sauce", price: 900, category: "Snack", image: "/pokhara/cafes/foods/steakswandwich.webp" },
-      { name: "Fruit Smoothie", description: "Fresh seasonal fruits blended", price: 450, category: "Beverage", image: "/pokhara/cafes/foods/smoothie.webp" }
-    ],
-    facilities: [
-      { name: "WiFi", available: true },
-      { name: "Parking", available: true },
-      { name: "Outdoor Seating", available: true },
-      { name: "Pet Friendly", available: true },
-      { name: "Live Music", available: true },
-      { name: "Wheelchair Accessible", available: false },
-      { name: "Air Conditioning", available: true },
-    ],
-    contactInfo: {
-      phone: "+977-61-555111",
-      email: "moondance@example.com",
-      website: "https://moondancecafe.com",
-      social: { instagram: "https://instagram.com/moondancecafe", facebook: "https://facebook.com/moondancecafe" },
-      address: "Lakeside, Pokhara, Nepal",
+      ],
+      latitude: 28.209,
+      longitude: 83.964,
+      openingTime: "08:00 AM",
+      closingTime: "10:00 PM",
+      specialties: ["Steaks", "Pastries", "Coffee", "Smoothies", "Sandwiches"],
+      ambiance: ["Lakeside", "Outdoor seating", "Cozy", "Live Music", "Family Friendly"],
+      menu: [
+        { name: "Cappuccino", description: "Rich espresso with milk foam", price: 450, category: "Beverage", image: "/pokhara/cafes/foods/cappucino.jpeg" },
+        { name: "Blueberry Muffin", description: "Freshly baked muffin with real blueberries", price: 300, category: "Dessert", image: "/pokhara/cafes/foods/blueberrymuffins.jpg" },
+        { name: "Chocolate Cake Slice", description: "Decadent chocolate cake with ganache", price: 400, category: "Dessert", image: "/pokhara/cafes/foods/chocolatecake.webp" },
+        { name: "Steak Sandwich", description: "Grilled steak with vegetables and sauce", price: 900, category: "Snack", image: "/pokhara/cafes/foods/steakswandwich.webp" },
+        { name: "Fruit Smoothie", description: "Fresh seasonal fruits blended", price: 450, category: "Beverage", image: "/pokhara/cafes/foods/smoothie.webp" }
+      ],
+      facilities: [
+        { name: "WiFi", available: true },
+        { name: "Parking", available: true },
+        { name: "Outdoor Seating", available: true },
+        { name: "Pet Friendly", available: true },
+        { name: "Live Music", available: true },
+        { name: "Wheelchair Accessible", available: false },
+        { name: "Air Conditioning", available: true },
+      ],
+      contactInfo: {
+        phone: "+977-61-555111",
+        email: "moondance@example.com",
+        website: "https://moondancecafe.com",
+        social: { instagram: "https://instagram.com/moondancecafe", facebook: "https://facebook.com/moondancecafe" },
+        address: "Lakeside, Pokhara, Nepal",
+      },
+      nearbyAttractions: [
+        { name: "Phewa Lake", distance: "200m", image: "" },
+        { name: "World Peace Pagoda", distance: "2km", image: "" }
+      ],
+      reviews: [],
+      rating: null,
+      placeId: null,
     },
-    nearbyAttractions: [
-      { name: "Phewa Lake", distance: "200m", image: "" },
-      { name: "World Peace Pagoda", distance: "2km", image: "" }
-    ],
-    reviews: [],
-    rating: null,
-    placeId: null,
-  },
 
-  {
-    name: "OR2K Pokhara",
-    slug: "or2k-pokhara",
-    description:
-      "Vibrant vegetarian café offering Middle Eastern dishes with a bohemian rooftop vibe.",
-    images: [
-      "/pokhara/cafes/or2k1.jpg",
-      "/pokhara/cafes/or2k2.jpg",
-      "/pokhara/cafes/or2k3.webp",
-      "/pokhara/cafes/or2k4.webp",
-      "/pokhara/cafes/or2k5.jpeg",
-    ],
-    latitude: 28.210,
-    longitude: 83.965,
-    openingTime: "09:00 AM",
-    closingTime: "11:00 PM",
-    specialties: ["Falafel", "Hummus", "Shawarma", "Fresh Juices", "Salads"],
-    ambiance: ["Rooftop", "Artistic vibe", "Casual dining", "Colorful decor", "Live music on weekends"],
-    menu: [
-      { name: "Falafel Plate", description: "Crispy falafel served with tahini", price: 500, category: "Snack", image: "/pokhara/cafes/foods/falafel.webp" },
-      { name: "Hummus Trio", description: "Classic, roasted red pepper, and avocado hummus", price: 550, category: "Snack", image: "/pokhara/cafes/foods/humustrio.webp" },
-      { name: "Vegetarian Shawarma", description: "Grilled veggie wrap with garlic sauce", price: 600, category: "Snack", image: "/pokhara/cafes/foods/vegeteriansharwma.webp" },
-      { name: "Fresh Orange Juice", description: "Cold pressed fresh juice", price: 350, category: "Beverage", image: "/pokhara/cafes/foods/freshorangejuice.webp" },
-    ],
-    facilities: [
-      { name: "WiFi", available: true },
-      { name: "Rooftop Seating", available: true },
-      { name: "Pet Friendly", available: false },
-      { name: "Wheelchair Accessible", available: false },
-      { name: "Live Music", available: true },
-    ],
-    contactInfo: {
-      phone: "+977-61-555222",
-      email: "or2k@example.com",
-      website: "https://or2k.com",
-      social: { instagram: "https://instagram.com/or2kpokhara", facebook: "https://facebook.com/or2kpokhara" },
-      address: "Lakeside, Pokhara, Nepal",
+    {
+      name: "OR2K Pokhara",
+      slug: "or2k-pokhara",
+      description:
+        "Vibrant vegetarian café offering Middle Eastern dishes with a bohemian rooftop vibe.",
+      images: [
+        "/pokhara/cafes/or2k1.jpg",
+        "/pokhara/cafes/or2k2.jpg",
+        "/pokhara/cafes/or2k3.webp",
+        "/pokhara/cafes/or2k4.webp",
+        "/pokhara/cafes/or2k5.jpeg",
+      ],
+      latitude: 28.210,
+      longitude: 83.965,
+      openingTime: "09:00 AM",
+      closingTime: "11:00 PM",
+      specialties: ["Falafel", "Hummus", "Shawarma", "Fresh Juices", "Salads"],
+      ambiance: ["Rooftop", "Artistic vibe", "Casual dining", "Colorful decor", "Live music on weekends"],
+      menu: [
+        { name: "Falafel Plate", description: "Crispy falafel served with tahini", price: 500, category: "Snack", image: "/pokhara/cafes/foods/falafel.webp" },
+        { name: "Hummus Trio", description: "Classic, roasted red pepper, and avocado hummus", price: 550, category: "Snack", image: "/pokhara/cafes/foods/humustrio.webp" },
+        { name: "Vegetarian Shawarma", description: "Grilled veggie wrap with garlic sauce", price: 600, category: "Snack", image: "/pokhara/cafes/foods/vegeteriansharwma.webp" },
+        { name: "Fresh Orange Juice", description: "Cold pressed fresh juice", price: 350, category: "Beverage", image: "/pokhara/cafes/foods/freshorangejuice.webp" },
+      ],
+      facilities: [
+        { name: "WiFi", available: true },
+        { name: "Rooftop Seating", available: true },
+        { name: "Pet Friendly", available: false },
+        { name: "Wheelchair Accessible", available: false },
+        { name: "Live Music", available: true },
+      ],
+      contactInfo: {
+        phone: "+977-61-555222",
+        email: "or2k@example.com",
+        website: "https://or2k.com",
+        social: { instagram: "https://instagram.com/or2kpokhara", facebook: "https://facebook.com/or2kpokhara" },
+        address: "Lakeside, Pokhara, Nepal",
+      },
+      nearbyAttractions: [
+        { name: "Fewa Lake", distance: "300m", image: "" },
+        { name: "Bindhyabasini Temple", distance: "2.5km", image: "" }
+      ],
+      reviews: [],
+      rating: null,
+      placeId: null,
     },
-    nearbyAttractions: [
-      { name: "Fewa Lake", distance: "300m", image: "" },
-      { name: "Bindhyabasini Temple", distance: "2.5km", image: "" }
-    ],
-    reviews: [],
-    rating: null,
-    placeId: null,
-  },
 
-  {
-    name: "Little Windows Café",
-    slug: "little-windows-cafe",
-    description:
-      "Cozy café with lakeside views. Famous for brunch, coffee, and light meals.",
-    images: [
-      "/pokhara/cafes/littlewindows.jpg",
-      "/pokhara/cafes/littlewindows1.jpg",
-      "/pokhara/cafes/littlewindows2.jpg",
-      "/pokhara/cafes/littlewindows3.jpg",
-      "/pokhara/cafes/littlewindows4.jpg",
-    ],
-    latitude: 28.208,
-    longitude: 83.967,
-    openingTime: "07:00 AM",
-    closingTime: "09:00 PM",
-    specialties: ["Coffee", "Sandwiches", "Pastries", "Smoothies", "Breakfast items"],
-    ambiance: ["Lakeside", "Quiet", "Casual", "Family Friendly"],
-    menu: [
-      { name: "Latte", description: "Smooth espresso with milk", price: 450, category: "Beverage", image: "/pokhara/cafes/foods/latte.webp" },
-      { name: "Club Sandwich", description: "Grilled sandwich with fresh veggies", price: 550, category: "Snack", image: "/pokhara/cafes/foods/clubsandwich.webp" },
-      { name: "Banana Pancake", description: "Fluffy pancakes with caramelized bananas", price: 500, category: "Dessert", image: "/pokhara/cafes/foods/bananapancakes.jpg" },
-    ],
-    facilities: [
-      { name: "WiFi", available: true },
-      { name: "Outdoor Seating", available: true },
-      { name: "Wheelchair Accessible", available: false },
-    ],
-    contactInfo: {
-      phone: "+977-61-555333",
-      email: "littlewindows@example.com",
-      website: null,
-      social: { instagram: "" },
-      address: "Lakeside, Pokhara, Nepal",
+    {
+      name: "Little Windows Café",
+      slug: "little-windows-cafe",
+      description:
+        "Cozy café with lakeside views. Famous for brunch, coffee, and light meals.",
+      images: [
+        "/pokhara/cafes/littlewindows.jpg",
+        "/pokhara/cafes/littlewindows1.jpg",
+        "/pokhara/cafes/littlewindows2.jpg",
+        "/pokhara/cafes/littlewindows3.jpg",
+        "/pokhara/cafes/littlewindows4.jpg",
+      ],
+      latitude: 28.208,
+      longitude: 83.967,
+      openingTime: "07:00 AM",
+      closingTime: "09:00 PM",
+      specialties: ["Coffee", "Sandwiches", "Pastries", "Smoothies", "Breakfast items"],
+      ambiance: ["Lakeside", "Quiet", "Casual", "Family Friendly"],
+      menu: [
+        { name: "Latte", description: "Smooth espresso with milk", price: 450, category: "Beverage", image: "/pokhara/cafes/foods/latte.webp" },
+        { name: "Club Sandwich", description: "Grilled sandwich with fresh veggies", price: 550, category: "Snack", image: "/pokhara/cafes/foods/clubsandwich.webp" },
+        { name: "Banana Pancake", description: "Fluffy pancakes with caramelized bananas", price: 500, category: "Dessert", image: "/pokhara/cafes/foods/bananapancakes.jpg" },
+      ],
+      facilities: [
+        { name: "WiFi", available: true },
+        { name: "Outdoor Seating", available: true },
+        { name: "Wheelchair Accessible", available: false },
+      ],
+      contactInfo: {
+        phone: "+977-61-555333",
+        email: "littlewindows@example.com",
+        website: null,
+        social: { instagram: "" },
+        address: "Lakeside, Pokhara, Nepal",
+      },
+      nearbyAttractions: [
+        { name: "Phewa Lake", distance: "150m", image: "" }
+      ],
+      reviews: [],
+      rating: null,
+      placeId: null,
     },
-    nearbyAttractions: [
-      { name: "Phewa Lake", distance: "150m", image: "" }
-    ],
-    reviews: [],
-    rating: null,
-    placeId: null,
-  },
 
-  {
-    name: "Café Concerto",
-    slug: "cafe-concerto",
-    description:
-      "Modern café with a wide range of beverages and desserts. Great for coffee lovers and students.",
-    images: [
+    {
+      name: "Café Concerto",
+      slug: "cafe-concerto",
+      description:
+        "Modern café with a wide range of beverages and desserts. Great for coffee lovers and students.",
+      images: [
         "/pokhara/cafes/cafeconcerto1.webp",
         "/pokhara/cafes/cafeconcerto2.webp",
         "/pokhara/cafes/cafeconcerto3.jpg",
         "/pokhara/cafes/cafeconcerto4.jpg",
         "/pokhara/cafes/cafeconcerto5.jpg",
-    ],
-    latitude: 28.209,
-    longitude: 83.965,
-    openingTime: "08:00 AM",
-    closingTime: "10:00 PM",
-    specialties: ["Espresso", "Cakes", "Smoothies", "Pastries", "Sandwiches"],
-    ambiance: ["Indoor seating", "Artistic decor", "Cozy", "Quiet"],
-    menu: [
-      { name: "Espresso", description: "Strong coffee shot", price: 400, category: "Beverage", image: "/pokhara/cafes/foods/espresso.webp" },
-      { name: "Chocolate Brownie", description: "Rich chocolate brownie", price: 350, category: "Dessert", image: "/pokhara/cafes/foods/chocolatebrownie.webp" },
-      { name: "Smoothie Bowl", description: "Fresh fruit bowl with smoothie base", price: 500, category: "Beverage", image: "/pokhara/cafes/foods/smoothiebowl.webp" },
-    ],
-    facilities: [
-      { name: "WiFi", available: true },
-      { name: "Air Conditioning", available: true },
-      { name: "Quiet Space", available: true },
-      { name: "Wheelchair Accessible", available: false },
-    ],
-    contactInfo: {
-      phone: "+977-61-555444",
-      email: "concerto@example.com",
-      website: "https://cafeconcerto.com",
-      social: { instagram: "https://instagram.com/cafeconcerto" },
-      address: "New Road, Pokhara, Nepal",
-    },
-    nearbyAttractions: [
-      { name: "Davis Falls", distance: "500m", image: "" }
-    ],
-    reviews: [],
-    rating: null,
-    placeId: null,
-  },
-];
-
-
-const pokharaItineraries = [
-    {
-      name: "Sunrise Peaks & Lakeside Nights",
-      title: "Pokhara: Sunrise Peaks & Lakeside Nights",
-      tagline: "Sarangkot dawn, Peace Pagoda glow, and Phewa’s mirror lake.",
-      slug: "pokhara-sunrise-peaks-lakeside-nights",
-      description:
-        "A refined two-day escape for travelers who want the essentials done right. Catch the Annapurna range ignite at dawn from Sarangkot, glide across Phewa Lake, and wander the quiet trails to the World Peace Pagoda before a slow-burn evening on Lakeside.",
-      images: [
-          "/pokhara/itineraries/sunrisepeaks1.jpeg",
-          "/pokhara/itineraries/sunrisepeaks2.webp",
-          "/pokhara/itineraries/sunrisepeaks3.webp",
-          "/pokhara/itineraries/sunrisepeaks4.jpg",
-          "/pokhara/itineraries/sunrisepeaks5.webp",
       ],
-      gallery: [
-        "/pokhara/itineraries/sunrisepeaks/lakeside1.jpeg",
-        "/pokhara/itineraries/sunrisepeaks/lakeside2.jpg",
-        "/pokhara/itineraries/sunrisepeaks/lakeside3.webp",
-        "/pokhara/itineraries/sunrisepeaks/lakeside4.jpg",
-        "/pokhara/itineraries/sunrisepeaks/lakeside5.jpg",
-        "/pokhara/itineraries/sunrisepeaks/lakeside6.jpg",
+      latitude: 28.209,
+      longitude: 83.965,
+      openingTime: "08:00 AM",
+      closingTime: "10:00 PM",
+      specialties: ["Espresso", "Cakes", "Smoothies", "Pastries", "Sandwiches"],
+      ambiance: ["Indoor seating", "Artistic decor", "Cozy", "Quiet"],
+      menu: [
+        { name: "Espresso", description: "Strong coffee shot", price: 400, category: "Beverage", image: "/pokhara/cafes/foods/espresso.webp" },
+        { name: "Chocolate Brownie", description: "Rich chocolate brownie", price: 350, category: "Dessert", image: "/pokhara/cafes/foods/chocolatebrownie.webp" },
+        { name: "Smoothie Bowl", description: "Fresh fruit bowl with smoothie base", price: 500, category: "Beverage", image: "/pokhara/cafes/foods/smoothiebowl.webp" },
       ],
-      durationDays: 2,
-      durationNights: 1,
-      difficulty: "Easy",
-      languages: ["English", "Nepali"],
-      highlights: [
-        "Sarangkot sunrise over Annapurna and Machhapuchhre",
-        "Boat glide across Phewa Lake to Tal Barahi",
-        "World Peace Pagoda ridge walk",
-        "Golden-hour Lakeside promenade"
+      facilities: [
+        { name: "WiFi", available: true },
+        { name: "Air Conditioning", available: true },
+        { name: "Quiet Space", available: true },
+        { name: "Wheelchair Accessible", available: false },
       ],
-      inclusions: [
-        "1 night hotel (Lakeside, double/twin)",
-        "Breakfast on Day 2",
-        "Private in-city transport",
-        "Local trip leader/guide"
-      ],
-      exclusions: [
-        "Lunches & Dinners",
-        "Entry fees & boating tickets",
-        "Travel insurance",
-        "Tips & personal expenses"
-      ],
-      meetingPoint: "Hotel lobby at Lakeside, Pokhara",
-      endPoint: "Lakeside, Pokhara",
-      pickupIncluded: true,
-      whatToBring: ["Comfortable walking shoes", "Light jacket", "Sunscreen", "Camera"],
-      safetyNotes: ["Early morning roads can be foggy; follow guide instructions.", "Stay hydrated during walks."],
-      basePrice: 6900,
-      currency: "NPR",
-      pricingTiers: [
-        { label: "Adult", price: 6900 },
-        { label: "Child (6–11)", price: 4800 }
-      ],
-      seasonalRates: [
-        { start: "2025-10-01", end: "2025-12-15", multiplier: 1.1 }
-      ],
-      availableMonths: ["Jan","Feb","Mar","Oct","Nov","Dec"],
-      minGroupSize: 1,
-      maxGroupSize: 20,
-      bookingCutoffHrs: 24,
-      cancellationPolicy: "Free cancellation up to 48 hours before start.",
-      faq: [
-        { q: "Is boating included?", a: "Tickets are not included; the guide assists with purchase on-site." },
-        { q: "Can we add paragliding?", a: "Yes as an add-on if slots are available; fees apply." }
-      ],
-      placeId: null,
-      days: {
-        create: [
-          {
-            dayNumber: 1,
-            title: "Lakeside Welcome & Phewa Calm",
-            summary: "Arrive, settle in, and take a gentle boat ride to Tal Barahi before a golden-hour lakeside walk.",
-            activities: ["Hotel check-in", "Boat to Tal Barahi Temple", "Lakeside market walk"],
-            meals: { breakfast: false, lunch: false, dinner: false },
-            accommodation: "3★ Lakeside hotel (private bath)",
-            transport: "Private car",
-            images: [],
-            mapPoints: []
-          },
-          {
-            dayNumber: 2,
-            title: "Sarangkot Dawn & Peace Pagoda Ridge",
-            summary: "Watch the range ignite at sunrise, then glide to the Peace Pagoda trail for sweeping valley views.",
-            activities: ["Pre-dawn drive to Sarangkot", "Sunrise viewpoint", "Breakfast", "Peace Pagoda ridge walk", "Drop-off"],
-            meals: { breakfast: true, lunch: false, dinner: false },
-            accommodation: null,
-            transport: "Private car",
-            images: [],
-            mapPoints: []
-          }
-        ]
+      contactInfo: {
+        phone: "+977-61-555444",
+        email: "concerto@example.com",
+        website: "https://cafeconcerto.com",
+        social: { instagram: "https://instagram.com/cafeconcerto" },
+        address: "New Road, Pokhara, Nepal",
       },
-      departures: {
-        create: [
-          { date: new Date("2025-10-05T06:00:00+05:45"), startTime: "06:00", status: "OPEN", seatsTotal: 18, seatsAvailable: 18 },
-          { date: new Date("2025-11-12T06:00:00+05:45"), startTime: "06:00", status: "OPEN", seatsTotal: 18, seatsAvailable: 13 }
-        ]
-      }
-    },
-
-    {
-      name: "Skyglide & Stone Caves",
-      title: "Pokhara Skyglide & Stone Caves: Adventure & Culture in Three Days",
-      tagline: "Paragliding thermals, zipline rush, and underground river echoes.",
-      slug: "pokhara-skyglide-stone-caves",
-      description:
-        "Three crisp days stitched with altitude and culture. Float with eagles over the valley, rip down a world-class zipline, then step into the cool hush of Gupteshwor Cave and the roar of Davis Falls. Evenings? Soft lights on Lakeside and unhurried food.",
-      images: [],
-      gallery: [],
-      durationDays: 3,
-      durationNights: 2,
-      difficulty: "Moderate",
-      languages: ["English", "Nepali"],
-      highlights: [
-        "Paragliding from Sarangkot (tandem)",
-        "High-speed zipline panorama",
-        "Gupteshwor Cave & Davis Falls",
-        "International Mountain Museum"
+      nearbyAttractions: [
+        { name: "Davis Falls", distance: "500m", image: "" }
       ],
-      inclusions: [
-        "2 nights hotel (Lakeside, double/twin)",
-        "Daily breakfast",
-        "Airport/hotel transfers",
-        "Guide for cultural sites"
-      ],
-      exclusions: [
-        "Adventure tickets (paragliding, zipline)",
-        "Lunches & dinners",
-        "Insurance & personal expenses"
-      ],
-      meetingPoint: "Pokhara Airport or Lakeside hotel",
-      endPoint: "Lakeside, Pokhara",
-      pickupIncluded: true,
-      whatToBring: ["Sport shoes", "Windbreaker", "Sunglasses"],
-      safetyNotes: ["Adventure ops weather-dependent; schedule may shift.", "Respect cave footing; it can be slippery."],
-      basePrice: 9800,
-      currency: "NPR",
-      pricingTiers: [
-        { label: "Adult", price: 9800 },
-        { label: "Child (6–11)", price: 7200 }
-      ],
-      seasonalRates: [
-        { start: "2025-03-01", end: "2025-05-30", multiplier: 1.2 }
-      ],
-      availableMonths: ["Mar","Apr","May","Sep","Oct","Nov"],
-      minGroupSize: 1,
-      maxGroupSize: 15,
-      bookingCutoffHrs: 24,
-      cancellationPolicy: "50% refund if cancelled 72 hours prior.",
-      faq: [
-        { q: "Is paragliding included?", a: "No. We pre-arrange slots on request; you pay the operator directly." },
-        { q: "Do I need experience?", a: "No. Tandem flights and zipline accept beginners." }
-      ],
+      reviews: [],
+      rating: null,
       placeId: null,
-      days: {
-        create: [
-          {
-            dayNumber: 1,
-            title: "Lakeside Warm-Up",
-            summary: "Touch down, shake off the transit, and ease into Lakeside vibes.",
-            activities: ["Airport pickup", "Hotel check-in", "Evening Lakeside walk"],
-            meals: { breakfast: false, lunch: false, dinner: false },
-            accommodation: "3★ Lakeside hotel",
-            transport: "Private car",
-            images: []
-          },
-          {
-            dayNumber: 2,
-            title: "Sky Day",
-            summary: "Paragliding flight and zipline surge with valley-wide views.",
-            activities: ["Paragliding from Sarangkot", "Zipline session", "Free time for café crawl"],
-            meals: { breakfast: true, lunch: false, dinner: false },
-            accommodation: "3★ Lakeside hotel",
-            transport: "Private car",
-            images: []
-          },
-          {
-            dayNumber: 3,
-            title: "Stone & Story",
-            summary: "Caves, cascades, and a museum that frames the mountains’ story.",
-            activities: ["Gupteshwor Cave", "Davis Falls", "International Mountain Museum", "Departure"],
-            meals: { breakfast: true, lunch: false, dinner: false },
-            accommodation: null,
-            transport: "Private car",
-            images: []
-          }
-        ]
-      },
-      departures: {
-        create: [
-          { date: new Date("2025-03-15T08:00:00+05:45"), startTime: "08:00", status: "OPEN", seatsTotal: 14, seatsAvailable: 10 },
-          { date: new Date("2025-04-20T08:00:00+05:45"), startTime: "08:00", status: "OPEN", seatsTotal: 14, seatsAvailable: 8 }
-        ]
-      }
     },
+  ];
 
-    {
-      name: "Ridge Trails & Teahouse Evenings",
-      title: "Ridge Trails & Teahouse Evenings: Australian Camp Short Trek",
-      tagline: "A gentle ridge walk with wide Himalayan windows.",
-      slug: "pokhara-ridge-trails-teahouse-evenings",
-      description:
-        "Four unhurried days. A soft trek to Australian Camp with terrace views, teahouse warmth, and a cultural night back in Pokhara. Built for first-time trekkers and photo-lovers who want the mountain feel without the grind.",
-      images: [],
-      gallery: [],
-      durationDays: 4,
-      durationNights: 3,
-      difficulty: "Moderate",
-      languages: ["English", "Nepali"],
-      highlights: [
-        "Short trek Kande → Australian Camp",
-        "Teahouse sunset & dawn light",
-        "Cultural show back in Pokhara",
-        "Easy trails, big views"
-      ],
-      inclusions: [
-        "3 nights (2× hotel, 1× teahouse)",
-        "Daily breakfast",
-        "Private transfers to/from trailhead",
-        "Trekking guide"
-      ],
-      exclusions: [
-        "Lunches & dinners",
-        "Permits if applicable",
-        "Personal trekking gear"
-      ],
-      meetingPoint: "Lakeside hotel lobby",
-      endPoint: "Lakeside, Pokhara",
-      pickupIncluded: true,
-      whatToBring: ["Trekking shoes", "Light fleece", "Rain layer (seasonal)"],
-      safetyNotes: ["Trail can be slick after rain; use trekking poles if needed."],
-      basePrice: 13900,
-      currency: "NPR",
-      pricingTiers: [
-        { label: "Adult", price: 13900 },
-        { label: "Child (6–11)", price: 10400 }
-      ],
-      seasonalRates: [
-        { start: "2025-09-01", end: "2025-11-30", multiplier: 1.2 }
-      ],
-      availableMonths: ["Feb","Mar","Apr","Oct","Nov"],
-      minGroupSize: 2,
-      maxGroupSize: 12,
-      bookingCutoffHrs: 48,
-      cancellationPolicy: "Non-refundable within 7 days of departure.",
-      faq: [
-        { q: "Beginner friendly?", a: "Yes, daily walking 2–4 hours with gentle gradients." }
-      ],
-      placeId: null,
-      days: {
-        create: [
-          {
-            dayNumber: 1,
-            title: "Arrive & Unwind",
-            summary: "Settle by the lake and prep for the ridge walk.",
-            activities: ["Check-in", "Gear check", "Optional boating"],
-            meals: { breakfast: false, lunch: false, dinner: false },
-            accommodation: "3★ Lakeside hotel",
-            transport: "Private car",
-            images: []
-          },
-          {
-            dayNumber: 2,
-            title: "Kande to Australian Camp",
-            summary: "Drive to Kande and walk the ridge to Australian Camp.",
-            activities: ["Drive to Kande (1 hr)", "Trek 2–3 hrs", "Teahouse sunset"],
-            meals: { breakfast: true, lunch: false, dinner: false },
-            accommodation: "Teahouse (private room where available)",
-            transport: "Private jeep",
-            images: []
-          },
-          {
-            dayNumber: 3,
-            title: "Descend & Culture Night",
-            summary: "Walk back to Kande, return to Pokhara for a culture show.",
-            activities: ["Trek back 2 hrs", "Drive to Pokhara", "Cultural show & dinner (own expense)"],
-            meals: { breakfast: true, lunch: false, dinner: false },
-            accommodation: "3★ Lakeside hotel",
-            transport: "Private jeep",
-            images: []
-          },
-          {
-            dayNumber: 4,
-            title: "Slow Morning & Depart",
-            summary: "Free time for coffee and lake air before check-out.",
-            activities: ["Breakfast", "Shopping", "Departure"],
-            meals: { breakfast: true, lunch: false, dinner: false },
-            accommodation: null,
-            transport: "Private car",
-            images: []
-          }
-        ]
-      },
-      departures: {
-        create: [
-          { date: new Date("2025-10-10T07:00:00+05:45"), startTime: "07:00", status: "OPEN", seatsTotal: 12, seatsAvailable: 12 },
-          { date: new Date("2025-11-15T07:00:00+05:45"), startTime: "07:00", status: "OPEN", seatsTotal: 12, seatsAvailable: 9 }
-        ]
-      }
+
+  const pokharaItineraries = [
+ // ---------------- Paragliding Itineraries ----------------
+  {
+    id: 1,
+    name: "Paragliding Short Flight",
+    title: "Paragliding Experience over Phewa Lake",
+    tagline: "Soar high and capture breathtaking views in 1 hour",
+    slug: "paragliding-short-flight",
+    description: "Perfect for first-time flyers or those short on time, enjoy a thrilling tandem flight above Phewa Lake with Annapurna vistas. Includes safety briefing and photography opportunities.",
+    images: [
+      "/pokhara/itineraries/paragliding_short1.jpg",
+      "/pokhara/itineraries/paragliding_short2.webp"
+    ],
+    gallery: [
+      "/pokhara/itineraries/paragliding_short_gallery1.jpg",
+      "/pokhara/itineraries/paragliding_short_gallery2.webp"
+    ],
+    durationDays: 1,
+    durationNights: 0,
+    difficulty: "Medium",
+    languages: ["English", "Nepali"],
+    highlights: ["Tandem paragliding", "Sunset flights", "Aerial photography"],
+    inclusions: ["Tandem flight", "Safety gear", "Insurance", "Pickup from Lakeside"],
+    exclusions: ["Meals", "Video/photo package"],
+    meetingPoint: "Lakeside Pokhara pickup",
+    endPoint: "Drop-off at Lakeside",
+    pickupIncluded: true,
+    whatToBring: ["Comfortable clothes", "Closed shoes", "Sunscreen"],
+    safetyNotes: ["Flight depends on weather", "Follow pilot instructions"],
+    basePrice: 8500,
+    currency: "NPR",
+    pricingTiers: [
+      { label: "Standard", price: 8500 },
+      { label: "Premium (with GoPro)", price: 10500 }
+    ],
+    seasonalRates: [{ start: "2025-10-01", end: "2025-12-15", multiplier: 1.1 }],
+    availableMonths: ["Oct","Nov","Dec","Jan","Feb","Mar","Apr"],
+    minGroupSize: 1,
+    maxGroupSize: 2,
+    bookingCutoffHrs: 24,
+    cancellationPolicy: "Full refund 24 hrs prior",
+    faq: [
+      { q: "Can I fly solo?", a: "No, tandem flight only with certified pilot." },
+      { q: "Do I need prior experience?", a: "No prior experience needed." }
+    ],
+    placeId: 1,
+    days: {
+      create: [
+        {
+          dayNumber: 1,
+          title: "Flight & Photography",
+          summary: "Brief safety briefing, flight over Phewa Lake, and optional photos.",
+          activities: ["Safety briefing", "Tandem flight", "Photo session"],
+          meals: { breakfast: false, lunch: false, dinner: false },
+          accommodation: null,
+          transport: "Pickup from Lakeside",
+          images: [],
+          mapPoints: []
+        }
+      ]
     },
-
-    {
-      name: "Lakes, Falls & Pagoda Glow",
-      title: "Lakes, Falls & Pagoda Glow: Pokhara Essentials in a Day",
-      tagline: "A compact day with all-killer-no-filler stops.",
-      slug: "pokhara-lakes-falls-pagoda-glow",
-      description:
-        "Short on time, big on coverage. Glide on Phewa, tap Tal Barahi, feel the spray at Davis Falls, and climb to the Peace Pagoda ridge for that honeyed afternoon light. Perfect as a smart day-tour bolt-on.",
-      images: [],
-      gallery: [],
-      durationDays: 1,
-      durationNights: 0,
-      difficulty: "Easy",
-      languages: ["English", "Nepali"],
-      highlights: [
-        "Phewa Lake boat ride",
-        "Tal Barahi Temple",
-        "Davis Falls & Gupteshwor Cave",
-        "World Peace Pagoda"
-      ],
-      inclusions: [
-        "Private vehicle & driver",
-        "Local guide",
-        "Bottled water"
-      ],
-      exclusions: [
-        "Entry & boat tickets",
-        "Meals",
-        "Insurance"
-      ],
-      meetingPoint: "Lakeside hotels or designated pickup points",
-      endPoint: "Lakeside, Pokhara",
-      pickupIncluded: true,
-      whatToBring: ["Cap/hat", "Sunscreen", "Comfortable sandals/shoes"],
-      safetyNotes: ["Stairs at Pagoda and Temple; take it steady."],
-      basePrice: 4200,
-      currency: "NPR",
-      pricingTiers: [
-        { label: "Adult", price: 4200 },
-        { label: "Child (6–11)", price: 3000 }
-      ],
-      seasonalRates: [],
-      availableMonths: ["All Year"],
-      minGroupSize: 1,
-      maxGroupSize: 20,
-      bookingCutoffHrs: 12,
-      cancellationPolicy: "Free cancellation up to 24 hours before start.",
-      faq: [],
-      placeId: null,
-      days: {
-        create: [
-          {
-            dayNumber: 1,
-            title: "Essentials Circuit",
-            summary: "Hit the core sights in a single clean loop.",
-            activities: ["Pickup", "Phewa boat & Tal Barahi", "Davis Falls", "Gupteshwor Cave", "Peace Pagoda ridge", "Drop-off"],
-            meals: { breakfast: false, lunch: false, dinner: false },
-            accommodation: null,
-            transport: "Private car",
-            images: []
-          }
-        ]
-      },
-      departures: {
-        create: [
-          { date: new Date("2025-09-20T08:30:00+05:45"), startTime: "08:30", status: "OPEN", seatsTotal: 20, seatsAvailable: 20, priceOverride: 4500 },
-          { date: new Date("2025-10-05T08:30:00+05:45"), startTime: "08:30", status: "OPEN", seatsTotal: 20, seatsAvailable: 16 }
-        ]
-      }
+    departures: {
+      create: [
+        { date: new Date("2025-10-05T08:00:00+05:45"), startTime: "08:00", status: "OPEN", seatsTotal: 10, seatsAvailable: 10 },
+        { date: new Date("2025-10-06T15:30:00+05:45"), startTime: "15:30", status: "OPEN", seatsTotal: 10, seatsAvailable: 8 }
+      ]
     }
+  },
+  {
+    id: 2,
+    name: "Paragliding Full-Day Adventure",
+    title: "Paragliding & Lakeside Exploration",
+    tagline: "Combine flight with lakeside fun in one day",
+    slug: "paragliding-full-day-adventure",
+    description: "Spend a full day in Pokhara combining tandem paragliding with a relaxed Phewa Lake boat ride and local sightseeing around Lakeside.",
+    images: [
+      "/pokhara/itineraries/paragliding_full1.jpg",
+      "/pokhara/itineraries/paragliding_full2.webp"
+    ],
+    gallery: [
+      "/pokhara/itineraries/paragliding_full_gallery1.jpg",
+      "/pokhara/itineraries/paragliding_full_gallery2.webp"
+    ],
+    durationDays: 1,
+    durationNights: 0,
+    difficulty: "Medium",
+    languages: ["English", "Nepali"],
+    highlights: ["Tandem paragliding", "Boat ride on Phewa Lake", "Sightseeing around Lakeside"],
+    inclusions: ["Flight", "Boat ride", "Guide", "Insurance"],
+    exclusions: ["Lunch", "Video/photos"],
+    meetingPoint: "Hotel lobby, Lakeside",
+    endPoint: "Hotel drop-off",
+    pickupIncluded: true,
+    whatToBring: ["Comfortable shoes", "Sunscreen", "Camera"],
+    safetyNotes: ["Weather-dependent", "Follow guide instructions"],
+    basePrice: 12000,
+    currency: "NPR",
+    pricingTiers: [
+      { label: "Adult", price: 12000 },
+      { label: "Child", price: 8500 }
+    ],
+    seasonalRates: [{ start: "2025-10-01", end: "2025-12-15", multiplier: 1.15 }],
+    availableMonths: ["Oct","Nov","Dec","Jan","Feb","Mar","Apr"],
+    minGroupSize: 1,
+    maxGroupSize: 8,
+    bookingCutoffHrs: 24,
+    cancellationPolicy: "Full refund 24 hrs prior",
+    faq: [
+      { q: "Is lunch included?", a: "No, you can have lunch at Lakeside restaurants." },
+      { q: "Is the boat ride guided?", a: "Yes, included in the itinerary." }
+    ],
+    placeId: 1,
+    days: {
+      create: [
+        {
+          dayNumber: 1,
+          title: "Flight & Lakeside Fun",
+          summary: "Morning tandem flight followed by relaxing boat ride on Phewa Lake, ending with Lakeside exploration.",
+          activities: ["Flight", "Boat ride", "Lakeside stroll"],
+          meals: { breakfast: false, lunch: false, dinner: false },
+          accommodation: null,
+          transport: "Private vehicle",
+          images: [],
+          mapPoints: []
+        }
+      ]
+    },
+    departures: {
+      create: [
+        { date: new Date("2025-10-10T07:30:00+05:45"), startTime: "07:30", status: "OPEN", seatsTotal: 6, seatsAvailable: 6 },
+        { date: new Date("2025-10-11T09:00:00+05:45"), startTime: "09:00", status: "OPEN", seatsTotal: 6, seatsAvailable: 4 }
+      ]
+    }
+  },
+
+  // ---------------- Boating in Phewa Lake Itineraries ----------------
+  {
+    id: 3,
+    name: "Phewa Lake Short Boating",
+    title: "Serene Phewa Lake Boat Ride",
+    tagline: "Relaxing 30-min boat ride with Annapurna views",
+    slug: "phewa-lake-short-boating",
+    description: "Enjoy a peaceful half-hour ride across Phewa Lake. Perfect for families, couples, or photographers who want quick scenic moments.",
+    images: [
+      "/pokhara/itineraries/boating_short1.jpg",
+      "/pokhara/itineraries/boating_short2.webp"
+    ],
+    gallery: [
+      "/pokhara/itineraries/boating_short_gallery1.jpg",
+      "/pokhara/itineraries/boating_short_gallery2.webp"
+    ],
+    durationDays: 0,
+    durationNights: 0,
+    difficulty: "Easy",
+    languages: ["English", "Nepali"],
+    highlights: ["Lake ride", "Tal Barahi Temple", "Photography"],
+    inclusions: ["Boat rental", "Life jackets"],
+    exclusions: ["Food", "Tips"],
+    meetingPoint: "Lakeside Pokhara",
+    endPoint: "Lakeside",
+    pickupIncluded: false,
+    whatToBring: ["Sunscreen", "Hat", "Camera"],
+    safetyNotes: ["Wear life jackets", "Follow boatman instructions"],
+    basePrice: 1200,
+    currency: "NPR",
+    pricingTiers: [{ label: "Adult", price: 1200 }, { label: "Child", price: 800 }],
+    availableMonths: ["Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May"],
+    minGroupSize: 1,
+    maxGroupSize: 8,
+    bookingCutoffHrs: 6,
+    cancellationPolicy: "Full refund if canceled 6 hours prior",
+    faq: [{ q: "Can I bring my own food?", a: "Yes, but keep the lake clean." }],
+    placeId: 1,
+    days: {
+      create: [
+        {
+          dayNumber: 1,
+          title: "Boat Ride",
+          summary: "Short boat ride to Tal Barahi Temple and back.",
+          activities: ["Boat ride", "Temple visit", "Photography"],
+          meals: { breakfast: false, lunch: false, dinner: false },
+          accommodation: null,
+          transport: null,
+          images: [],
+          mapPoints: []
+        }
+      ]
+    },
+    departures: {
+      create: [
+        { date: new Date("2025-10-05T09:00:00+05:45"), startTime: "09:00", status: "OPEN", seatsTotal: 12, seatsAvailable: 12 },
+        { date: new Date("2025-10-06T15:00:00+05:45"), startTime: "15:00", status: "OPEN", seatsTotal: 12, seatsAvailable: 8 }
+      ]
+    }
+  },
+
+  // ---------------- Sarangkot Sunrise Itineraries ----------------
+{
+  id: 4,
+  name: "Sarangkot Sunrise Short Trip",
+  title: "Sunrise at Sarangkot Viewpoint",
+  tagline: "Witness the Annapurna range light up at dawn",
+  slug: "sarangkot-sunrise-short-trip",
+  description: "Early morning drive to Sarangkot to capture the breathtaking sunrise over Annapurna and Machhapuchhre. Ideal for photographers or short-time visitors.",
+  images: [
+    "/pokhara/itineraries/sarangkot_short1.jpg",
+    "/pokhara/itineraries/sarangkot_short2.webp"
+  ],
+  gallery: [
+    "/pokhara/itineraries/sarangkot_short_gallery1.jpg",
+    "/pokhara/itineraries/sarangkot_short_gallery2.webp"
+  ],
+  durationDays: 1,
+  durationNights: 0,
+  difficulty: "Easy",
+  languages: ["English", "Nepali"],
+  highlights: ["Sunrise over Annapurna", "Photography spots", "Tea at viewpoint"],
+  inclusions: ["Transport", "Guide", "Refreshments"],
+  exclusions: ["Breakfast", "Personal expenses"],
+  meetingPoint: "Hotel lobby, Lakeside",
+  endPoint: "Hotel drop-off",
+  pickupIncluded: true,
+  whatToBring: ["Warm clothes", "Camera", "Sunscreen"],
+  safetyNotes: ["Foggy roads, follow guide", "Slippery paths"],
+  basePrice: 2000,
+  currency: "NPR",
+  pricingTiers: [{ label: "Adult", price: 2000 }, { label: "Child", price: 1200 }],
+  availableMonths: ["Oct","Nov","Dec","Jan","Feb","Mar"],
+  minGroupSize: 1,
+  maxGroupSize: 10,
+  bookingCutoffHrs: 12,
+  cancellationPolicy: "Full refund if canceled 12 hours prior",
+  faq: [
+    { q: "Is it possible to walk up?", a: "Yes, but transport is included for comfort." }
+  ],
+  placeId: 1,
+  days: {
+    create: [
+      {
+        dayNumber: 1,
+        title: "Sunrise Experience",
+        summary: "Drive to Sarangkot, watch sunrise, tea break, and return to Lakeside.",
+        activities: ["Drive to Sarangkot", "Sunrise photography", "Tea break", "Return drive"],
+        meals: { breakfast: false, lunch: false, dinner: false },
+        accommodation: null,
+        transport: "Private vehicle",
+        images: [],
+        mapPoints: []
+      }
+    ]
+  },
+  departures: {
+    create: [
+      { date: new Date("2025-10-05T04:30:00+05:45"), startTime: "04:30", status: "OPEN", seatsTotal: 12, seatsAvailable: 12 },
+      { date: new Date("2025-10-06T04:30:00+05:45"), startTime: "04:30", status: "OPEN", seatsTotal: 12, seatsAvailable: 8 }
+    ]
+  }
+},
+{
+  id: 5,
+  name: "Sarangkot Sunrise & Peace Pagoda",
+  title: "Morning Sarangkot & Lakeside Exploration",
+  tagline: "Sunrise + scenic walk to World Peace Pagoda",
+  slug: "sarangkot-sunrise-peacepagoda",
+  description: "Capture the sunrise at Sarangkot then take a guided walk to the World Peace Pagoda for panoramic views. Ideal half-day adventure for early risers.",
+  images: [
+    "/pokhara/itineraries/sarangkot_full1.jpg",
+    "/pokhara/itineraries/sarangkot_full2.webp"
+  ],
+  gallery: [
+    "/pokhara/itineraries/sarangkot_full_gallery1.jpg",
+    "/pokhara/itineraries/sarangkot_full_gallery2.webp"
+  ],
+  durationDays: 1,
+  durationNights: 0,
+  difficulty: "Easy",
+  languages: ["English", "Nepali"],
+  highlights: ["Sunrise", "Peace Pagoda walk", "Photography"],
+  inclusions: ["Guide", "Transport", "Refreshments"],
+  exclusions: ["Meals", "Souvenirs"],
+  meetingPoint: "Lakeside hotel lobby",
+  endPoint: "Lakeside hotel",
+  pickupIncluded: true,
+  whatToBring: ["Camera", "Warm clothing", "Comfortable shoes"],
+  safetyNotes: ["Follow guide instructions", "Slippery paths in early morning"],
+  basePrice: 3200,
+  currency: "NPR",
+  pricingTiers: [{ label: "Adult", price: 3200 }, { label: "Child", price: 2000 }],
+  availableMonths: ["Oct","Nov","Dec","Jan","Feb","Mar"],
+  minGroupSize: 1,
+  maxGroupSize: 15,
+  bookingCutoffHrs: 12,
+  cancellationPolicy: "Full refund if canceled 12 hours prior",
+  faq: [
+    { q: "Is walking steep?", a: "Moderate incline, suitable for most fitness levels." }
+  ],
+  placeId: 1,
+  days: {
+    create: [
+      {
+        dayNumber: 1,
+        title: "Sunrise & Pagoda Walk",
+        summary: "Early drive to Sarangkot, sunrise photography, tea, then walk to Peace Pagoda.",
+        activities: ["Drive to Sarangkot", "Sunrise", "Tea break", "Pagoda walk", "Return drive"],
+        meals: { breakfast: false, lunch: false, dinner: false },
+        accommodation: null,
+        transport: "Private vehicle",
+        images: [],
+        mapPoints: []
+      }
+    ]
+  },
+  departures: {
+    create: [
+      { date: new Date("2025-10-05T04:30:00+05:45"), startTime: "04:30", status: "OPEN", seatsTotal: 10, seatsAvailable: 10 },
+      { date: new Date("2025-10-07T04:30:00+05:45"), startTime: "04:30", status: "OPEN", seatsTotal: 10, seatsAvailable: 6 }
+    ]
+  }
+},
+
+// ---------------- Ultra Light Flight Itineraries ----------------
+{
+  id: 6,
+  name: "Ultra Light Flight Experience",
+  title: "Scenic Ultra Light Flight over Pokhara",
+  tagline: "Aerial adventure with panoramic views of Annapurna",
+  slug: "ultralight-flight-experience",
+  description: "Take an ultra light flight over Pokhara valley, providing unique aerial perspectives of Phewa Lake, Sarangkot, and the Annapurna range.",
+  images: [
+    "/pokhara/itineraries/ultralight1.jpg",
+    "/pokhara/itineraries/ultralight2.webp"
+  ],
+  gallery: [
+    "/pokhara/itineraries/ultralight_gallery1.jpg",
+    "/pokhara/itineraries/ultralight_gallery2.webp"
+  ],
+  durationDays: 1,
+  durationNights: 0,
+  difficulty: "Medium",
+  languages: ["English", "Nepali"],
+  highlights: ["Panoramic aerial view", "Photography opportunities", "Experienced pilot"],
+  inclusions: ["Ultra light flight", "Safety briefing", "Insurance"],
+  exclusions: ["Meals", "Video/photo package"],
+  meetingPoint: "Airport Hangar, Pokhara",
+  endPoint: "Same as meeting point",
+  pickupIncluded: false,
+  whatToBring: ["Camera", "Sunglasses", "Comfortable clothes"],
+  safetyNotes: ["Weather dependent", "Follow pilot instructions"],
+  basePrice: 15000,
+  currency: "NPR",
+  pricingTiers: [{ label: "Adult", price: 15000 }],
+  availableMonths: ["Oct","Nov","Dec","Jan","Feb","Mar"],
+  minGroupSize: 1,
+  maxGroupSize: 2,
+  bookingCutoffHrs: 24,
+  cancellationPolicy: "Full refund if canceled 24 hrs prior",
+  faq: [
+    { q: "Do I need a license?", a: "No, pilot handles the flight." }
+  ],
+  placeId: 1,
+  days: {
+    create: [
+      {
+        dayNumber: 1,
+        title: "Flight Adventure",
+        summary: "Safety briefing followed by ultra light flight over Pokhara valley.",
+        activities: ["Safety briefing", "Ultra light flight", "Photo session"],
+        meals: { breakfast: false, lunch: false, dinner: false },
+        accommodation: null,
+        transport: null,
+        images: [],
+        mapPoints: []
+      }
+    ]
+  },
+  departures: {
+    create: [
+      { date: new Date("2025-10-06T09:00:00+05:45"), startTime: "09:00", status: "OPEN", seatsTotal: 2, seatsAvailable: 2 }
+    ]
+  }
+},
+
+{
+  id: 7,
+  name: "Ultra Light & Lakeside Exploration",
+  title: "Aerial Adventure & Lakeside Tour",
+  tagline: "Combine flight with relaxed Lakeside sightseeing",
+  slug: "ultralight-lakeside-tour",
+  description: "Morning ultra light flight followed by a guided stroll and boat ride around Phewa Lake.",
+  images: [
+    "/pokhara/itineraries/ultralight_lakeside1.jpg",
+    "/pokhara/itineraries/ultralight_lakeside2.webp"
+  ],
+  gallery: [
+    "/pokhara/itineraries/ultralight_lakeside_gallery1.jpg",
+    "/pokhara/itineraries/ultralight_lakeside_gallery2.webp"
+  ],
+  durationDays: 1,
+  durationNights: 0,
+  difficulty: "Medium",
+  languages: ["English", "Nepali"],
+  highlights: ["Ultra light flight", "Lakeside boat ride", "Photography"],
+  inclusions: ["Flight", "Boat ride", "Guide", "Insurance"],
+  exclusions: ["Meals"],
+  meetingPoint: "Ultra Light Airport",
+  endPoint: "Hotel drop-off",
+  pickupIncluded: true,
+  whatToBring: ["Camera", "Comfortable shoes", "Sunglasses"],
+  safetyNotes: ["Weather dependent", "Follow pilot and guide instructions"],
+  basePrice: 18000,
+  currency: "NPR",
+  pricingTiers: [{ label: "Adult", price: 18000 }],
+  availableMonths: ["Oct","Nov","Dec","Jan","Feb","Mar"],
+  minGroupSize: 1,
+  maxGroupSize: 4,
+  bookingCutoffHrs: 24,
+  cancellationPolicy: "Full refund 24 hrs prior",
+  faq: [{ q: "Can I combine with paragliding?", a: "Yes, based on availability." }],
+  placeId: 1,
+  days: {
+    create: [
+      {
+        dayNumber: 1,
+        title: "Flight & Lakeside",
+        summary: "Morning ultra light flight, then guided boat ride on Phewa Lake.",
+        activities: ["Ultra light flight", "Boat ride", "Sightseeing walk"],
+        meals: { breakfast: false, lunch: false, dinner: false },
+        accommodation: null,
+        transport: "Private vehicle",
+        images: [],
+        mapPoints: []
+      }
+    ]
+  },
+  departures: {
+    create: [
+      { date: new Date("2025-10-07T08:30:00+05:45"), startTime: "08:30", status: "OPEN", seatsTotal: 4, seatsAvailable: 4 }
+    ]
+  }
+},
+
+// ---------------- Annapurna Trekking Itineraries ----------------
+{
+  id: 8,
+  name: "Annapurna Base Short Trek",
+  title: "2-Day Annapurna Base Camp Trek",
+  tagline: "Quick trek to enjoy stunning views of Annapurna",
+  slug: "annapurna-short-trek",
+  description: "Short trek for travelers who want to experience the beauty of the Annapurna range in 2 days, including village walks and panoramic viewpoints.",
+  images: [
+    "/pokhara/itineraries/abc_short1.jpg",
+    "/pokhara/itineraries/abc_short2.webp"
+  ],
+  gallery: [
+    "/pokhara/itineraries/abc_short_gallery1.jpg",
+    "/pokhara/itineraries/abc_short_gallery2.webp"
+  ],
+  durationDays: 2,
+  durationNights: 1,
+  difficulty: "Moderate",
+  languages: ["English", "Nepali"],
+  highlights: ["Mountain views", "Village walks", "Sunrise at ABC viewpoint"],
+  inclusions: ["Guide", "Porter", "Accommodation", "Breakfasts"],
+  exclusions: ["Lunch", "Dinner", "Permits"],
+  meetingPoint: "Pokhara Hotel",
+  endPoint: "Pokhara Hotel",
+  pickupIncluded: true,
+  whatToBring: ["Trekking shoes", "Warm clothes", "Daypack"],
+  safetyNotes: ["Altitude sickness risk", "Weather-dependent"],
+  basePrice: 25000,
+  currency: "NPR",
+  pricingTiers: [{ label: "Adult", price: 25000 }],
+  availableMonths: ["Oct","Nov","Dec","Jan","Feb","Mar","Apr"],
+  minGroupSize: 1,
+  maxGroupSize: 10,
+  bookingCutoffHrs: 48,
+  cancellationPolicy: "Full refund if canceled 48 hrs prior",
+  faq: [{ q: "Is this suitable for beginners?", a: "Moderate fitness required." }],
+  placeId: 1,
+  days: {
+    create: [
+      {
+        dayNumber: 1,
+        title: "Pokhara to Base Camp",
+        summary: "Drive to trailhead, trek to first campsite, evening view of Annapurna.",
+        activities: ["Drive to trailhead", "Trek 5–6 hrs", "Settle at camp"],
+        meals: { breakfast: true, lunch: false, dinner: true },
+        accommodation: "Teahouse or tent",
+        transport: "Private vehicle",
+        images: [],
+        mapPoints: []
+      },
+      {
+        dayNumber: 2,
+        title: "Return to Pokhara",
+        summary: "Sunrise view, breakfast, and trek back to Pokhara.",
+        activities: ["Sunrise photography", "Breakfast", "Trek back", "Drive to Pokhara"],
+        meals: { breakfast: true, lunch: false, dinner: false },
+        accommodation: null,
+        transport: "Private vehicle",
+        images: [],
+        mapPoints: []
+      }
+    ]
+  },
+  departures: {
+    create: [
+      { date: new Date("2025-10-10T06:00:00+05:45"), startTime: "06:00", status: "OPEN", seatsTotal: 10, seatsAvailable: 10 }
+    ]
+  }
+},
+{
+  id: 9,
+  name: "Annapurna Base Medium Trek",
+  title: "4-Day Annapurna Base Camp Trek",
+  tagline: "A deeper trekking experience with village stays",
+  slug: "annapurna-medium-trek",
+  description: "4-day trekking experience covering scenic trails, villages, waterfalls, and sunset viewpoints. Ideal for those with moderate fitness looking to explore more.",
+  images: [
+    "/pokhara/itineraries/abc_medium1.jpg",
+    "/pokhara/itineraries/abc_medium2.webp"
+  ],
+  gallery: [
+    "/pokhara/itineraries/abc_medium_gallery1.jpg",
+    "/pokhara/itineraries/abc_medium_gallery2.webp"
+  ],
+  durationDays: 4,
+  durationNights: 3,
+  difficulty: "Moderate",
+  languages: ["English", "Nepali"],
+  highlights: ["Mountain views", "Local villages", "Waterfalls", "Sunrise/sunset photography"],
+  inclusions: ["Guide", "Porter", "Accommodation", "Breakfasts"],
+  exclusions: ["Lunch", "Dinner", "Permits", "Personal expenses"],
+  meetingPoint: "Pokhara Hotel",
+  endPoint: "Pokhara Hotel",
+  pickupIncluded: true,
+  whatToBring: ["Trekking shoes", "Warm clothes", "Daypack", "Water bottle"],
+  safetyNotes: ["Altitude sickness risk", "Weather dependent", "Carry water"],
+  basePrice: 45000,
+  currency: "NPR",
+  pricingTiers: [{ label: "Adult", price: 45000 }],
+  availableMonths: ["Oct","Nov","Dec","Jan","Feb","Mar","Apr"],
+  minGroupSize: 1,
+  maxGroupSize: 8,
+  bookingCutoffHrs: 48,
+  cancellationPolicy: "Full refund if canceled 48 hrs prior",
+  faq: [{ q: "Is porter included?", a: "Yes, one porter per two trekkers." }],
+  placeId: 1,
+  days: {
+    create: [
+      {
+        dayNumber: 1,
+        title: "Drive to Trailhead & Trek",
+        summary: "Drive to Nayapul, trek 4–5 hrs to village stay.",
+        activities: ["Drive", "Trek 4–5 hrs", "Settle at guesthouse"],
+        meals: { breakfast: true, lunch: false, dinner: true },
+        accommodation: "Guesthouse",
+        transport: "Private vehicle",
+        images: [],
+        mapPoints: []
+      },
+      {
+        dayNumber: 2,
+        title: "Trek to Base Camp",
+        summary: "Trek across villages, rivers, and viewpoints.",
+        activities: ["Trek 5–6 hrs", "Photography stops", "Arrive at Base Camp"],
+        meals: { breakfast: true, lunch: false, dinner: true },
+        accommodation: "Teahouse or camp",
+        transport: "On foot",
+        images: [],
+        mapPoints: []
+      },
+      {
+        dayNumber: 3,
+        title: "Sunrise & Explore",
+        summary: "Early sunrise at Base Camp, short hikes nearby, enjoy mountain panorama.",
+        activities: ["Sunrise photography", "Short hikes", "Relax at camp"],
+        meals: { breakfast: true, lunch: false, dinner: true },
+        accommodation: "Teahouse or camp",
+        transport: "On foot",
+        images: [],
+        mapPoints: []
+      },
+      {
+        dayNumber: 4,
+        title: "Return Trek & Drive to Pokhara",
+        summary: "Trek back to Nayapul, then drive to Pokhara.",
+        activities: ["Trek back 5 hrs", "Drive to Pokhara", "End of trek"],
+        meals: { breakfast: true, lunch: false, dinner: false },
+        accommodation: null,
+        transport: "Private vehicle",
+        images: [],
+        mapPoints: []
+      }
+    ]
+  },
+  departures: {
+    create: [
+      { date: new Date("2025-10-12T06:00:00+05:45"), startTime: "06:00", status: "OPEN", seatsTotal: 6, seatsAvailable: 6 }
+    ]
+  }
+},
+{
+  id: 10,
+  name: "Annapurna Base Long Trek",
+  title: "7-Day Annapurna Base Camp Immersive Trek",
+  tagline: "Complete trekking adventure through scenic trails, villages, and peaks",
+  slug: "annapurna-long-trek",
+  description: "7-day full trek to Annapurna Base Camp covering scenic villages, waterfalls, forests, and the highest viewpoints. Suitable for fit travelers wanting a complete experience.",
+  images: [
+    "/pokhara/itineraries/abc_long1.jpg",
+    "/pokhara/itineraries/abc_long2.webp"
+  ],
+  gallery: [
+    "/pokhara/itineraries/abc_long_gallery1.jpg",
+    "/pokhara/itineraries/abc_long_gallery2.webp"
+  ],
+  durationDays: 7,
+  durationNights: 6,
+  difficulty: "Hard",
+  languages: ["English", "Nepali"],
+  highlights: ["Panoramic mountains", "Rivers & waterfalls", "Sunrise at ABC", "Local villages"],
+  inclusions: ["Guide", "Porter", "Accommodation", "Breakfasts"],
+  exclusions: ["Lunch", "Dinner", "Permits", "Travel insurance"],
+  meetingPoint: "Pokhara Hotel",
+  endPoint: "Pokhara Hotel",
+  pickupIncluded: true,
+  whatToBring: ["Trekking shoes", "Warm clothing", "Daypack", "Water bottle", "Snacks"],
+  safetyNotes: ["High altitude risk", "Challenging terrain", "Weather-dependent"],
+  basePrice: 90000,
+  currency: "NPR",
+  pricingTiers: [{ label: "Adult", price: 90000 }],
+  availableMonths: ["Oct","Nov","Dec","Jan","Feb","Mar","Apr"],
+  minGroupSize: 1,
+  maxGroupSize: 6,
+  bookingCutoffHrs: 48,
+  cancellationPolicy: "Full refund if canceled 48 hrs prior",
+  faq: [
+    { q: "Is it suitable for beginners?", a: "Requires good fitness; experienced guide provided." }
+  ],
+  placeId: 1,
+  days: {
+    create: [
+      {
+        dayNumber: 1,
+        title: "Drive to Nayapul & Trek to Tikhedhunga",
+        summary: "Drive to trailhead, trek 3–4 hrs to Tikhedhunga, settle at guesthouse.",
+        activities: ["Drive", "Trek", "Guesthouse stay"],
+        meals: { breakfast: true, lunch: false, dinner: true },
+        accommodation: "Guesthouse",
+        transport: "Private vehicle",
+        images: [],
+        mapPoints: []
+      },
+      { dayNumber: 2, title: "Trek to Ghorepani", summary: "Trek 5–6 hrs to Ghorepani, scenic views.", activities: ["Trek", "Photography"], meals: { breakfast: true, lunch: false, dinner: true }, accommodation: "Guesthouse", transport: "On foot", images: [], mapPoints: [] },
+      { dayNumber: 3, title: "Poon Hill Sunrise & Trek to Tadapani", summary: "Sunrise at Poon Hill, trek to Tadapani.", activities: ["Sunrise", "Trek"], meals: { breakfast: true, lunch: false, dinner: true }, accommodation: "Guesthouse", transport: "On foot", images: [], mapPoints: [] },
+      { dayNumber: 4, title: "Trek to Chomrong", summary: "Cross villages, waterfalls, and rivers.", activities: ["Trek", "Photography"], meals: { breakfast: true, lunch: false, dinner: true }, accommodation: "Guesthouse", transport: "On foot", images: [], mapPoints: [] },
+      { dayNumber: 5, title: "Trek to Annapurna Base Camp", summary: "Arrive ABC, enjoy panoramic views.", activities: ["Trek 5–6 hrs", "Photography"], meals: { breakfast: true, lunch: false, dinner: true }, accommodation: "Teahouse", transport: "On foot", images: [], mapPoints: [] },
+      { dayNumber: 6, title: "Explore ABC & Return", summary: "Short hikes around ABC, start return trek.", activities: ["Hiking", "Photography"], meals: { breakfast: true, lunch: false, dinner: true }, accommodation: "Guesthouse", transport: "On foot", images: [], mapPoints: [] },
+      { dayNumber: 7, title: "Return Trek & Drive to Pokhara", summary: "Complete trek, drive to Pokhara, end of journey.", activities: ["Trek", "Drive"], meals: { breakfast: true, lunch: false, dinner: false }, accommodation: null, transport: "Private vehicle", images: [], mapPoints: [] }
+    ]
+  },
+  departures: {
+    create: [
+      { date: new Date("2025-10-15T06:00:00+05:45"), startTime: "06:00", status: "OPEN", seatsTotal: 6, seatsAvailable: 6 }
+    ]
+  }
+}
+
   ];
 
 
