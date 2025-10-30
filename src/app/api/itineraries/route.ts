@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const itineraries = await prisma.itinerary.findMany({
-    take: 6,
+    take: 10,
     select: {
       id: true,
       name: true,
