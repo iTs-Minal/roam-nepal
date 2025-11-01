@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
@@ -126,13 +127,20 @@ async function main() {
       description: "Tandem paragliding above Phewa Lake with Annapurna views. Experience thrilling flights with certified pilots and enjoy breathtaking aerial photography opportunities.",
       shortIntro: "Soar above Pokhara’s Phewa Lake for spectacular Himalayan views.",
       images: [
-        "/pokhara/activities/paragliding1.jpg",
-        "/pokhara/activities/paragliding2.webp",
-        "/pokhara/activities/paragliding3.webp"
+        "/pokhara/activities/paragliding6.jpg",
+      "/pokhara/activities/paragliding2.webp",
+      "/pokhara/activities/paragliding3.webp",
+      "/pokhara/activities/paragliding4.webp",
+      "/pokhara/activities/paragliding5.webp",
+      "/pokhara/activities/paragliding1.jpeg",
       ],
       gallery: [
-        "/pokhara/activities/paragliding_gallery1.webp",
-        "/pokhara/activities/paragliding_gallery2.webp"
+          "/pokhara/activities/paragliding1.jpg",
+      "/pokhara/activities/paragliding2.webp",
+      "/pokhara/activities/paragliding3.webp",
+      "/pokhara/activities/paragliding4.webp",
+      "/pokhara/activities/paragliding5.webp",
+      "/pokhara/activities/paragliding6.jpeg",
       ],
       videoUrl: "https://www.youtube.com/embed/xyz123",
       latitude: 28.2345,
@@ -163,12 +171,22 @@ async function main() {
       description: "Relaxing boat trips across Pokhara’s serene Phewa Lake with views of the Annapurna range and Tal Barahi temple on the lake island.",
       shortIntro: "Enjoy calm waters and scenic mountain views on a boat ride.",
       images: [
-        "/pokhara/activities/boating1.jpg",
-        "/pokhara/activities/boating2.webp"
+        "/pokhara/activities/boating5.webp",
+       "/pokhara/activities/boating4.jpg",
+      "/pokhara/activities/boating1.webp",
+      "/pokhara/activities/boating2.webp",
+      "/pokhara/activities/boating3.webp",
+      "/pokhara/activities/boating6.jpg",
+      "/pokhara/activities/boating7.webp",
       ],
       gallery: [
-        "/pokhara/activities/boating_gallery1.webp",
-        "/pokhara/activities/boating_gallery2.webp"
+        "/pokhara/activities/boating5.webp",
+       "/pokhara/activities/boating4.jpg",
+      "/pokhara/activities/boating1.webp",
+      "/pokhara/activities/boating2.webp",
+      "/pokhara/activities/boating3.webp",
+      "/pokhara/activities/boating6.jpg",
+      "/pokhara/activities/boating7.webp",
       ],
       videoUrl: "https://www.youtube.com/embed/abc456",
       latitude: 28.2096,
@@ -197,8 +215,11 @@ async function main() {
       description: "Experience the magical sunrise over Annapurna and Machhapuchhre peaks from Sarangkot hilltop, with short hikes and photo opportunities.",
       shortIntro: "Witness Pokhara’s most iconic sunrise view.",
       images: [
-        "/pokhara/activities/sarangkot1.jpg",
-        "/pokhara/activities/sarangkot2.webp"
+        "/pokhara/activities/sarangkot2.webp",
+       "/pokhara/activities/sarangkot5.webp",
+    "/pokhara/activities/sarangkot1.webp",
+    "/pokhara/activities/sarangkot3.webp",
+    "/pokhara/activities/sarangkot4.webp",
       ],
       gallery: [
         "/pokhara/activities/sarangkot_gallery1.jpg",
@@ -231,12 +252,20 @@ async function main() {
       description: "Fly over Pokhara in an ultralight aircraft for a bird’s-eye view of lakes, hills, and the Annapurna range. Great for photographers and thrill-seekers.",
       shortIntro: "Experience Pokhara from the sky in an ultralight aircraft.",
       images: [
-        "/pokhara/activities/ultralight1.jpg",
-        "/pokhara/activities/ultralight2.webp"
+        "/pokhara/activities/lightflight4.webp",
+        "/pokhara/activities/lightflight5.webp",
+    "/pokhara/activities/lightflight1.webp",
+    "/pokhara/activities/lightflight2.webp",
+    "/pokhara/activities/lightflight3.webp",
+    "/pokhara/activities/lightflight6.webp",
       ],
       gallery: [
-        "/pokhara/activities/ultralight_gallery1.jpg",
-        "/pokhara/activities/ultralight_gallery2.webp"
+         "/pokhara/activities/lightflight4.webp",
+        "/pokhara/activities/lightflight5.webp",
+    "/pokhara/activities/lightflight1.webp",
+    "/pokhara/activities/lightflight2.webp",
+    "/pokhara/activities/lightflight3.webp",
+    "/pokhara/activities/lightflight6.webp",
       ],
       videoUrl: "https://www.youtube.com/embed/ultra123",
       latitude: 28.2436,
@@ -265,12 +294,22 @@ async function main() {
       description: "Moderate trekking trails around the Annapurna base with spectacular mountain views, village visits, and cultural immersion. Options for 2–4 day treks.",
       shortIntro: "Explore the Annapurna foothills and villages on scenic trails.",
       images: [
-        "/pokhara/activities/trekking1.jpg",
-        "/pokhara/activities/trekking2.webp"
+        "/pokhara/activities/atrekking6.webp",
+         "/pokhara/activities/atrekking4.webp",
+    "/pokhara/activities/atrekking1.webp",
+    "/pokhara/activities/atrekking2.webp",
+    "/pokhara/activities/atrekking3.webp",
+    "/pokhara/activities/atrekking5.webp",
+    "/pokhara/activities/atrekking7.webp",
       ],
       gallery: [
-        "/pokhara/activities/trekking_gallery1.jpg",
-        "/pokhara/activities/trekking_gallery2.webp"
+       "/pokhara/activities/atrekking6.webp",
+         "/pokhara/activities/atrekking4.webp",
+    "/pokhara/activities/atrekking1.webp",
+    "/pokhara/activities/atrekking2.webp",
+    "/pokhara/activities/atrekking3.webp",
+    "/pokhara/activities/atrekking5.webp",
+    "/pokhara/activities/atrekking7.webp",
       ],
       videoUrl: "https://www.youtube.com/embed/trek123",
       latitude: 28.2300,
@@ -918,10 +957,10 @@ async function main() {
   slug: "annapurna-medium-trek",
   description: "4-day trekking experience covering scenic trails, villages, waterfalls, and sunset viewpoints. Ideal for those with moderate fitness looking to explore more.",
   images: [
+    "/pokhara/activities/atrekking3.webp",
     "/pokhara/activities/atrekking4.webp",
      "/pokhara/activities/atrekking1.webp",
     "/pokhara/activities/atrekking2.webp",
-    "/pokhara/activities/atrekking3.webp",
     "/pokhara/activities/atrekking5.webp",
     "/pokhara/activities/atrekking6.webp",
     "/pokhara/activities/atrekking7.webp",
@@ -1120,9 +1159,12 @@ async function main() {
     shortDescription:
       "Lakeside boutique resort with Himalayan views and a tranquil spa.",
     images: [
-      "/pokhara/accommodations/temple-tree-resort1.jpg",
-      "/pokhara/accommodations/temple-tree-resort2.webp",
-      "https://via.placeholder.com/800x600?text=Temple+Tree+Resort+Spa+Pokhara",
+      "pokhara/accommodations/templetree1.jepg",
+"pokhara/accommodations/templetree2.jepg",
+"pokhara/accommodations/templetree3.jepg",
+"pokhara/accommodations/templetree4.jepg",
+      "pokhara/accommodations/templetree5.jepg",
+      "pokhara/accommodations/templetree6.jepg",
     ],
     price: 120.0,
     discountPrice: 100.0,
@@ -1176,9 +1218,12 @@ async function main() {
     shortDescription:
       "Comfortable lakeside stay with rooftop views and spa services.",
     images: [
-      "https://via.placeholder.com/800x600?text=Hotel+Middle+Path+Pokhara+1",
-      "https://via.placeholder.com/800x600?text=Hotel+Middle+Path+Pokhara+2",
-      "https://via.placeholder.com/800x600?text=Hotel+Middle+Path+Pokhara+3",
+      "pokhara/accommodations/middle1.jepg",
+"pokhara/accommodations/middle2.jepg",
+"pokhara/accommodations/middle3.jepg",
+"pokhara/accommodations/middle4.jepg",
+"pokhara/accommodations/middle5.jepg",
+"pokhara/accommodations/middle6.jepg",
     ],
     price: 45.0,
     discountPrice: 40.0,
@@ -1230,9 +1275,12 @@ async function main() {
     shortDescription:
       "Iconic lakeside lodge accessible by boat, ideal for peaceful stays.",
     images: [
-      "https://via.placeholder.com/800x600?text=Fishtail+Lodge+Pokhara+1",
-      "https://via.placeholder.com/800x600?text=Fishtail+Lodge+Pokhara+2",
-      "https://via.placeholder.com/800x600?text=Fishtail+Lodge+Pokhara+3",
+      "pokhara/accommodations/fishtail1.jepg",
+       "pokhara/accommodations/fishtail2.jepg",
+        "pokhara/accommodations/fishtail3.jepg",
+         "pokhara/accommodations/fishtail4.jepg",
+          "pokhara/accommodations/fishtail5.jepg",
+           "pokhara/accommodations/fishtail6.jepg",
     ],
     price: 90.0,
     discountPrice: 85.0,
@@ -1278,9 +1326,12 @@ async function main() {
     shortDescription:
       "Luxury resort on the shores of Phewa Lake with scenic views.",
     images: [
-      "https://via.placeholder.com/800x600?text=Waterfront+Resort+Pokhara+1",
-      "https://via.placeholder.com/800x600?text=Waterfront+Resort+Pokhara+2",
-      "https://via.placeholder.com/800x600?text=Waterfront+Resort+Pokhara+3",
+       "pokhara/accommodations/waterfront1.jepg",
+       "pokhara/accommodations/waterfront2.jepg",
+       "pokhara/accommodations/waterfront3.jepg",
+        "pokhara/accommodations/waterfront4.jepg",  
+         "pokhara/accommodations/waterfront5.jepg",
+ "pokhara/accommodations/waterfront6.jepg",
     ],
     price: 180.0,
     discountPrice: 150.0,
@@ -1338,8 +1389,12 @@ async function main() {
     shortDescription:
       "Affordable hotel near Lakeside with breakfast and parking.",
     images: [
-      "https://via.placeholder.com/800x600?text=Pokhara+Inn+1",
-      "https://via.placeholder.com/800x600?text=Pokhara+Inn+2",
+       "pokhara/accommodations/pokharainn1.jepg",
+"pokhara/accommodations/pokharainn2.jepg",
+"pokhara/accommodations/pokharainn3.jepg",
+"pokhara/accommodations/pokharainn4.jepg",
+       "pokhara/accommodations/pokharainn5.jepg",
+       "pokhara/accommodations/pokharainn6.jepg",
     ],
     price: 60.0,
     discountPrice: 55.0,
