@@ -30,52 +30,52 @@ export default async function ReligiousSitePage(props: {
 }) {
   const { slug } = await props.params;
 
-  // Define the expected type for the religious site object
-  type ReligiousSite = {
-    name: string;
-    id: number;
-    slug: string;
-    description: string;
-    history?: string | null;
-    latitude?: number | null;
-    longitude?: number | null;
-    images?: string[];
-    placeId?: number;
-    visitingHours?: string | null;
-    rituals?: {
-      name: string;
-      description?: string | null;
-      time?: string | null;
-      images?: string[];
-    }[] | null;
-    significance?: string | null;
-    bestTimeToVisit?: string | null;
-    nearbyAttractions?: Array<{
-      name: string;
-      description?: string;
-      distance?: string;
-      images?: string[];
-    }> | null;
-    openingHours?: string | null;
-    entryFee?: { internal?: string; external?: string; notes?: string };
-    dressCode?: string | null;
-    photography?: string | null;
-    facilities?: Record<string, boolean>;
-    accessibility?: Record<string, boolean>;
-    festivals?: Array<{
-      name: string;
-      month?: string;
-      description?: string;
-      images?: string[];
-    }>;
-    safetyGuidelines?: string[];
-    contactInfo?: { 
-      phone?: string; 
-      email?: string; 
-      website?: string;
-      address?: string;
-    };
-  };
+  // // Define the expected type for the religious site object
+  // type ReligiousSite = {
+  //   name: string;
+  //   id: number;
+  //   slug: string;
+  //   description: string;
+  //   history?: string | null;
+  //   latitude?: number | null;
+  //   longitude?: number | null;
+  //   images?: string[];
+  //   placeId?: number;
+  //   visitingHours?: string | null;
+  //   rituals?: {
+  //     name: string;
+  //     description?: string | null;
+  //     time?: string | null;
+  //     images?: string[];
+  //   }[] | null;
+  //   significance?: string | null;
+  //   bestTimeToVisit?: string | null;
+  //   nearbyAttractions?: Array<{
+  //     name: string;
+  //     description?: string;
+  //     distance?: string;
+  //     images?: string[];
+  //   }> | null;
+  //   openingHours?: string | null;
+  //   entryFee?: { internal?: string; external?: string; notes?: string };
+  //   dressCode?: string | null;
+  //   photography?: string | null;
+  //   facilities?: Record<string, boolean>;
+  //   accessibility?: Record<string, boolean>;
+  //   festivals?: Array<{
+  //     name: string;
+  //     month?: string;
+  //     description?: string;
+  //     images?: string[];
+  //   }>;
+  //   safetyGuidelines?: string[];
+  //   contactInfo?: { 
+  //     phone?: string; 
+  //     email?: string; 
+  //     website?: string;
+  //     address?: string;
+  //   };
+  // };
 
   const religiousSite = await prisma.religiousSite.findUnique({
     where: { slug },

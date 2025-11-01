@@ -162,34 +162,34 @@ function SectionBlock({
   );
 }
 
-/* Compact Info Card */
-function InfoCard({
-  title,
-  content,
-  icon,
-}: {
-  title: string;
-  content: string;
-  icon?: React.ReactNode;
-}) {
-  return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
-      {icon && (
-        <div className="text-3xl p-2 rounded-full bg-blue-50 text-blue-600">
-          {icon}
-        </div>
-      )}
-      <div>
-        <h3 className="text-lg font-exo2 font-semibold text-gray-900">
-          {title}
-        </h3>
-        <p className="text-gray-600 text-sm sm:text-base leading-snug mt-1 font-outfit">
-          {content}
-        </p>
-      </div>
-    </div>
-  );
-}
+// /* Compact Info Card */
+// function InfoCard({
+//   title,
+//   content,
+//   icon,
+// }: {
+//   title: string;
+//   content: string;
+//   icon?: React.ReactNode;
+// }) {
+//   return (
+//     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
+//       {icon && (
+//         <div className="text-3xl p-2 rounded-full bg-blue-50 text-blue-600">
+//           {icon}
+//         </div>
+//       )}
+//       <div>
+//         <h3 className="text-lg font-exo2 font-semibold text-gray-900">
+//           {title}
+//         </h3>
+//         <p className="text-gray-600 text-sm sm:text-base leading-snug mt-1 font-outfit">
+//           {content}
+//         </p>
+//       </div>
+//     </div>
+//   );
+// }
 
 /* Highlight Chips */
 function Chip({ label, value }: { label: string; value: string }) {

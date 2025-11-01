@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useMemo, useState } from "react";
@@ -32,7 +33,7 @@ export default function BookingWidget({
   bookingCutoffHrs: number;
   openDepartures: DepartureLite[];
 }) {
-  const today = new Date();
+
   const cutoffMs = bookingCutoffHrs * 60 * 60 * 1000;
 
   // Build a set of selectable y-m-d strings from OPEN departures that are future + beyond cutoff.
