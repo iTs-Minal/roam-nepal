@@ -12,6 +12,20 @@ type PlaceData = {
   placeId?: number;
 };
 
+type RoomSeed = {
+  accommodationSlug?: string; // made optional so it can be deleted
+  accommodationId?: number;  // optional, assigned dynamically
+  name: string;
+  description: string;
+  images: string[];
+  pricePerNight: number;
+  maxGuests: number;
+  bedType: string;
+  amenities: string[];
+  available: boolean;
+};
+
+
 type NestedDataItem = {
   name: string;
   slug: string;
@@ -730,7 +744,6 @@ async function main() {
     ]
   }
 },
-
 {
   id: 7,
   name: "Ultra Light & Lakeside Exploration",
@@ -786,9 +799,10 @@ async function main() {
         meals: { breakfast: false, lunch: false, dinner: false },
         accommodation: null,
         transport: "Private vehicle",
-        images: [ "/pokhara/activities/lightflight1.webp",
+        images: [ 
+          "/pokhara/activities/lightflight3.webp",
+          "/pokhara/activities/lightflight1.webp",
     "/pokhara/activities/lightflight2.webp",
-    "/pokhara/activities/lightflight3.webp",
     "/pokhara/activities/lightflight4.webp",
     "/pokhara/activities/lightflight5.webp",
     "/pokhara/activities/lightflight6.webp",],
@@ -861,10 +875,11 @@ async function main() {
         meals: { breakfast: true, lunch: false, dinner: true },
         accommodation: "Teahouse or tent",
         transport: "Private vehicle",
-        images: [ "/pokhara/activities/atrekking1.webp",
+        images: [
+          "/pokhara/activities/atrekking4.webp",
+           "/pokhara/activities/atrekking1.webp",
     "/pokhara/activities/atrekking2.webp",
     "/pokhara/activities/atrekking3.webp",
-    "/pokhara/activities/atrekking4.webp",
     "/pokhara/activities/atrekking5.webp",
     "/pokhara/activities/atrekking6.webp",
     "/pokhara/activities/atrekking7.webp",],
@@ -1097,80 +1112,571 @@ async function main() {
   ];
 
   const pokharaAccommodations = [
-    {
-      name: "Temple Tree Resort",
-      slug: "temple-tree-resort",
-      description: "Lakeside boutique resort with spa and garden views.",
-      images: [
-        "/pokhara/accommodations/temple-tree-resort1.jpg",
-        "/pokhara/accommodations/temple-tree-resort2.webp",
-        "/pokhara/accommodations/temple-tree-resort3.webp",
-        "/pokhara/accommodations/temple-tree-resort4.webp",
-      ],
-      price: 120.0,
-      latitude: 28.209,
-      longitude: 83.985,
-      amenities: ["Spa", "Pool", "Free WiFi", "Restaurant", "Garden View"],
-      roomTypes: ["Standard", "Deluxe", "Suite"],
-      rating: 4.8,
-      placeId: null,
-    },
-    {
-      name: "Hotel Middle Path",
-      slug: "hotel-middle-path",
-      description:
-        "Affordable hotel with rooftop restaurant and mountain views.",
-      images: [""],
-      price: 45.0,
-      latitude: 28.207,
-      longitude: 83.97,
-      amenities: ["Rooftop restaurant", "Free WiFi", "Breakfast included"],
-      roomTypes: ["Standard", "Family Room"],
-      rating: 4.2,
-      placeId: null,
-    },
-    {
-      name: "Fishtail Lodge",
-      slug: "fishtail-lodge",
-      description: "Cozy lakeside lodge ideal for budget travelers.",
-      images: [""],
-      price: 25.0,
-      latitude: 28.208,
-      longitude: 83.964,
-      amenities: ["Lakeside view", "Free breakfast", "Shared lounge"],
-      roomTypes: ["Dorm", "Private Room"],
-      rating: 4.0,
-      placeId: null,
-    },
-    {
-      name: "Waterfront Resort",
-      slug: "waterfront-resort",
-      description:
-        "Luxury resort directly on the lake with stunning sunset views.",
-      images: [""],
-      price: 180.0,
-      latitude: 28.21,
-      longitude: 83.986,
-      amenities: ["Pool", "Spa", "Restaurant", "Lakeside terrace"],
-      roomTypes: ["Deluxe", "Suite", "Villa"],
-      rating: 4.9,
-      placeId: null,
-    },
-    {
-      name: "Pokhara Inn",
-      slug: "pokhara-inn",
-      description:
-        "Comfortable mid-range hotel with easy access to lakeside attractions.",
-      images: [""],
-      price: 60.0,
-      latitude: 28.206,
-      longitude: 83.965,
-      amenities: ["Free WiFi", "Breakfast included", "Parking"],
-      roomTypes: ["Single", "Double", "Family Room"],
-      rating: 4.3,
-      placeId: null,
-    },
-  ];
+  {
+    name: "Temple Tree Resort & Spa",
+    slug: "temple-tree-resort",
+    description:
+      "Temple Tree Resort & Spa blends traditional Nepalese architecture with modern comfort. Located just a short walk from Phewa Lake, it offers a serene garden setting, outdoor pool, and spa treatments with mountain views.",
+    shortDescription:
+      "Lakeside boutique resort with Himalayan views and a tranquil spa.",
+    images: [
+      "/pokhara/accommodations/temple-tree-resort1.jpg",
+      "/pokhara/accommodations/temple-tree-resort2.webp",
+      "https://via.placeholder.com/800x600?text=Temple+Tree+Resort+Spa+Pokhara",
+    ],
+    price: 120.0,
+    discountPrice: 100.0,
+    currency: "USD",
+    latitude: 28.209,
+    longitude: 83.985,
+    type: "Resort",
+    starCategory: 4,
+    rating: 4.8,
+    totalReviews: 321,
+    amenities: [
+      "Outdoor Pool",
+      "Spa",
+      "Restaurant & Bar",
+      "Free WiFi",
+      "Room Service",
+      "24-hour Reception",
+      "Laundry Service",
+      "Garden View",
+    ],
+    roomTypes: ["Standard Room", "Deluxe Room", "Garden Villa", "Suite"],
+    checkInTime: "14:00",
+    checkOutTime: "12:00",
+    contactNumber: "+977-61-465819",
+    email: "info@templetree.com",
+    website: "https://templetreenepal.com",
+    address: "Gaurighat, Lakeside, Pokhara 33700, Nepal",
+    city: "Pokhara",
+    postalCode: "33700",
+    mapLink: "https://goo.gl/maps/example-templetree",
+    cancellationPolicy:
+      "Free cancellation up to 48 hours before check-in. Later cancellations will be charged one night’s stay.",
+    childPolicy:
+      "Children under 5 years stay free with existing bedding. Extra beds available on request.",
+    petPolicy: "Pets not allowed.",
+    highlights: ["Lakeside view", "Spa & wellness center", "Beautiful gardens"],
+    services: [
+      "Airport pickup",
+      "Laundry",
+      "Concierge",
+      "Daily housekeeping",
+      "Room service",
+    ],
+    accessibility: ["Wheelchair accessible", "Ground floor rooms available"],
+    nearbyAttractions: ["Phewa Lake", "World Peace Pagoda", "Tal Barahi Temple"],
+    placeId: 1,
+  },
+  {
+    id:2,
+    name: "Hotel Middle Path & Spa",
+    slug: "hotel-middle-path",
+    description:
+      "Hotel Middle Path & Spa is a well-rated mid-range option in Lakeside Pokhara. Featuring a rooftop restaurant, spa, and swimming pool, it’s perfect for budget-conscious travelers looking for comfort and views.",
+    shortDescription:
+      "Comfortable lakeside stay with rooftop views and spa services.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Hotel+Middle+Path+Pokhara+1",
+      "https://via.placeholder.com/800x600?text=Hotel+Middle+Path+Pokhara+2",
+      "https://via.placeholder.com/800x600?text=Hotel+Middle+Path+Pokhara+3",
+    ],
+    price: 45.0,
+    discountPrice: 40.0,
+    currency: "USD",
+    latitude: 28.207,
+    longitude: 83.97,
+    type: "Hotel",
+    starCategory: 3,
+    rating: 4.2,
+    totalReviews: 210,
+    amenities: [
+      "Rooftop Restaurant",
+      "Free WiFi",
+      "Spa",
+      "Breakfast Included",
+      "Air Conditioning",
+      "Laundry Service",
+      "Airport Shuttle",
+    ],
+    roomTypes: ["Standard Room", "Family Room", "Deluxe Double"],
+    checkInTime: "14:00",
+    checkOutTime: "12:00",
+    contactNumber: "+977-61-465712",
+    email: "booking@hotelmiddlepath.com",
+    website: "https://hotelmiddlepath.com",
+    address: "Barahi Path, Lakeside, Pokhara 33700, Nepal",
+    city: "Pokhara",
+    postalCode: "33700",
+    mapLink: "https://goo.gl/maps/example-middlepath",
+    cancellationPolicy:
+      "Free cancellation before 24 hours of arrival. No refund for no-shows.",
+    childPolicy: "Children below 6 years old stay free of charge.",
+    petPolicy: "Pets are not allowed.",
+    highlights: ["Mountain view", "Affordable", "Central lakeside location"],
+    services: ["Daily housekeeping", "Massage", "Room service"],
+    accessibility: ["Elevator", "Wheelchair accessible entrance"],
+    nearbyAttractions: [
+      "Phewa Lake",
+      "Lakeside Market",
+      "Tal Barahi Temple",
+      "Sarangkot Viewpoint",
+    ],
+    placeId: 1,
+  },
+  {
+    id:3,
+    name: "Fishtail Lodge",
+    slug: "fishtail-lodge",
+    description:
+      "A heritage lakeside property accessible by a short shuttle boat ride across Phewa Lake. Fishtail Lodge offers panoramic views of Mt. Machhapuchhre, peaceful gardens, and an iconic rustic setting.",
+    shortDescription:
+      "Iconic lakeside lodge accessible by boat, ideal for peaceful stays.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Fishtail+Lodge+Pokhara+1",
+      "https://via.placeholder.com/800x600?text=Fishtail+Lodge+Pokhara+2",
+      "https://via.placeholder.com/800x600?text=Fishtail+Lodge+Pokhara+3",
+    ],
+    price: 90.0,
+    discountPrice: 85.0,
+    currency: "USD",
+    latitude: 28.208,
+    longitude: 83.964,
+    type: "Lodge",
+    starCategory: 4,
+    rating: 4.6,
+    totalReviews: 190,
+    amenities: [
+      "Private Lake Access",
+      "Restaurant",
+      "Bar",
+      "Garden",
+      "Free Breakfast",
+      "Laundry Service",
+    ],
+    roomTypes: ["Standard Cottage", "Deluxe Cottage", "Suite Cottage"],
+    checkInTime: "13:00",
+    checkOutTime: "12:00",
+    contactNumber: "+977-61-465046",
+    email: "info@fishtaillodge.com",
+    website: "https://fishtaillodge.com.np",
+    address: "Pardi, Phewa Lake, Pokhara 33700, Nepal",
+    city: "Pokhara",
+    postalCode: "33700",
+    mapLink: "https://goo.gl/maps/example-fishtail",
+    cancellationPolicy:
+      "Free cancellation up to 3 days before check-in. 50% charge for late cancellations.",
+    childPolicy: "Children of all ages are welcome.",
+    petPolicy: "Pets are not allowed.",
+    highlights: ["Unique island access", "Tranquil setting", "Himalayan views"],
+    services: ["Boat transfer", "Laundry", "Restaurant"],
+    accessibility: ["Ground floor access", "Boat docking ramp"],
+    nearbyAttractions: ["Phewa Lake", "Tal Barahi Temple", "Lakeside Bazaar"],
+    placeId: 1,
+  },
+  {
+    id:4,
+    name: "Waterfront Resort by KGH",
+    slug: "waterfront-resort",
+    description:
+      "A luxurious lakeside resort under the KGH Group, offering premium rooms with balconies overlooking Phewa Lake. Ideal for honeymooners and travelers seeking modern comfort in Pokhara.",
+    shortDescription:
+      "Luxury resort on the shores of Phewa Lake with scenic views.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Waterfront+Resort+Pokhara+1",
+      "https://via.placeholder.com/800x600?text=Waterfront+Resort+Pokhara+2",
+      "https://via.placeholder.com/800x600?text=Waterfront+Resort+Pokhara+3",
+    ],
+    price: 180.0,
+    discountPrice: 150.0,
+    currency: "USD",
+    latitude: 28.21,
+    longitude: 83.986,
+    type: "Resort",
+    starCategory: 5,
+    rating: 4.9,
+    totalReviews: 450,
+    amenities: [
+      "Infinity Pool",
+      "Spa",
+      "Fine Dining Restaurant",
+      "Bar",
+      "Room Service",
+      "Lakeside Terrace",
+      "Fitness Center",
+      "Conference Hall",
+    ],
+    roomTypes: ["Deluxe Room", "Executive Suite", "Villa"],
+    checkInTime: "14:00",
+    checkOutTime: "12:00",
+    contactNumber: "+977-61-466670",
+    email: "reservations@waterfrontresort.com",
+    website: "https://www.kghgroup.com.np/waterfront",
+    address: "Sedi Height, Lakeside, Pokhara 33700, Nepal",
+    city: "Pokhara",
+    postalCode: "33700",
+    mapLink: "https://goo.gl/maps/example-waterfront",
+    cancellationPolicy:
+      "Full refund if cancelled 48 hours before arrival. 1-night charge after that.",
+    childPolicy: "Children below 10 years stay free with parents.",
+    petPolicy: "Pets allowed on request (extra charges may apply).",
+    highlights: [
+      "Lakeside sunset views",
+      "Luxury spa",
+      "Infinity pool with mountain backdrop",
+    ],
+    services: [
+      "Airport transfer",
+      "Room service",
+      "Concierge",
+      "Housekeeping",
+      "Spa treatments",
+    ],
+    accessibility: ["Elevator", "Wheelchair ramps"],
+    nearbyAttractions: ["Phewa Lake", "Sarangkot", "Bindhyabasini Temple"],
+    placeId: 1,
+  },
+  {
+    id:5,
+    name: "Pokhara Inn",
+    slug: "pokhara-inn",
+    description:
+      "A mid-range hotel located near the main Lakeside area. Pokhara Inn offers clean, comfortable rooms and a warm atmosphere suitable for both solo and family travelers.",
+    shortDescription:
+      "Affordable hotel near Lakeside with breakfast and parking.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Pokhara+Inn+1",
+      "https://via.placeholder.com/800x600?text=Pokhara+Inn+2",
+    ],
+    price: 60.0,
+    discountPrice: 55.0,
+    currency: "USD",
+    latitude: 28.206,
+    longitude: 83.965,
+    type: "Hotel",
+    starCategory: 3,
+    rating: 4.3,
+    totalReviews: 130,
+    amenities: ["Free WiFi", "Breakfast Included", "Parking", "Laundry Service"],
+    roomTypes: ["Single", "Double", "Family Room"],
+    checkInTime: "13:00",
+    checkOutTime: "12:00",
+    contactNumber: "+977-61-466590",
+    email: "contact@pokharainn.com",
+    website: "https://pokharainn.com",
+    address: "Lakeside Road, Pokhara 33700, Nepal",
+    city: "Pokhara",
+    postalCode: "33700",
+    mapLink: "https://goo.gl/maps/example-pokharainn",
+    cancellationPolicy:
+      "Free cancellation up to 24 hours before arrival. No refund for late cancellations.",
+    childPolicy: "Children under 8 years stay free with parents.",
+    petPolicy: "Pets are not allowed.",
+    highlights: ["Central location", "Value for money", "Family-friendly"],
+    services: ["Laundry", "Room cleaning", "Breakfast service"],
+    accessibility: ["Stairs only", "Wide corridors"],
+    nearbyAttractions: ["Phewa Lake", "Lakeside Market", "Devi’s Fall"],
+    placeId: 1,
+  },
+];
+
+const pokharaRooms: RoomSeed[] = [
+  // Temple Tree Resort & Spa (Accommodation ID = 1)
+  {
+   accommodationSlug: "temple-tree-resort",
+    name: "Standard Room",
+    description:
+      "Comfortable standard room featuring wooden interiors, air conditioning, and private balcony overlooking the garden.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Temple+Tree+Standard+Room",
+      "https://via.placeholder.com/800x600?text=Temple+Tree+Standard+Room+2",
+    ],
+    pricePerNight: 120.0,
+    maxGuests: 2,
+    bedType: "Queen",
+    amenities: [
+      "Air Conditioning",
+      "Balcony",
+      "Private Bathroom",
+      "WiFi",
+      "Mini Bar",
+      "Television",
+    ],
+    available: true,
+  },
+  {
+    accommodationSlug: "temple-tree-resort",
+    name: "Deluxe Room",
+    description:
+      "Spacious deluxe room with elegant wooden decor, large windows, and poolside or garden views.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Temple+Tree+Deluxe+Room",
+    ],
+    pricePerNight: 160.0,
+    maxGuests: 3,
+    bedType: "King",
+    amenities: [
+      "Air Conditioning",
+      "Mini Bar",
+      "Balcony",
+      "WiFi",
+      "Hair Dryer",
+      "TV",
+    ],
+    available: true,
+  },
+  {
+   accommodationSlug: "temple-tree-resort",
+    name: "Garden Villa",
+    description:
+      "Private villa unit featuring spacious rooms, modern bathrooms, and views of the lush garden. Perfect for couples or small families.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Temple+Tree+Garden+Villa",
+    ],
+    pricePerNight: 220.0,
+    maxGuests: 4,
+    bedType: "King",
+    amenities: [
+      "Private Garden View",
+      "Air Conditioning",
+      "Room Service",
+      "WiFi",
+      "Jacuzzi",
+    ],
+    available: true,
+  },
+
+  // Hotel Middle Path & Spa (Accommodation ID = 2)
+  {
+    accommodationSlug: "hotel-middle-path",
+    name: "Standard Room",
+    description:
+      "Simple and clean room ideal for budget travelers. Comes with private bathroom, free WiFi, and breakfast included.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Middle+Path+Standard+Room",
+    ],
+    pricePerNight: 45.0,
+    maxGuests: 2,
+    bedType: "Double",
+    amenities: [
+      "Private Bathroom",
+      "WiFi",
+      "Breakfast Included",
+      "TV",
+      "Air Conditioning",
+    ],
+    available: true,
+  },
+  {
+    accommodationSlug: "hotel-middle-path",
+    name: "Family Room",
+    description:
+      "Spacious family room with two double beds, balcony, and access to rooftop views of the Annapurna range.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Middle+Path+Family+Room",
+    ],
+    pricePerNight: 70.0,
+    maxGuests: 4,
+    bedType: "Double x2",
+    amenities: [
+      "Balcony",
+      "WiFi",
+      "Air Conditioning",
+      "Breakfast",
+      "TV",
+      "Hot Shower",
+    ],
+    available: true,
+  },
+  {
+    accommodationSlug: "hotel-middle-path",
+    name: "Deluxe Double",
+    description:
+      "Modern room with improved furnishings and access to rooftop restaurant and pool area.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Middle+Path+Deluxe+Room",
+    ],
+    pricePerNight: 60.0,
+    maxGuests: 2,
+    bedType: "Queen",
+    amenities: [
+      "Balcony",
+      "Air Conditioning",
+      "WiFi",
+      "Mini Fridge",
+      "TV",
+      "Breakfast",
+    ],
+    available: true,
+  },
+
+  // Fishtail Lodge (Accommodation ID = 3)
+  {
+    accommodationSlug: "fishtail-lodge",
+    name: "Standard Cottage",
+    description:
+      "Classic lakeside cottage surrounded by greenery. Offers quiet comfort with essential amenities.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Fishtail+Standard+Cottage",
+    ],
+    pricePerNight: 85.0,
+    maxGuests: 2,
+    bedType: "Twin",
+    amenities: [
+      "Lake View",
+      "Private Bathroom",
+      "Ceiling Fan",
+      "WiFi",
+      "Breakfast Included",
+    ],
+    available: true,
+  },
+  {
+    accommodationSlug: "fishtail-lodge",
+    name: "Deluxe Cottage",
+    description:
+      "Deluxe wooden cottage with panoramic lake views, cozy interiors, and upgraded bathrooms.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Fishtail+Deluxe+Cottage",
+    ],
+    pricePerNight: 120.0,
+    maxGuests: 3,
+    bedType: "Queen",
+    amenities: [
+      "Balcony",
+      "Lake View",
+      "Mini Bar",
+      "WiFi",
+      "Breakfast",
+      "TV",
+    ],
+    available: true,
+  },
+  {
+   accommodationSlug: "fishtail-lodge",
+    name: "Suite Cottage",
+    description:
+      "Spacious suite cottage ideal for couples, featuring sitting area, lake view veranda, and premium amenities.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Fishtail+Suite+Cottage",
+    ],
+    pricePerNight: 160.0,
+    maxGuests: 3,
+    bedType: "King",
+    amenities: [
+      "Private Veranda",
+      "Mini Bar",
+      "Lake View",
+      "Air Conditioning",
+      "WiFi",
+    ],
+    available: true,
+  },
+
+  // Waterfront Resort by KGH (Accommodation ID = 4)
+  {
+    accommodationSlug: "waterfront-resort",
+    name: "Deluxe Room",
+    description:
+      "Spacious modern room with balcony overlooking Phewa Lake. Includes breakfast and access to infinity pool.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Waterfront+Deluxe+Room",
+    ],
+    pricePerNight: 180.0,
+    maxGuests: 2,
+    bedType: "Queen",
+    amenities: [
+      "Balcony",
+      "Lake View",
+      "Air Conditioning",
+      "WiFi",
+      "Breakfast",
+    ],
+    available: true,
+  },
+  {
+    accommodationSlug: "waterfront-resort",
+    name: "Executive Suite",
+    description:
+      "Luxury suite featuring separate living area, panoramic lake view balcony, and exclusive spa access.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Waterfront+Executive+Suite",
+    ],
+    pricePerNight: 250.0,
+    maxGuests: 3,
+    bedType: "King",
+    amenities: [
+      "Balcony",
+      "Mini Bar",
+      "Bathtub",
+      "Lake View",
+      "Room Service",
+      "TV",
+    ],
+    available: true,
+  },
+  {
+    accommodationSlug: "waterfront-resort",
+    name: "Villa",
+    description:
+      "Private lakeside villa with direct pool access, designed for couples seeking luxury and privacy.",
+    images: [
+      "https://via.placeholder.com/800x600?text=Waterfront+Villa+Pokhara",
+    ],
+    pricePerNight: 350.0,
+    maxGuests: 4,
+    bedType: "King",
+    amenities: [
+      "Private Pool Access",
+      "Jacuzzi",
+      "Mini Bar",
+      "Lake View",
+      "WiFi",
+    ],
+    available: true,
+  },
+
+  // Pokhara Inn (Accommodation ID = 5)
+  {
+    accommodationSlug: "pokhara-inn",
+    name: "Single Room",
+    description:
+      "Simple, cozy single room for solo travelers with comfortable bedding and attached bathroom.",
+    images: ["https://via.placeholder.com/800x600?text=Pokhara+Inn+Single+Room"],
+    pricePerNight: 35.0,
+    maxGuests: 1,
+    bedType: "Single",
+    amenities: ["WiFi", "TV", "Private Bathroom", "Breakfast"],
+    available: true,
+  },
+  {
+    accommodationSlug: "pokhara-inn",
+    name: "Double Room",
+    description:
+      "Spacious room ideal for couples, includes complimentary breakfast and WiFi.",
+    images: ["https://via.placeholder.com/800x600?text=Pokhara+Inn+Double+Room"],
+    pricePerNight: 55.0,
+    maxGuests: 2,
+    bedType: "Double",
+    amenities: ["WiFi", "Breakfast", "TV", "Air Conditioning"],
+    available: true,
+  },
+  {
+    accommodationSlug: "pokhara-inn",
+    name: "Family Room",
+    description:
+      "Large family room with three beds, perfect for groups or families traveling together.",
+    images: ["https://via.placeholder.com/800x600?text=Pokhara+Inn+Family+Room"],
+    pricePerNight: 75.0,
+    maxGuests: 4,
+    bedType: "Double + Single",
+    amenities: ["WiFi", "TV", "Breakfast", "Private Bathroom"],
+    available: true,
+  },
+];
+
 
   const pokharaReligiousSites = [
     {
@@ -2169,6 +2675,30 @@ async function main() {
   pokharaCafes.forEach((item) => (item.placeId = pokhara.id));
   pokharaItineraries.forEach((item) => (item.placeId = pokhara.id));
 
+const createdAccommodations: any[] = [];
+
+for (const acc of pokharaAccommodations) {
+  const createdAcc = await prisma.accommodation.upsert({
+    where: { slug: acc.slug }, // unique field
+    update: {},                // do nothing if exists
+    create: acc,
+  });
+  createdAccommodations.push(createdAcc);
+}
+
+
+for (const room of pokharaRooms) {
+  const acc = createdAccommodations.find(a => a.slug === room.accommodationSlug);
+  if (!acc) throw new Error(`Accommodation not found for room ${room.name}`);
+  room.accommodationId = acc.id; // ✅ now allowed by TypeScript
+  delete room.accommodationSlug; // ✅ optional, now TypeScript is happy
+}
+
+
+
+await prisma.room.createMany({
+  data: pokharaRooms.map(({ accommodationSlug, ...r }) => r) // ensure slug is removed
+});
   await createNestedData("activity", pokharaActivities);
   await createNestedData("accommodation", pokharaAccommodations);
   await createNestedData("religiousSite", pokharaReligiousSites);

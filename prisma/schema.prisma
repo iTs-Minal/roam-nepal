@@ -203,20 +203,71 @@ model Traveler {
 }
 
 model Accommodation {
-  id          Int      @id @default(autoincrement())
-  name        String
-  slug        String   @unique
-  description String
-  images      String[]
-  price       Float?
-  latitude    Float?
-  longitude   Float?
-  amenities   String[]
-  roomTypes   String[]
-  rating      Float?
-  placeId     Int?
-  place       Place?   @relation(fields: [placeId], references: [id])
+  id              Int               @id @default(autoincrement())
+  name            String
+  slug            String            @unique
+  description     String
+  shortDescription String?          // For cards or previews
+  images          String[]
+  price           Float?            // Starting price per night
+  discountPrice   Float?            // Optional discounted rate
+  currency        String?           @default("USD")
+  latitude        Float?
+  longitude       Float?
+
+  // Categorization
+  type            String?           // e.g., "Resort", "Hotel", "Guesthouse", "Homestay", "Hostel"
+  starCategory    Int?              // e.g., 3, 4, 5
+  rating          Float?            // Average rating from users
+  totalReviews    Int?              @default(0)
+
+  // Detailed Information
+  amenities       String[]          // WiFi, Pool, etc.
+  roomTypes       String[]          // Deluxe, Standard, Family Suite
+  checkInTime     String?           @default("14:00")
+  checkOutTime    String?           @default("12:00")
+  contactNumber   String?
+  email           String?
+  website         String?
+  address         String?
+  city            String?
+  postalCode      String?
+  mapLink         String?
+
+  // Policies
+  cancellationPolicy String?        // Description of cancellation/refund
+  childPolicy       String?         // Child stay policy
+  petPolicy         String?         // Pet allowance
+
+  // Additional Details
+  highlights       String[]         // e.g. ["Lakeside view", "Free breakfast"]
+  services         String[]         // e.g. ["Room Service", "Laundry", "24h Reception"]
+  accessibility    String[]         // e.g. ["Wheelchair accessible", "Elevator"]
+  nearbyAttractions String[]        // e.g. ["Phewa Lake", "World Peace Pagoda"]
+
+  // Relations
+  placeId          Int?
+  place            Place?           @relation(fields: [placeId], references: [id])
+
+  // Future Relations
+  rooms            Room[]           // For detailed room listings (optional, future)
 }
+
+model Room {
+  id              Int           @id @default(autoincrement())
+  accommodationId Int
+  accommodation   Accommodation @relation(fields: [accommodationId], references: [id])
+  name            String
+  description     String?
+  images          String[]
+  pricePerNight   Float
+  maxGuests       Int?
+  bedType         String?       // e.g. "Queen", "Twin", "King"
+  amenities       String[]
+  available       Boolean       @default(true)
+}
+
+
 
 model ReligiousSite {
   id                Int      @id @default(autoincrement())
