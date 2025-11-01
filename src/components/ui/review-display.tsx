@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { FaTrophy } from "react-icons/fa";
 
 export default function ReviewsDisplay({ type, itemId }: { type: string; itemId: number }) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   const [avgRating, setAvgRating] = useState<number>(0);
 
   useEffect(() => {

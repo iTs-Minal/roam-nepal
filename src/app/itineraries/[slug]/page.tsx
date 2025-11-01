@@ -1,3 +1,4 @@
+
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import dynamic from "next/dynamic";
@@ -11,6 +12,29 @@ import BookingWidget from "../booking-widget";
 
 const Map = dynamic(() => import("@/components/ui/map"));
 
+type ItineraryWithRelations = Awaited<ReturnType<typeof prisma.itinerary.findUnique>> & {
+  place: {
+    id: number;
+    name: string;
+    latitude: number;
+    longitude: number;
+    // Add other fields if needed
+  } | null;
+  days: Array<{
+    dayNumber: number;
+    title: string;
+    summary: string;
+  }>;
+  departures: Array<{
+    id: number;
+    date: Date;
+    startTime: string;
+    seatsAvailable: number;
+    priceOverride?: number | null;
+  }>;
+  pricePerPerson?: number;
+};
+
 export default async function ItineraryPage(props: {
   params: Promise<{ slug: string }>;
 }) {
@@ -23,7 +47,8 @@ export default async function ItineraryPage(props: {
       days: true,
       departures: true,
     },
-  });
+    // Ensure pricePerPerson is selected
+  }) as ItineraryWithRelations;
 
   if (!itinerary) return <div>Itinerary not found</div>;
 
@@ -89,7 +114,7 @@ export default async function ItineraryPage(props: {
               basePrice={itinerary.pricePerPerson || 100}
               openDepartures={itinerary.departures.map(d => ({
                 id: d.id,
-                date: d.date,
+                date: d.date instanceof Date ? d.date.toISOString() : d.date,
                 startTime: d.startTime,
                 seatsAvailable: d.seatsAvailable,
                 priceOverride: d.priceOverride || null,

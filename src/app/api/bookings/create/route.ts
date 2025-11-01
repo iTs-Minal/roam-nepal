@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     // ✅ Minimal creation without rooms relation
     const booking = await prisma.booking.create({
       data: {
-        accommodationId,
+        accommodation: { connect: { id: accommodationId } },
         checkInDate: new Date(checkInDate),
         checkOutDate: new Date(checkOutDate),
         guests: Number(guests),

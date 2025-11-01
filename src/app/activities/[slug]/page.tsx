@@ -172,11 +172,11 @@ export default async function ActivityPage({
         )}
 
         {/* Related Itineraries */}
-{activity.place?.itineraries?.length > 0 && (
+{Array.isArray(activity.place?.itineraries) && activity.place.itineraries.length > 0 && (
   <section>
     <h2 className="text-2xl font-bold mb-4">Related Itineraries</h2>
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {activity.place.itineraries.map((it) => (
+      {activity.place!.itineraries!.map((it) => (
         <Link
           key={it.id}
           href={`/itineraries/${it.slug}`}
@@ -202,7 +202,7 @@ export default async function ActivityPage({
 
         {/* Location & FAQ Side by Side */}
         {(activity.latitude && activity.longitude) ||
-        activity.faq?.length > 0 ? (
+        (Array.isArray(activity.faq) && activity.faq.length > 0) ? (
           <section className="flex flex-col md:flex-row gap-6">
             {/* Location & Map */}
             {activity.latitude && activity.longitude && (
@@ -221,16 +221,26 @@ export default async function ActivityPage({
             )}
 
             {/* FAQ */}
-            {activity.faq?.length > 0 && (
+            {Array.isArray(activity.faq) && activity.faq.length > 0 && (
               <div className="bg-white p-4 rounded-2xl shadow flex-1">
                 <h2 className="text-2xl font-bold mb-4">FAQ</h2>
                 <div className="space-y-3">
-                  {activity.faq.map((f, i) => (
-                    <div key={i} className="bg-gray-50 p-4 rounded-xl">
-                      <h3 className="font-semibold">{f.question}</h3>
-                      <p className="text-gray-700 mt-1">{f.answer}</p>
-                    </div>
-                  ))}
+                  {activity.faq.map((f, i) => {
+                    if (
+                      typeof f === "object" &&
+                      f !== null &&
+                      "question" in f &&
+                      "answer" in f
+                    ) {
+                      return (
+                        <div key={i} className="bg-gray-50 p-4 rounded-xl">
+                          <h3 className="font-semibold">{(f as { question: string }).question}</h3>
+                          <p className="text-gray-700 mt-1">{(f as { answer: string }).answer}</p>
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
                 </div>
               </div>
             )}

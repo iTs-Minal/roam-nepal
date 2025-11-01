@@ -30,7 +30,7 @@ export default function AdminDashboard() {
       <div>
         {/* {activeTab === 'blogs' && <AdminBlogs />} */}
         {activeTab === 'accommodation' && <AccommodationBookings />}
-         {activeTab === 'itinerary' && <ItineraryBookings />}
+         {/* {activeTab === 'itinerary' && <ItineraryBookings />} */}
         {/* // {activeTab === 'activity' && <ActivityBookings />} */}
       </div>
     </div>

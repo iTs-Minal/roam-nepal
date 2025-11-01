@@ -23,9 +23,7 @@ import dynamic from "next/dynamic";
 import ReviewSection from "@/components/ui/review";
 import ReviewsDisplay from "@/components/ui/review-display";
 
-interface Params {
-  slug: string;
-}
+
 
 export default async function ReligiousSitePage(props: {
   params: Promise<{ slug: string }>;
@@ -44,15 +42,20 @@ export default async function ReligiousSitePage(props: {
     images?: string[];
     placeId?: number;
     visitingHours?: string | null;
-    rituals?: Array<{
+    rituals?: {
       name: string;
       description?: string | null;
       time?: string | null;
       images?: string[];
-    }>;
+    }[] | null;
     significance?: string | null;
     bestTimeToVisit?: string | null;
-    nearbyAttractions?: string | null;
+    nearbyAttractions?: Array<{
+      name: string;
+      description?: string;
+      distance?: string;
+      images?: string[];
+    }> | null;
     openingHours?: string | null;
     entryFee?: { internal?: string; external?: string; notes?: string };
     dressCode?: string | null;

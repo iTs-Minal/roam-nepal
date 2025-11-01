@@ -169,7 +169,9 @@ export default async function AccommodationPage({
         {/* Booking CTA */}
         <section className="bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-2xl text-center p-10 shadow-xl">
           <h3 className="text-3xl font-bold mb-2">
-            ${accommodation.price.toFixed(2)} / night
+            {accommodation.price != null
+              ? `$${accommodation.price.toFixed(2)} / night`
+              : "Price not available"}
           </h3>
           <p className="mb-6 text-gray-100 text-lg">
             Stay at {accommodation.name} and experience comfort in{" "}

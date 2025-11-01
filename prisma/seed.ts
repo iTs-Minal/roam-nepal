@@ -2729,6 +2729,7 @@ for (const room of pokharaRooms) {
 
 
 await prisma.room.createMany({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   data: pokharaRooms.map(({ accommodationSlug, ...r }) => r) // ensure slug is removed
 });
   await createNestedData("activity", pokharaActivities);

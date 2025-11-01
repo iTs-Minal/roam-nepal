@@ -7,6 +7,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 export default function HeroSlider({
   images,
   title,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   location,
 }: {
   images: string[];
