@@ -15,13 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "";
 
   return (
-    <ClerkProvider
-     afterSignInUrl={`${APP_URL}/home`}
-  afterSignOutUrl={`${APP_URL}/`}
-    >
+    <ClerkProvider>
 
     <html lang="en" suppressHydrationWarning>
     <head />

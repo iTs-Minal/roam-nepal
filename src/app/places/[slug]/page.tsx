@@ -109,7 +109,7 @@ export default async function PlacePage(props: {
           rating: acc.rating ?? undefined,
           price: acc.price ?? undefined,
         }))}
-        hrefPrefix="/accommodations"
+        hrefPrefix="/accommodation"
       />
       <CarouselSection title="Cafes" items={place.cafes} hrefPrefix="/cafes" />
       <CarouselSection
