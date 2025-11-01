@@ -15,6 +15,7 @@ import { useState } from "react";
 
 export default function Home() {
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isSticky, setIsSticky] = useState(false);
 
   return (
