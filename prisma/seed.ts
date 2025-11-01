@@ -1218,9 +1218,9 @@ async function main() {
     shortDescription:
       "Comfortable lakeside stay with rooftop views and spa services.",
     images: [
+      "/pokhara/accommodations/middle3.jpeg",
       "/pokhara/accommodations/middle1.jepg",
 "/pokhara/accommodations/middle2.jpeg",
-"/pokhara/accommodations/middle3.jpeg",
 "/pokhara/accommodations/middle4.jpeg",
 "/pokhara/accommodations/middle5.jpeg",
 "/pokhara/accommodations/middle6.jpeg",
