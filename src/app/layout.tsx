@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import {
+  ClerkProvider,
+} from '@clerk/nextjs'
 
 export const metadata: Metadata = {
   title: "Roam Nepal",
@@ -12,12 +15,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
+  const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "";
+
   return (
+    <ClerkProvider
+     afterSignInUrl={`${APP_URL}/home`}
+  afterSignOutUrl={`${APP_URL}/`}
+    >
+
     <html lang="en" suppressHydrationWarning>
     <head />
     <body>
       {children}
     </body>
   </html>
+    </ClerkProvider>
   );
 }

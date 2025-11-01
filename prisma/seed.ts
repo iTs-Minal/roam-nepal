@@ -1131,8 +1131,6 @@ async function main() {
     longitude: 83.985,
     type: "Resort",
     starCategory: 4,
-    rating: 4.8,
-    totalReviews: 321,
     amenities: [
       "Outdoor Pool",
       "Spa",
@@ -1171,7 +1169,6 @@ async function main() {
     placeId: 1,
   },
   {
-    id:2,
     name: "Hotel Middle Path & Spa",
     slug: "hotel-middle-path",
     description:
@@ -1190,8 +1187,6 @@ async function main() {
     longitude: 83.97,
     type: "Hotel",
     starCategory: 3,
-    rating: 4.2,
-    totalReviews: 210,
     amenities: [
       "Rooftop Restaurant",
       "Free WiFi",
@@ -1227,7 +1222,7 @@ async function main() {
     placeId: 1,
   },
   {
-    id:3,
+
     name: "Fishtail Lodge",
     slug: "fishtail-lodge",
     description:
@@ -1246,8 +1241,6 @@ async function main() {
     longitude: 83.964,
     type: "Lodge",
     starCategory: 4,
-    rating: 4.6,
-    totalReviews: 190,
     amenities: [
       "Private Lake Access",
       "Restaurant",
@@ -1277,7 +1270,7 @@ async function main() {
     placeId: 1,
   },
   {
-    id:4,
+
     name: "Waterfront Resort by KGH",
     slug: "waterfront-resort",
     description:
@@ -1296,8 +1289,6 @@ async function main() {
     longitude: 83.986,
     type: "Resort",
     starCategory: 5,
-    rating: 4.9,
-    totalReviews: 450,
     amenities: [
       "Infinity Pool",
       "Spa",
@@ -1339,7 +1330,7 @@ async function main() {
     placeId: 1,
   },
   {
-    id:5,
+
     name: "Pokhara Inn",
     slug: "pokhara-inn",
     description:
@@ -1357,8 +1348,6 @@ async function main() {
     longitude: 83.965,
     type: "Hotel",
     starCategory: 3,
-    rating: 4.3,
-    totalReviews: 130,
     amenities: ["Free WiFi", "Breakfast Included", "Parking", "Laundry Service"],
     roomTypes: ["Single", "Double", "Family Room"],
     checkInTime: "13:00",
@@ -1780,8 +1769,7 @@ const pokharaRooms: RoomSeed[] = [
           description: "Remove shoes before entering prayer halls.",
         },
       ],
-      reviews: [],
-      rating: null,
+
       placeId: null,
     },
 
@@ -1891,8 +1879,7 @@ const pokharaRooms: RoomSeed[] = [
           description: "Shoes must be left outside temple premises.",
         },
       ],
-      reviews: [],
-      rating: null,
+
       placeId: null,
     },
 
@@ -2024,8 +2011,7 @@ const pokharaRooms: RoomSeed[] = [
           description: "Cover shoulders and knees when visiting.",
         },
       ],
-      reviews: [],
-      rating: null,
+
       placeId: null,
     },
 
@@ -2129,8 +2115,7 @@ const pokharaRooms: RoomSeed[] = [
             "Flash photography disturbs the sanctity and bats inside.",
         },
       ],
-      reviews: [],
-      rating: null,
+
       placeId: null,
     },
 
@@ -2235,8 +2220,7 @@ const pokharaRooms: RoomSeed[] = [
           description: "Do not interrupt ongoing chanting.",
         },
       ],
-      reviews: [],
-      rating: null,
+
       placeId: null,
     },
 
@@ -2333,8 +2317,7 @@ const pokharaRooms: RoomSeed[] = [
           description: "Maintain silence inside sanctum.",
         },
       ],
-      reviews: [],
-      rating: null,
+
       placeId: null,
     },
 
@@ -2469,8 +2452,7 @@ const pokharaRooms: RoomSeed[] = [
             "Carry a flashlight or follow guides for safe passage in darker chambers.",
         },
       ],
-      reviews: [],
-      rating: null,
+
       placeId: null,
     },
   ];
@@ -2521,8 +2503,7 @@ const pokharaRooms: RoomSeed[] = [
         { name: "Phewa Lake", distance: "200m", image: "" },
         { name: "World Peace Pagoda", distance: "2km", image: "" }
       ],
-      reviews: [],
-      rating: null,
+
       placeId: null,
     },
 
@@ -2568,8 +2549,6 @@ const pokharaRooms: RoomSeed[] = [
         { name: "Fewa Lake", distance: "300m", image: "" },
         { name: "Bindhyabasini Temple", distance: "2.5km", image: "" }
       ],
-      reviews: [],
-      rating: null,
       placeId: null,
     },
 
@@ -2611,8 +2590,7 @@ const pokharaRooms: RoomSeed[] = [
       nearbyAttractions: [
         { name: "Phewa Lake", distance: "150m", image: "" }
       ],
-      reviews: [],
-      rating: null,
+
       placeId: null,
     },
 
@@ -2655,8 +2633,7 @@ const pokharaRooms: RoomSeed[] = [
       nearbyAttractions: [
         { name: "Davis Falls", distance: "500m", image: "" }
       ],
-      reviews: [],
-      rating: null,
+
       placeId: null,
     },
   ];

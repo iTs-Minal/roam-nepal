@@ -4,8 +4,15 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Menu } from "lucide-react";
+import {
+
+  SignInButton,
+  UserButton,
+  useUser,
+} from '@clerk/nextjs'
 
 export default function HomeNavbar() {
+    const { isSignedIn } = useUser();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
@@ -32,9 +39,15 @@ export default function HomeNavbar() {
           <span>🌐</span>
           <span className="text-sm font-medium">NPR</span>
         </div>
+         {isSignedIn ? (
+                  <UserButton />  // Profile dropdown
+                ) : (
+                  <SignInButton>
         <Button variant="default" size="sm" className="hidden md:block hover:translate-y-[-2px]">
           Log In
         </Button>
+        </SignInButton>
+                )}
 
         {/* Hamburger Menu Button for mobile */}
         <button className="md:hidden" onClick={() => setMobileNavOpen(!mobileNavOpen)}>

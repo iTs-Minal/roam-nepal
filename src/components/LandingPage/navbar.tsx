@@ -4,6 +4,13 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { Globe, Menu, X } from "lucide-react";
 import Link from "next/link";
+import {
+
+  SignInButton,
+  UserButton,
+  useUser,
+} from '@clerk/nextjs'
+// import { useRouter } from "next/navigation";
 
 const navLinks = [
   { id: 1, text: "Destination", link: "/tour" },
@@ -13,6 +20,8 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const { isSignedIn } = useUser();
+  // const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -56,12 +65,17 @@ const Navbar = () => {
             <span className="font-bold cursor-point">EN</span>
           </div>
 
-          {/* Auth Buttons */}
-          <div className="flex gap-2 font-kanit">
-            <Button variant="default" size="sm" className="hover:translate-y-[-2px]">
-              Log In
-            </Button>
-          </div>
+          <div>
+        {isSignedIn ? (
+          <UserButton />  // Profile dropdown
+        ) : (
+          <SignInButton>
+            <Button variant="default" size="sm" className="hidden md:block hover:translate-y-[-2px]">
+                      Log In
+                    </Button>
+          </SignInButton>
+        )}
+      </div>
 
           {/* Menu Button - only on mobile */}
           <button

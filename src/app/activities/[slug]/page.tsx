@@ -6,6 +6,7 @@ import ReviewSection from "@/components/ui/review";
 import HomeNavbar from "@/components/homepage/homenavbar";
 import FooterSection from "@/components/landingpage/footer";
 import Link from "next/link";
+import ReviewsDisplay from "@/components/ui/review-display";
 
 const Map = dynamic(() => import("@/components/ui/map"));
 
@@ -237,7 +238,8 @@ export default async function ActivityPage({
         ) : null}
 
         {/* Reviews */}
-        <ReviewSection placeId={activity.id} />
+        <ReviewsDisplay type="activity" itemId={activity.id} />
+        <ReviewSection type="activity" itemId={activity.id} />
       </div>
       <FooterSection />
     </>

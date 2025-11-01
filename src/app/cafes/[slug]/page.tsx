@@ -6,6 +6,7 @@ import { FaClock, FaMapMarkerAlt, FaStar } from "react-icons/fa";
 import ReviewSection from "@/components/ui/review";
 import HomeNavbar from "@/components/homepage/homenavbar";
 import FooterSection from "@/components/landingpage/footer";
+import ReviewsDisplay from "@/components/ui/review-display";
 
 const Map = dynamic(() => import("@/components/ui/map"));
 
@@ -203,7 +204,8 @@ export default async function CafePage(props: {
         )}
 
         {/* User Reviews */}
-        <ReviewSection placeId={cafe.id} />
+        <ReviewsDisplay type="cafe" itemId={cafe.id} />
+        <ReviewSection type="cafe" itemId={cafe.id} />
         
       </div>
       <FooterSection/>

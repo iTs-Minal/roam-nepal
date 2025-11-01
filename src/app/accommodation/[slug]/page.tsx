@@ -1,8 +1,10 @@
 import HomeNavbar from "@/components/homepage/homenavbar";
 import FooterSection from "@/components/landingpage/footer";
 import ReviewSection from "@/components/ui/review";
+import ReviewsDisplay from "@/components/ui/review-display";
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default async function AccommodationPage({
@@ -173,13 +175,16 @@ export default async function AccommodationPage({
             Stay at {accommodation.name} and experience comfort in{" "}
             {accommodation.place?.name}.
           </p>
+          <Link href={`/accommodation/${accommodation.slug}/booking`}>
           <button className="bg-white text-blue-700 px-10 py-3 rounded-xl font-semibold text-lg hover:bg-gray-100 transition">
             Book Now
           </button>
+          </Link>
         </section>
       </main>
         {/* Reviews */}
-              <ReviewSection placeId={accommodation.id} />
+              <ReviewsDisplay type="accommodation" itemId={accommodation.id} />
+              <ReviewSection type="accommodation" itemId={accommodation.id} />
             <FooterSection />
     </div>
   );

@@ -13,6 +13,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Review {
+  id        Int      @id @default(autoincrement())
+  rating    Int      @default(0)
+  comment   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Clerk user ID (string type)
+  userId    String
+  userName  String? // optional, can store user name
+  userImage String? // optional, Clerk profile image if you want
+
+  // Relations (only one will be filled for each review)
+  placeId Int?
+  place   Place? @relation(fields: [placeId], references: [id])
+
+  activityId Int?
+  activity   Activity? @relation(fields: [activityId], references: [id])
+
+  itineraryId Int?
+  itinerary   Itinerary? @relation(fields: [itineraryId], references: [id])
+
+  accommodationId Int?
+  accommodation   Accommodation? @relation(fields: [accommodationId], references: [id])
+
+  religiousSiteId Int?
+  religiousSite   ReligiousSite? @relation(fields: [religiousSiteId], references: [id])
+
+  cafeId Int?
+  cafe   Cafe? @relation(fields: [cafeId], references: [id])
+
+  @@unique([userId, placeId])
+  @@unique([userId, activityId])
+  @@unique([userId, religiousSiteId])
+  @@unique([userId, cafeId])
+  @@unique([userId, itineraryId])
+  @@unique([userId, accommodationId])
+}
+
 model Place {
   id          Int      @id @default(autoincrement())
   name        String
@@ -35,6 +74,8 @@ model Place {
   itineraries    Itinerary[]
   religiousSites ReligiousSite[]
   blogs          Blog[]
+
+  reviews Review[]
 }
 
 model Activity {
@@ -62,8 +103,7 @@ model Activity {
   equipment    String[] // Required or provided equipment
   requirements String[] // Fitness, documents, age, etc.
   faq          Json? // [{question, answer}]
-  reviews      Json? // [{user, rating, comment, date}]
-  rating       Float?
+  reviews      Review[]
 
   bookingInfo        String?
   basePrice          Float?
@@ -111,8 +151,7 @@ model Itinerary {
   bookingCutoffHrs   Int?     @default(24)
   cancellationPolicy String?
   faq                Json?
-  rating             Float?
-  reviews            Json?
+  reviews            Review[]
 
   // Relations
   days       ItineraryDay[]
@@ -155,34 +194,6 @@ model Departure {
   itineraryId Int
   itinerary   Itinerary @relation(fields: [itineraryId], references: [id])
 
-  bookings Booking[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Booking {
-  id                 Int     @id @default(autoincrement())
-  bookingCode        String  @unique
-  userName           String
-  userEmail          String
-  userPhone          String?
-  travelersCount     Int     @default(1)
-  totalPrice         Float
-  currency           String  @default("NPR")
-  status             String  @default("PENDING") // PENDING / CONFIRMED / CANCELLED / COMPLETED
-  paymentStatus      String  @default("UNPAID") // UNPAID / PAID / REFUNDED
-  paymentMethod      String? // e.g. "Khalti", "Esewa", "Card"
-  paymentDetails     Json? // store txn id, timestamps, etc.
-  notes              String?
-  specialRequests    String?
-  cancellationReason String?
-
-  departureId Int
-  departure   Departure @relation(fields: [departureId], references: [id])
-
-  travelers Traveler[] // detailed travelers under one booking
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -198,59 +209,92 @@ model Traveler {
   medicalNotes     String?
   emergencyContact Json? // { name, phone, relation }
 
-  bookingId Int
-  booking   Booking @relation(fields: [bookingId], references: [id])
 }
 
-model Accommodation {
-  id              Int               @id @default(autoincrement())
-  name            String
-  slug            String            @unique
-  description     String
-  shortDescription String?          // For cards or previews
-  images          String[]
-  price           Float?            // Starting price per night
-  discountPrice   Float?            // Optional discounted rate
-  currency        String?           @default("USD")
-  latitude        Float?
-  longitude       Float?
+model Booking {
+  id              Int           @id @default(autoincrement())
+  userId          String?        // Clerk user ID
+  userName        String?
+  userEmail       String?
+  userPhone       String?
 
-  // Categorization
-  type            String?           // e.g., "Resort", "Hotel", "Guesthouse", "Homestay", "Hostel"
-  starCategory    Int?              // e.g., 3, 4, 5
-  rating          Float?            // Average rating from users
-  totalReviews    Int?              @default(0)
-
-  // Detailed Information
-  amenities       String[]          // WiFi, Pool, etc.
-  roomTypes       String[]          // Deluxe, Standard, Family Suite
-  checkInTime     String?           @default("14:00")
-  checkOutTime    String?           @default("12:00")
-  contactNumber   String?
-  email           String?
-  website         String?
-  address         String?
-  city            String?
-  postalCode      String?
-  mapLink         String?
-
-  // Policies
-  cancellationPolicy String?        // Description of cancellation/refund
-  childPolicy       String?         // Child stay policy
-  petPolicy         String?         // Pet allowance
-
-  // Additional Details
-  highlights       String[]         // e.g. ["Lakeside view", "Free breakfast"]
-  services         String[]         // e.g. ["Room Service", "Laundry", "24h Reception"]
-  accessibility    String[]         // e.g. ["Wheelchair accessible", "Elevator"]
-  nearbyAttractions String[]        // e.g. ["Phewa Lake", "World Peace Pagoda"]
+  fullName        String
+  email           String
+  phone           String
+  
+  accommodationId Int
+  roomId          Int?          // Optional if user selects a specific room
+  checkInDate     DateTime
+  checkOutDate    DateTime
+  guests          Int
+  message         String?       // Optional user note
+  status          BookingStatus @default(pending)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 
   // Relations
-  placeId          Int?
-  place            Place?           @relation(fields: [placeId], references: [id])
+  accommodation   Accommodation @relation(fields: [accommodationId], references: [id])
+  room            Room?         @relation(fields: [roomId], references: [id])
+}
+
+enum BookingStatus {
+  pending
+  approved
+  rejected
+}
+
+
+
+
+model Accommodation {
+  id               Int      @id @default(autoincrement())
+  name             String
+  slug             String   @unique
+  description      String
+  shortDescription String? // For cards or previews
+  images           String[]
+  price            Float? // Starting price per night
+  discountPrice    Float? // Optional discounted rate
+  currency         String?  @default("USD")
+  latitude         Float?
+  longitude        Float?
+
+  // Categorization
+  type         String? // e.g., "Resort", "Hotel", "Guesthouse", "Homestay", "Hostel"
+  starCategory Int? // e.g., 3, 4, 5
+  reviews      Review[]
+
+  // Detailed Information
+  amenities     String[] // WiFi, Pool, etc.
+  roomTypes     String[] // Deluxe, Standard, Family Suite
+  checkInTime   String?  @default("14:00")
+  checkOutTime  String?  @default("12:00")
+  contactNumber String?
+  email         String?
+  website       String?
+  address       String?
+  city          String?
+  postalCode    String?
+  mapLink       String?
+
+  // Policies
+  cancellationPolicy String? // Description of cancellation/refund
+  childPolicy        String? // Child stay policy
+  petPolicy          String? // Pet allowance
+
+  // Additional Details
+  highlights        String[] // e.g. ["Lakeside view", "Free breakfast"]
+  services          String[] // e.g. ["Room Service", "Laundry", "24h Reception"]
+  accessibility     String[] // e.g. ["Wheelchair accessible", "Elevator"]
+  nearbyAttractions String[] // e.g. ["Phewa Lake", "World Peace Pagoda"]
+
+  // Relations
+  placeId Int?
+  place   Place? @relation(fields: [placeId], references: [id])
 
   // Future Relations
-  rooms            Room[]           // For detailed room listings (optional, future)
+  rooms Room[] // For detailed room listings (optional, future)
+  booking Booking[]
 }
 
 model Room {
@@ -262,12 +306,11 @@ model Room {
   images          String[]
   pricePerNight   Float
   maxGuests       Int?
-  bedType         String?       // e.g. "Queen", "Twin", "King"
+  bedType         String? // e.g. "Queen", "Twin", "King"
   amenities       String[]
   available       Boolean       @default(true)
+  booking         Booking[]
 }
-
-
 
 model ReligiousSite {
   id                Int      @id @default(autoincrement())
@@ -292,8 +335,7 @@ model ReligiousSite {
   contactInfo       Json? // { phone, email, website, address }
   accessibility     Json? // { wheelchair, stairsOnly, audioGuide, ramps }
   safetyGuidelines  Json? // [{ rule, description }]
-  reviews           Json? // [{ user, rating, comment, date }]
-  rating            Float? // Average rating
+  reviews           Review[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -320,8 +362,7 @@ model Cafe {
   nearbyAttractions Json? // array with name, distance, image
   placeId           Int?
   place             Place?   @relation(fields: [placeId], references: [id])
-  reviews           Json? // user-submitted reviews
-  rating            Float?
+  reviews           Review[]
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ReactNode } from "react";
 import HeroSlider from "@/components/ui/heroslider";
 import { prisma } from "@/lib/prisma";
@@ -20,6 +21,7 @@ import FooterSection from "@/components/landingpage/footer";
 import HomeNavbar from "@/components/homepage/homenavbar";
 import dynamic from "next/dynamic";
 import ReviewSection from "@/components/ui/review";
+import ReviewsDisplay from "@/components/ui/review-display";
 
 interface Params {
   slug: string;
@@ -64,16 +66,21 @@ export default async function ReligiousSitePage(props: {
       images?: string[];
     }>;
     safetyGuidelines?: string[];
-    contactInfo?: { phone?: string; email?: string; website?: string };
+    contactInfo?: { 
+      phone?: string; 
+      email?: string; 
+      website?: string;
+      address?: string;
+    };
   };
 
-  const site = await prisma.religiousSite.findUnique({
+  const religiousSite = await prisma.religiousSite.findUnique({
     where: { slug },
   });
 
   const Map = dynamic(() => import("@/components/ui/map"));
 
-  if (!site) return notFound();
+  if (!religiousSite) return notFound();
 
   return (
     <>
@@ -82,9 +89,9 @@ export default async function ReligiousSitePage(props: {
       {/* Hero Slider */}
       <div className="w-full relative">
         <HeroSlider
-          images={site.images || []}
-          title={site.name}
-          location={site.location}
+          images={religiousSite.images || []}
+          title={religiousSite.name}
+          location={religiousSite.location}
         />
       </div>
 
@@ -95,7 +102,7 @@ export default async function ReligiousSitePage(props: {
             <FaInfoCircle /> Overview
           </h2>
           <p className="text-lg font-outfit text-gray-700 leading-relaxed">
-            {site.description}
+            {religiousSite.description}
           </p>
         </section>
 
@@ -103,64 +110,64 @@ export default async function ReligiousSitePage(props: {
         <section>
           <h2 className="text-2xl font-kanit font-bold mb-6">Visitor Info</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {site.history && (
+            {religiousSite.history && (
               <InfoCard
                 title="History"
-                content={site.history}
+                content={religiousSite.history}
                 icon={<FaUsers className="text-blue-600" />}
                 bgColor="bg-yellow-50"
               />
             )}
-            {site.significance && (
+            {religiousSite.significance && (
               <InfoCard
                 title="Significance"
-                content={site.significance}
+                content={religiousSite.significance}
                 icon={<FaUsers className="text-purple-600" />}
                 bgColor="bg-purple-50"
               />
             )}
-            {site.bestTimeToVisit && (
+            {religiousSite.bestTimeToVisit && (
               <InfoCard
                 title="Best Time to Visit"
-                content={site.bestTimeToVisit}
+                content={religiousSite.bestTimeToVisit}
                 icon={<FaClock className="text-green-600" />}
                 bgColor="bg-green-50"
               />
             )}
-            {site.openingHours && (
+            {religiousSite.openingHours && (
               <InfoCard
                 title="Opening Hours"
-                content={site.openingHours}
+                content={religiousSite.openingHours}
                 icon={<FaClock className="text-orange-600" />}
                 bgColor="bg-orange-50"
               />
             )}
-            {typeof site.entryFee === "object" &&
-              site.entryFee !== null &&
-              !Array.isArray(site.entryFee) && (
+            {typeof religiousSite.entryFee === "object" &&
+              religiousSite.entryFee !== null &&
+              !Array.isArray(religiousSite.entryFee) && (
                 <InfoCard
                   title="Entry Fee"
                   content={`Internal: ${
-                    (site.entryFee as any).internal || "N/A"
+                    (religiousSite.entryFee as any).internal || "N/A"
                   } | External: ${
-                    (site.entryFee as any).external || "N/A"
-                  } | Notes: ${(site.entryFee as any).notes || ""}`}
+                    (religiousSite.entryFee as any).external || "N/A"
+                  } | Notes: ${(religiousSite.entryFee as any).notes || ""}`}
                   icon={<FaMoneyBillWave className="text-teal-600" />}
                   bgColor="bg-teal-50"
                 />
               )}
-            {site.dressCode && (
+            {religiousSite.dressCode && (
               <InfoCard
                 title="Dress Code"
-                content={site.dressCode}
+                content={religiousSite.dressCode}
                 icon={<FaTshirt className="text-pink-600" />}
                 bgColor="bg-pink-50"
               />
             )}
-            {site.photography && (
+            {religiousSite.photography && (
               <InfoCard
                 title="Photography"
-                content={site.photography}
+                content={religiousSite.photography}
                 icon={<FaCamera className="text-gray-600" />}
                 bgColor="bg-gray-100"
               />
@@ -169,13 +176,13 @@ export default async function ReligiousSitePage(props: {
         </section>
 
         {/* Rituals */}
-        {site.rituals && site.rituals.length > 0 && (
+        {religiousSite.rituals && religiousSite.rituals.length > 0 && (
           <section>
             <h2 className="text-2xl font-kanit font-bold mb-6 flex items-center gap-2">
               <FaPrayingHands /> Rituals & Ceremonies
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
-              {site.rituals.map((ritual, idx) => (
+              {religiousSite.rituals.map((ritual, idx) => (
                 <div
                   key={idx}
                   className="bg-purple-50 rounded-xl shadow p-6 hover:shadow-lg transition"
@@ -216,13 +223,13 @@ export default async function ReligiousSitePage(props: {
         )}
 
         {/* Festivals */}
-        {site.festivals && site.festivals.length > 0 && (
+        {religiousSite.festivals && religiousSite.festivals.length > 0 && (
           <section>
             <h2 className="text-2xl font-kanit font-bold mb-6 flex items-center gap-2">
               <FaStar /> Festivals
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
-              {site.festivals.map(
+              {religiousSite.festivals.map(
                 (
                   festival: {
                     name: string;
@@ -268,25 +275,25 @@ export default async function ReligiousSitePage(props: {
           </section>
         )}
 
-        {site.latitude && site.longitude && (
+        {religiousSite.latitude && religiousSite.longitude && (
           <section>
             <h2 className="text-2xl font-kanit font-bold mb-6">Location</h2>
             <Map
-              latitude={site.latitude}
-              longitude={site.longitude}
-              title={site.name}
+              latitude={religiousSite.latitude}
+              longitude={religiousSite.longitude}
+              title={religiousSite.name}
             />
           </section>
         )}
 
         {/* Nearby Attractions */}
-        {site.nearbyAttractions && site.nearbyAttractions.length > 0 && (
+        {religiousSite.nearbyAttractions && religiousSite.nearbyAttractions.length > 0 && (
           <section>
             <h2 className="text-2xl font-kanit font-bold mb-6">
               Nearby Attractions
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
-              {site.nearbyAttractions?.map(
+              {religiousSite.nearbyAttractions?.map(
                 (
                   attraction: {
                     name: string;
@@ -337,17 +344,17 @@ export default async function ReligiousSitePage(props: {
         )}
 
         {/* Facilities & Accessibility */}
-        {(site.facilities || site.accessibility) && (
+        {(religiousSite.facilities || religiousSite.accessibility) && (
           <section className="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl shadow-md p-8">
             <h2 className="text-2xl font-kanit font-bold mb-4 flex items-center gap-2">
               <FaUsers /> Facilities & Accessibility
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
-              {site.facilities && (
+              {religiousSite.facilities && (
                 <div className="bg-white rounded-lg shadow p-4">
                   <h3 className="font-lilita mb-2 text-lg">Facilities</h3>
                   <ul className="list-disc list-inside font-exo text-gray-700 space-y-1">
-                    {Object.entries(site.facilities).map(([key, value]) => (
+                    {Object.entries(religiousSite.facilities).map(([key, value]) => (
                       <li key={key}>
                         {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
                         {value ? "✅ Yes" : "❌ No"}
@@ -356,11 +363,11 @@ export default async function ReligiousSitePage(props: {
                   </ul>
                 </div>
               )}
-              {site.accessibility && (
+              {religiousSite.accessibility && (
                 <div className="bg-white rounded-lg shadow p-4">
                   <h3 className="font-lilita mb-2 text-lg">Accessibility</h3>
                   <ul className="list-disc list-inside font-exo text-gray-700 space-y-1">
-                    {Object.entries(site.accessibility).map(([key, value]) => (
+                    {Object.entries(religiousSite.accessibility).map(([key, value]) => (
                       <li key={key}>
                         {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
                         {value ? "✅ Yes" : "❌ No"}
@@ -374,13 +381,13 @@ export default async function ReligiousSitePage(props: {
         )}
 
         {/* Safety Guidelines */}
-        {site.safetyGuidelines?.length > 0 && (
+        {religiousSite.safetyGuidelines?.length > 0 && (
           <section className="bg-red-50 rounded-2xl shadow-md p-8">
             <h2 className="text-2xl font-kanit font-bold mb-3 flex items-center gap-2">
               <FaUserShield className="text-red-600" /> Safety Guidelines
             </h2>
             <ul className="list-disc list-inside text-gray-700 font-outfit space-y-2">
-              {site.safetyGuidelines?.map(
+              {religiousSite.safetyGuidelines?.map(
                 (rule: { description: string }, idx: number) => (
                   <li key={idx}>{rule.description}</li>
                 )
@@ -390,38 +397,39 @@ export default async function ReligiousSitePage(props: {
         )}
 
         {/* Contact Info */}
-        {site.contactInfo && (
+        {religiousSite.contactInfo && (
           <section className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl shadow-md p-8">
             <h2 className="text-2xl font-kanit font-bold mb-3 flex items-center gap-2">
               <FaMapMarkerAlt /> Contact Info
             </h2>
             <ul className="text-gray-700 font-exo list-disc list-inside space-y-1">
-              {site.contactInfo.phone && (
-                <li>Phone: {site.contactInfo.phone}</li>
+              {(religiousSite.contactInfo as any).phone && (
+                <li>Phone: {(religiousSite.contactInfo as any).phone}</li>
               )}
-              {site.contactInfo.email && (
-                <li>Email: {site.contactInfo.email}</li>
+              {(religiousSite.contactInfo as any).email && (
+                <li>Email: {(religiousSite.contactInfo as any).email}</li>
               )}
-              {site.contactInfo.website && (
+              {(religiousSite.contactInfo as any).website && (
                 <li>
                   Website:{" "}
                   <Link
-                    href={site.contactInfo.website}
+                    href={(religiousSite.contactInfo as any).website}
                     className="text-blue-600 underline"
                   >
-                    {site.contactInfo.website}
+                    {(religiousSite.contactInfo as any).website}
                   </Link>
                 </li>
               )}
-              {site.contactInfo.address && (
-                <li>Address: {site.contactInfo.address}</li>
+              {(religiousSite.contactInfo as any).address && (
+                <li>Address: {(religiousSite.contactInfo as any).address}</li>
               )}
             </ul>
           </section>
         )}
       </div>
 
-      <ReviewSection placeId={site.placeId} />
+      <ReviewsDisplay type="religiousSite" itemId={religiousSite.id} />
+      <ReviewSection type="religiousSite" itemId={religiousSite.id} />
 
       <FooterSection />
     </>

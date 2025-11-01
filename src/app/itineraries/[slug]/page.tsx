@@ -2,18 +2,19 @@ import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import ReviewSection from "@/components/ui/review";
 import HomeNavbar from "@/components/homepage/homenavbar";
 import FooterSection from "@/components/landingpage/footer";
+import ReviewsDisplay from "@/components/ui/review-display";
+import ReviewSection from "@/components/ui/review";
+import BookingWidget from "../booking-widget";
+
 
 const Map = dynamic(() => import("@/components/ui/map"));
 
-export default async function ItineraryPage({
-  params,
-}: {
+export default async function ItineraryPage(props: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params;
+  const { slug } = await props.params;
 
   const itinerary = await prisma.itinerary.findUnique({
     where: { slug },
@@ -21,7 +22,6 @@ export default async function ItineraryPage({
       place: true,
       days: true,
       departures: true,
-      activities: true,
     },
   });
 
@@ -31,7 +31,7 @@ export default async function ItineraryPage({
     <>
       <HomeNavbar />
 
-      <main className="max-w-6xl mx-auto px-4 py-8 space-y-12">
+      <main className="max-w-6xl mx-auto px-4 py-8 space-y-10">
 
         {/* Hero */}
         <section className="relative w-full h-96 rounded-2xl overflow-hidden shadow-lg">
@@ -42,136 +42,69 @@ export default async function ItineraryPage({
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 rounded-2xl">
-            <h1 className="text-4xl sm:text-5xl font-bold text-white">{itinerary.title}</h1>
-            {itinerary.tagline && <p className="text-white mt-2 text-lg">{itinerary.tagline}</p>}
+            <h1 className="text-4xl font-bold text-white">{itinerary.title}</h1>
+            {itinerary.tagline && <p className="text-white mt-2">{itinerary.tagline}</p>}
           </div>
         </section>
 
-        {/* About & Highlights */}
-        <section className="space-y-4">
-          <p className="text-gray-700 font-outfit text-lg">{itinerary.description}</p>
-          {itinerary.highlights?.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {itinerary.highlights.map((item, i) => (
-                <span
-                  key={i}
-                  className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          )}
-        </section>
-
-        {/* Inclusions & Exclusions */}
-        <section className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white p-6 rounded-2xl shadow">
-            <h2 className="text-2xl font-bold mb-3">What's Included</h2>
-            <ul className="list-disc list-inside text-gray-700">
-              {itinerary.inclusions?.map((inc, i) => <li key={i}>{inc}</li>)}
-            </ul>
-          </div>
-          <div className="bg-white p-6 rounded-2xl shadow">
-            <h2 className="text-2xl font-bold mb-3">Exclusions</h2>
-            <ul className="list-disc list-inside text-gray-700">
-              {itinerary.exclusions?.map((exc, i) => <li key={i}>{exc}</li>)}
-            </ul>
-          </div>
+        {/* Description */}
+        <section>
+          <p className="text-gray-700">{itinerary.description}</p>
         </section>
 
         {/* Day-by-Day */}
         {itinerary.days?.length > 0 && (
-          <section className="space-y-6">
-            <h2 className="text-2xl font-bold">Day by Day Plan</h2>
-            {itinerary.days.map((day, i) => (
-              <div key={i} className="bg-white p-6 rounded-2xl shadow">
-                <h3 className="text-xl font-semibold mb-2">
-                  Day {day.dayNumber}: {day.title}
-                </h3>
-                <p className="text-gray-700 mb-2">{day.summary}</p>
-                {day.activities?.length > 0 && (
-                  <ul className="list-disc list-inside text-gray-700 mb-2">
-                    {day.activities.map((act, idx) => <li key={idx}>{act}</li>)}
-                  </ul>
-                )}
-                <div className="text-gray-600 text-sm">
-                  Meals: {day.meals?.breakfast ? "Breakfast " : ""}{day.meals?.lunch ? "Lunch " : ""}{day.meals?.dinner ? "Dinner" : "N/A"} | Transport: {day.transport || "N/A"}
-                </div>
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold">Day-by-Day Plan</h2>
+            {itinerary.days.map((day) => (
+              <div key={day.dayNumber} className="bg-white p-4 rounded-xl shadow">
+                <h3 className="font-semibold">Day {day.dayNumber}: {day.title}</h3>
+                <p>{day.summary}</p>
               </div>
             ))}
           </section>
         )}
 
-        {/* Gallery */}
-        {itinerary.gallery?.length > 0 && (
-          <section>
-            <h2 className="text-2xl font-bold mb-4">Gallery</h2>
-            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2">
-              {itinerary.gallery.map((img, i) => (
-                <div
-                  key={i}
-                  className="relative w-64 h-44 flex-shrink-0 rounded-xl overflow-hidden shadow-lg snap-start"
-                >
-                  <Image src={img} alt={`${itinerary.title} ${i}`} fill className="object-cover"/>
-                </div>
-              ))}
+        {/* Map */}
+        {itinerary.place?.latitude && itinerary.place?.longitude && (
+          <section className="bg-white p-4 rounded-xl shadow">
+            <h2 className="text-2xl font-bold flex items-center gap-2">
+              <FaMapMarkerAlt /> Location
+            </h2>
+            <div className="w-full h-60">
+              <Map
+                latitude={itinerary.place.latitude}
+                longitude={itinerary.place.longitude}
+                title={itinerary.place.name}
+              />
             </div>
           </section>
         )}
 
-        {/* Departures */}
-        {itinerary.departures?.length > 0 && (
+        {/* Booking Widget */}
+        {itinerary.departures && itinerary.departures.length > 0 && (
           <section>
-            <h2 className="text-2xl font-bold mb-4">Upcoming Departures</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              {itinerary.departures.map(dep => (
-                <div key={dep.id} className="bg-white p-4 rounded-2xl shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
-                  <span>{new Date(dep.date).toLocaleDateString()} {dep.startTime}</span>
-                  <span>Status: {dep.status}</span>
-                  <span>Seats: {dep.seatsAvailable}/{dep.seatsTotal}</span>
-                </div>
-              ))}
-            </div>
+            <BookingWidget
+              currency="USD"
+              basePrice={itinerary.pricePerPerson || 100}
+              openDepartures={itinerary.departures.map(d => ({
+                id: d.id,
+                date: d.date,
+                startTime: d.startTime,
+                seatsAvailable: d.seatsAvailable,
+                priceOverride: d.priceOverride || null,
+              }))}
+              bookingCutoffHrs={24}
+            />
           </section>
         )}
-
-  {/* Map + FAQ side by side */}
-<section className="flex flex-col md:flex-row gap-6">
-  {/* Map */}
-  {itinerary.place?.latitude && itinerary.place?.longitude && (
-    <div className="bg-white p-4 rounded-2xl shadow w-full flex flex-col">
-      <h2 className="text-2xl font-bold mb-3 flex items-center gap-2">
-        <FaMapMarkerAlt /> Location
-      </h2>
-      <div className="w-full h-60">
-        <Map
-          latitude={itinerary.place.latitude}
-          longitude={itinerary.place.longitude}
-          title={itinerary.place.name}
-        />
-      </div>
-    </div>
-  )}
-
-  {/* FAQ */}
-  {itinerary.faq?.length > 0 && (
-    <div className="flex flex-col space-y-3 w-full">
-      <h2 className="text-2xl font-bold mb-3">FAQ</h2>
-      <div className="flex flex-col space-y-3">
-        {itinerary.faq.map((item, i) => (
-          <div key={i} className="bg-white p-4 rounded-2xl shadow">
-            <h3 className="font-semibold">{item.q}</h3>
-            <p className="text-gray-700 mt-1">{item.a}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  )}
-</section>
 
         {/* Reviews */}
-        <ReviewSection placeId={itinerary.id} />
+        <section className="space-y-4">
+          <ReviewsDisplay type="itinerary" itemId={itinerary.id} />
+          <ReviewSection type="itinerary" itemId={itinerary.id} />
+        </section>
+
       </main>
 
       <FooterSection />
